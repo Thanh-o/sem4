@@ -1,0 +1,5 @@
+org.springframework.test.context.ContextCustomizerFactory = \
+    com.mycompany.inventory.config.\
+    SqlTestContainersSpringContextCustomizerFactory,com.mycompany.inventory.\
+    config.TestContainersSpringContextCustomizerFactory,com.mycompany.inventory.\
+    config.RedisTestContainersSpringContextCustomizerFactory
