@@ -1,0 +1,22 @@
+[
+    {
+      "question": "Dart ra mắt lần đầu năm nào?",
+      "options": ["2010", "2011", "2013", "2017"],
+      "answer": 1
+    },
+    {
+      "question": "Flutter là UI toolkit được phát triển bởi?",
+      "options": ["Apple", "Google", "Microsoft", "Facebook"],
+      "answer": 1
+    },
+    {
+      "question": "Cú pháp khai báo biến bất biến (immutable) trong Dart là?",
+      "options": ["var", "const", "final", "let"],
+      "answer": 2
+    },
+    {
+      "question": "Từ khóa nào để xử lý bất đồng bộ trong Dart?",
+      "options": ["sync", "await", "yield", "defer"],
+      "answer": 1
+    }
+  ]
