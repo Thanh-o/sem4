@@ -161,7 +161,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           controller: _cityController,
                           style: TextStyle(color: Colors.black87),
                           decoration: InputDecoration(
-                            hintNagy: 'Nhập tên thành phố',
+                            hintText: 'Nhập tên thành phố', // Đã sửa
                             hintStyle: TextStyle(color: Colors.grey[500]),
                             prefixIcon: Icon(Icons.search, color: Colors.grey[600]),
                             suffixIcon: IconButton(
