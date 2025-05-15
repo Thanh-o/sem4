@@ -13,7 +13,23 @@ class ToDoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'To-Do List',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(
+        primaryColor: Colors.teal,
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.teal,
+          accentColor: Colors.amber,
+        ),
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        ),
+        cardTheme: const CardTheme(
+          elevation: 4,
+          margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
+          ),
+        ),
+      ),
       home: const ToDoListScreen(),
     );
   }
@@ -25,13 +41,11 @@ class Task {
 
   Task({required this.title, this.isCompleted = false});
 
-  // Convert Task to JSON
   Map<String, dynamic> toJson() => {
     'title': title,
     'isCompleted': isCompleted,
   };
 
-  // Create Task from JSON
   factory Task.fromJson(Map<String, dynamic> json) => Task(
     title: json['title'],
     isCompleted: json['isCompleted'],
@@ -52,10 +66,9 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
   @override
   void initState() {
     super.initState();
-    _loadTasks(); // Load tasks from SharedPreferences on startup
+    _loadTasks();
   }
 
-  // Load tasks from SharedPreferences
   Future<void> _loadTasks() async {
     final prefs = await SharedPreferences.getInstance();
     final String? tasksString = prefs.getString('tasks');
@@ -67,14 +80,12 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
     }
   }
 
-  // Save tasks to SharedPreferences
   Future<void> _saveTasks() async {
     final prefs = await SharedPreferences.getInstance();
     final String tasksString = jsonEncode(_tasks.map((task) => task.toJson()).toList());
     await prefs.setString('tasks', tasksString);
   }
 
-  // Add new task
   void _addTask() {
     if (_controller.text.isNotEmpty) {
       setState(() {
@@ -85,7 +96,6 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
     }
   }
 
-  // Toggle task completion
   void _toggleTask(int index) {
     setState(() {
       _tasks[index].isCompleted = !_tasks[index].isCompleted;
@@ -93,12 +103,11 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
     _saveTasks();
   }
 
-  // Delete task with confirmation
   void _deleteTask(int index) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Xóa công việc?'),
+        title: const Text('Xóa công việc'),
         content: Text('Bạn có muốn xóa "${_tasks[index].title}"?'),
         actions: [
           TextButton(
@@ -113,7 +122,7 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
               _saveTasks();
               Navigator.pop(context);
             },
-            child: const Text('Xóa'),
+            child: const Text('Xóa', style: TextStyle(color: Colors.red)),
           ),
         ],
       ),
@@ -123,53 +132,73 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('To-Do List')),
+      appBar: AppBar(
+        title: const Text('To-Do List'),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.teal, Colors.tealAccent],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Input field and add button
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _controller,
-                    decoration: const InputDecoration(
-                      labelText: 'Nhập công việc mới',
-                      border: OutlineInputBorder(),
-                    ),
-                    onSubmitted: (_) => _addTask(),
-                  ),
+            // Input field
+            TextField(
+              controller: _controller,
+              decoration: InputDecoration(
+                labelText: 'Nhập công việc mới',
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
                 ),
-                const SizedBox(width: 8),
-                ElevatedButton(
-                  onPressed: _addTask,
-                  child: const Text('Thêm'),
+                filled: true,
+                fillColor: Colors.grey[100],
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.clear),
+                  onPressed: () => _controller.clear(),
                 ),
-              ],
+              ),
+              onSubmitted: (_) => _addTask(),
             ),
             const SizedBox(height: 16),
-            // Task list
+            // Task list with animation
             Expanded(
-              child: ListView.builder(
+              child: _tasks.isEmpty
+                  ? const Center(child: Text('Chưa có công việc nào!'))
+                  : ListView.builder(
                 itemCount: _tasks.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: Checkbox(
-                      value: _tasks[index].isCompleted,
-                      onChanged: (_) => _toggleTask(index),
-                    ),
-                    title: Text(
-                      _tasks[index].title,
-                      style: TextStyle(
-                        decoration: _tasks[index].isCompleted
-                            ? TextDecoration.lineThrough
-                            : null,
+                  return AnimatedOpacity(
+                    opacity: _tasks[index].isCompleted ? 0.6 : 1.0,
+                    duration: const Duration(milliseconds: 300),
+                    child: Card(
+                      child: ListTile(
+                        leading: Checkbox(
+                          value: _tasks[index].isCompleted,
+                          onChanged: (_) => _toggleTask(index),
+                          activeColor: Colors.teal,
+                        ),
+                        title: Text(
+                          _tasks[index].title,
+                          style: TextStyle(
+                            decoration: _tasks[index].isCompleted
+                                ? TextDecoration.lineThrough
+                                : null,
+                            color: _tasks[index].isCompleted
+                                ? Colors.grey
+                                : Colors.black87,
+                          ),
+                        ),
+                        trailing: IconButton(
+                          icon: const Icon(Icons.delete, color: Colors.red),
+                          onPressed: () => _deleteTask(index),
+                        ),
                       ),
-                    ),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.delete),
-                      onPressed: () => _deleteTask(index),
                     ),
                   );
                 },
@@ -177,6 +206,11 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _addTask,
+        backgroundColor: Colors.teal,
+        child: const Icon(Icons.add),
       ),
     );
   }
