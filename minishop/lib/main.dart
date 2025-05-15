@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:minishop/providers/cart_provider.dart';
 import 'package:minishop/providers/product_provider.dart';
+import 'package:minishop/screens/home_screen.dart'; // <--- mới
 import 'package:minishop/screens/product_list_screen.dart';
 import 'package:minishop/screens/cart_screen.dart';
 import 'package:minishop/screens/checkout_screen.dart';
@@ -24,9 +25,10 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           useMaterial3: true,
         ),
-        initialRoute: '/',
+        initialRoute: '/', // <--- HomeScreen là mặc định
         routes: {
-          '/': (context) => ProductListScreen(),
+          '/': (context) => HomeScreen(),
+          '/products': (context) => ProductListScreen(),
           '/cart': (context) => CartScreen(),
           '/checkout': (context) => CheckoutScreen(),
         },

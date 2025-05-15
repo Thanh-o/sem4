@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:minishop/providers/cart_provider.dart';
+import 'package:minishop/screens/product_detail_screen.dart';
 
 class CartScreen extends StatelessWidget {
   @override
@@ -19,34 +20,54 @@ class CartScreen extends StatelessWidget {
                   itemCount: cart.items.length,
                   itemBuilder: (context, index) {
                     final item = cart.items[index];
-                    return ListTile(
-                      leading: Image.network(
-                        item.product.image,
-                        width: 50,
-                        height: 50,
-                        errorBuilder: (context, error, stackTrace) =>
-                            Icon(Icons.broken_image),
-                      ),
-                      title: Text(item.product.name),
-                      subtitle: Text('\$${item.product.price.toStringAsFixed(2)}'),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: Icon(Icons.remove),
-                            onPressed: () => cart.updateQuantity(
-                                item.product.id, item.quantity - 1),
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProductDetailScreen(product: item.product),
                           ),
-                          Text('${item.quantity}'),
-                          IconButton(
-                            icon: Icon(Icons.add),
-                            onPressed: () => cart.updateQuantity(
-                                item.product.id, item.quantity + 1),
+                        );
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 4),
+                        child: ListTile(
+                          leading: Image.network(
+                            item.product.image,
+                            width: 50,
+                            height: 50,
+                            errorBuilder: (context, error, stackTrace) =>
+                                Icon(Icons.broken_image),
                           ),
-                        ],
+                          title: Text(item.product.name),
+                          subtitle:
+                          Text('\$${item.product.price.toStringAsFixed(2)}'),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.remove),
+                                onPressed: item.quantity > 1
+                                    ? () => cart.updateQuantity(item.product.id, item.quantity - 1)
+                                    : null,
+                              ),
+                              Text('${item.quantity}'),
+                              IconButton(
+                                icon: Icon(Icons.add),
+                                onPressed: () => cart.updateQuantity(item.product.id, item.quantity + 1),
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.delete),
+                                onPressed: () => cart.removeFromCart(item.product.id),
+                              ),
+                            ],
+                          ),
+
+                        ),
                       ),
                     );
                   },
+
                 ),
               ),
               Padding(
