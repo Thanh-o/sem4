@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Áo thun",
+    "price": 10.0,
+    "image": "https://example.com/tshirt.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Quần jeans",
+    "price": 20.0,
+    "image": "https://example.com/jeans.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Giày thể thao",
+    "price": 50.0,
+    "image": "https://example.com/shoes.jpg"
+  }
+]
