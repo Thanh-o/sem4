@@ -3,6 +3,40 @@ import 'package:provider/provider.dart';
 import 'package:minishop/providers/cart_provider.dart';
 
 class CheckoutScreen extends StatelessWidget {
+  // Hàm hiển thị Dialog xác nhận thanh toán
+  Future<void> _showConfirmDialog(BuildContext context, CartProvider cart) async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text('Xác nhận thanh toán'),
+          content: Text('Bạn có chắc chắn muốn thanh toán không?'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Hủy'),
+              onPressed: () {
+                Navigator.of(dialogContext).pop(); // Đóng Dialog
+              },
+            ),
+            TextButton(
+              child: Text('Xác nhận'),
+              onPressed: () {
+                Navigator.of(dialogContext).pop(); // Đóng Dialog
+                // Thực hiện thanh toán
+                cart.clearCart();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Thanh toán thành công!')),
+                );
+                // Quay về màn hình chính
+                Navigator.popUntil(context, (route) => route.isFirst);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<CartProvider>(context);
@@ -44,11 +78,8 @@ class CheckoutScreen extends StatelessWidget {
                 SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () {
-                    cart.clearCart();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Thanh toán thành công!')),
-                    );
-                    Navigator.popUntil(context, (route) => route.isFirst);
+                    // Hiển thị Dialog xác nhận trước khi thanh toán
+                    _showConfirmDialog(context, cart);
                   },
                   child: Text('Xác nhận thanh toán'),
                 ),
