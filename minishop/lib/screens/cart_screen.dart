@@ -11,8 +11,9 @@ class CartScreen extends StatelessWidget {
       body: Consumer<CartProvider>(
         builder: (context, cart, child) {
           if (cart.items.isEmpty) {
-            return Center(child: Text('Giỏ hàng trống'));
+            return Center(child: Text('Giỏ hàng của bạn đang trống 😢'));
           }
+
           return Column(
             children: [
               Expanded(
@@ -20,69 +21,104 @@ class CartScreen extends StatelessWidget {
                   itemCount: cart.items.length,
                   itemBuilder: (context, index) {
                     final item = cart.items[index];
-                    return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ProductDetailScreen(product: item.product),
-                          ),
-                        );
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 4),
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        elevation: 3,
                         child: ListTile(
-                          leading: Image.network(
-                            item.product.image,
-                            width: 50,
-                            height: 50,
-                            errorBuilder: (context, error, stackTrace) =>
-                                Icon(Icons.broken_image),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductDetailScreen(product: item.product),
+                              ),
+                            );
+                          },
+                          leading: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.network(
+                              item.product.image,
+                              width: 60,
+                              height: 60,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  Icon(Icons.broken_image, size: 40),
+                            ),
                           ),
-                          title: Text(item.product.name),
-                          subtitle:
-                          Text('\$${item.product.price.toStringAsFixed(2)}'),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
+                          title: Text(item.product.name,
+                              style: TextStyle(fontWeight: FontWeight.w600)),
+                          subtitle: Text(
+                            '\$${item.product.price.toStringAsFixed(2)}',
+                            style: TextStyle(color: Colors.green[700]),
+                          ),
+                          trailing: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              IconButton(
-                                icon: Icon(Icons.remove),
-                                onPressed: item.quantity > 1
-                                    ? () => cart.updateQuantity(item.product.id, item.quantity - 1)
-                                    : null,
-                              ),
-                              Text('${item.quantity}'),
-                              IconButton(
-                                icon: Icon(Icons.add),
-                                onPressed: () => cart.updateQuantity(item.product.id, item.quantity + 1),
-                              ),
-                              IconButton(
-                                icon: Icon(Icons.delete),
-                                onPressed: () => cart.removeFromCart(item.product.id),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(Icons.remove_circle_outline),
+                                    onPressed: item.quantity > 1
+                                        ? () => cart.updateQuantity(
+                                        item.product.id, item.quantity - 1)
+                                        : null,
+                                  ),
+                                  Text('${item.quantity}', style: TextStyle(fontSize: 16)),
+                                  IconButton(
+                                    icon: Icon(Icons.add_circle_outline),
+                                    onPressed: () => cart.updateQuantity(
+                                        item.product.id, item.quantity + 1),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.delete, color: Colors.redAccent),
+                                    onPressed: () =>
+                                        cart.removeFromCart(item.product.id),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-
                         ),
                       ),
                     );
                   },
-
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(16),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                  boxShadow: [
+                    BoxShadow(color: Colors.black12, blurRadius: 8, offset: Offset(0, -2)),
+                  ],
+                ),
+                padding: EdgeInsets.all(20),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
                       'Tổng cộng: \$${cart.totalPrice.toStringAsFixed(2)}',
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.right,
                     ),
-                    SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: () =>
-                          Navigator.pushNamed(context, '/checkout'),
-                      child: Text('Tiến hành thanh toán'),
+                    SizedBox(height: 12),
+                    SizedBox(
+                      height: 48,
+                      child: ElevatedButton.icon(
+                        icon: Icon(Icons.payment),
+                        label: Text('Tiến hành thanh toán'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blueAccent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        onPressed: () => Navigator.pushNamed(context, '/checkout'),
+                      ),
                     ),
                   ],
                 ),
