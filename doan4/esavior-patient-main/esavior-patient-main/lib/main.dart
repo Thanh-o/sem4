@@ -82,15 +82,18 @@ class _MyAppState extends State<MyApp> {
 
   void _onItemTapped(int index) {
     setState(() {
-      if (index != 2) {
-        _selectedIndex = index;
+      if (index == 3) {
+        // Booking: toggle extra buttons
+        _showExtraButtons = !_showExtraButtons;
       } else {
-        setState(() {
-          _showExtraButtons = !_showExtraButtons;
-        });
+        // Các tab còn lại: chỉ chuyển trang và ẩn extra buttons
+        _selectedIndex = index;
+        _showExtraButtons = false;
       }
     });
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -174,10 +177,7 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
             Builder(
-              builder: (context) => const Booking(),
-            ),
-            Builder(
-              builder: (context) => Appointment(
+              builder: (context) => Appointment( // Medical -> Appointment
                 isLoggedIn: isLoggedIn,
                 onLogout: () => handleLogout(context),
                 patientId: patientId,
@@ -187,6 +187,9 @@ class _MyAppState extends State<MyApp> {
                   });
                 },
               ),
+            ),
+            Builder(
+              builder: (context) => const Booking(), // Booking -> show buttons
             ),
             Builder(
               builder: (context) => Profile(
@@ -202,6 +205,8 @@ class _MyAppState extends State<MyApp> {
             ),
           ],
         ),
+
+
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: whiteColor,
           items: const <BottomNavigationBarItem>[
@@ -214,15 +219,12 @@ class _MyAppState extends State<MyApp> {
               label: 'Diagnosis',
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.car_crash,
-                color: whiteColor,
-              ),
-              label: 'Booking',
+              icon: Icon(Icons.calendar_month), // Đổi chỗ Medical
+              label: 'Medical',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month),
-              label: 'Medical',
+              icon: Icon(Icons.car_crash), // Đổi chỗ Booking
+              label: 'Booking',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
@@ -305,16 +307,17 @@ class _MyAppState extends State<MyApp> {
             FloatingActionButton(
               onPressed: () {
                 setState(() {
-                  _showExtraButtons = !_showExtraButtons;
+                  _selectedIndex = 2; // Index của trang Appointment (Medical)
+                  _showExtraButtons = false; // Không hiện các nút phụ
                 });
               },
               backgroundColor: primaryColor,
-              child: Image.network(
-                'https://img.icons8.com/ios-filled/50/FFFFFF/ambulance--v1.png',
-                width: 35,
-                height: 35,
-              ),
+              child: const Icon(Icons.local_hospital, color: whiteColor, size: 30),
             ),
+
+
+
+
             if (_showExtraButtons) const SizedBox(height: 30)
           ],
         ),

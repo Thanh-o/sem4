@@ -27,6 +27,7 @@ dependencies:
   latlong2: any
   web_socket_channel: any
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

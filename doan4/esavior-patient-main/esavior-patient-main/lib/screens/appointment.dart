@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'dart:async';
 import 'dart:math';
 
+
+
 const primaryColor = Color.fromARGB(255, 200, 50, 0);
 const whiteColor = Color.fromARGB(255, 255, 255, 255);
 const blackColor = Color.fromARGB(255, 0, 0, 0);
@@ -423,7 +425,7 @@ class _AppointmentState extends State<Appointment> {
           margin: const EdgeInsets.only(top: 20),
           alignment: Alignment.center,
           child: const Text(
-            'Select Department & Doctor',
+            'Select ',
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.bold,
@@ -447,26 +449,25 @@ class _AppointmentState extends State<Appointment> {
             dropdownColor: whiteColor,
             hint: isLoadingDepartment
                 ? const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2.5,
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(primaryColor),
-                        ),
-                      ),
-                    ],
-                  )
-                : const Text(
-                    'Select Department',
-                    style: TextStyle(
-                        color: Colors.black54,
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold),
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2.5,
+                    valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
                   ),
+                ),
+              ],
+            )
+                : const Text(
+              'Select Department',
+              style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold),
+            ),
             onChanged: (value) {
               setState(() {
                 selectedDepartment = value;
@@ -495,6 +496,7 @@ class _AppointmentState extends State<Appointment> {
               focusedBorder: InputBorder.none,
               enabledBorder: InputBorder.none,
             ),
+            menuMaxHeight: 200, // Giới hạn chiều cao
           ),
         ),
         Container(
@@ -512,26 +514,25 @@ class _AppointmentState extends State<Appointment> {
             value: selectedDoctor,
             hint: isLoadingDoctor
                 ? const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2.5,
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(primaryColor),
-                        ),
-                      ),
-                    ],
-                  )
-                : const Text(
-                    'Select Doctor',
-                    style: TextStyle(
-                        color: Colors.black54,
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold),
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2.5,
+                    valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
                   ),
+                ),
+              ],
+            )
+                : const Text(
+              'Select Doctor',
+              style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold),
+            ),
             onChanged: (value) {
               setState(() {
                 selectedDoctor = value;
@@ -555,6 +556,7 @@ class _AppointmentState extends State<Appointment> {
               focusedBorder: InputBorder.none,
               enabledBorder: InputBorder.none,
             ),
+            menuMaxHeight: 200, // Giới hạn chiều cao
           ),
         ),
         Container(
@@ -684,7 +686,7 @@ class _AppointmentState extends State<Appointment> {
             margin: const EdgeInsets.only(top: 20),
             alignment: Alignment.center,
             child: const Text(
-              'Fill Patient Information',
+              'Enter Information',
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
@@ -959,7 +961,7 @@ class _AppointmentState extends State<Appointment> {
             margin: const EdgeInsets.only(top: 20),
             alignment: Alignment.center,
             child: const Text(
-              'Confirm Booking Information',
+              'Information',
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
@@ -1227,16 +1229,24 @@ class _AppointmentState extends State<Appointment> {
           appBar: AppBar(
             title: Container(
               alignment: Alignment.center,
-              child: const Text(
-                'Medical Appointment',
-                style: TextStyle(
-                    color: whiteColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20),
+              child: Text(
+                step == 1
+                    ? 'Select Department & Doctor'
+                    : step == 2
+                    ? 'Fill Patient Information'
+                    : showSuccess
+                    ? 'Appointment Success'
+                    : 'Confirm Booking Information',
+                style: const TextStyle(
+                  color: whiteColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
               ),
             ),
             backgroundColor: primaryColor,
           ),
+
           body: SingleChildScrollView(
             padding: const EdgeInsets.all(16.0),
             child: Column(
