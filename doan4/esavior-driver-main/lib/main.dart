@@ -29,7 +29,7 @@ void callbackDispatcher() {
   // Hàm để thực hiện task
   Workmanager().executeTask((task, inputData) async {
     int driverId = inputData!['driverId'];
-    final String apiUrl = 'https://techwiz-b3fsfvavawb9fpg8.japanwest-01.azurewebsites.net/api/drivers/$driverId';
+    final String apiUrl = 'http://10.0.2.2:8080/api/drivers/$driverId';
 
     Timer? timer;
 
@@ -84,7 +84,7 @@ void main() {
 }
 Future<void> _checkUnfinishedBooking(int driverId, FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
   final response = await http.get(
-    Uri.parse('https://techwiz-b3fsfvavawb9fpg8.japanwest-01.azurewebsites.net/api/bookings/unfinished/$driverId'),
+    Uri.parse('http://10.0.2.2:8080/api/bookings/unfinished/$driverId'),
   );
 
   // Nếu request trả về 200, sẽ gửi thông báo liên tục
@@ -102,7 +102,7 @@ Future<void> _checkUnfinishedBooking(int driverId, FlutterLocalNotificationsPlug
 
 Future<void> _checkDriverBooking(int driverId, FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
   final response = await http.get(
-    Uri.parse('https://techwiz-b3fsfvavawb9fpg8.japanwest-01.azurewebsites.net/api/drivers/check-driver/$driverId'),
+    Uri.parse('http://10.0.2.2:8080/api/drivers/check-driver/$driverId'),
   );
 
   // Nếu request trả về 200, sẽ gửi thông báo mỗi 5 giây

@@ -177,7 +177,7 @@ class _OrderState extends State<Order> {
   void _openWebSocketConnection(int? bookingId, {Function? setStateDialog}) {
     if (_channel == null) {
       _channel = IOWebSocketChannel.connect(
-          'wss://techwiz-b3fsfvavawb9fpg8.japanwest-01.azurewebsites.net/ws/common?id=$bookingId&role=driver');
+          'wss://10.0.2.2:8080/ws/common?id=$bookingId&role=driver');
 
       // Chuyển đổi thành BroadcastStream và đảm bảo không bị null
       broadcastStream = _channel!.stream.asBroadcastStream();
@@ -259,7 +259,7 @@ class _OrderState extends State<Order> {
       // Thay thế URL API của bạn vào đây
       final response = await http.post(
         Uri.parse(
-            'https://techwiz-b3fsfvavawb9fpg8.japanwest-01.azurewebsites.net/api/bookings/update-status'),
+            'http://10.0.2.2:8080/api/bookings/update-status'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'bookingStatus': status,
@@ -334,7 +334,7 @@ class _OrderState extends State<Order> {
     try {
       // Gọi API để kiểm tra trạng thái booking
       final response = await http.get(Uri.parse(
-          'https://techwiz-b3fsfvavawb9fpg8.japanwest-01.azurewebsites.net/api/bookings/$bookingId2'));
+          'http://10.0.2.2:8080/api/bookings/$bookingId2'));
       print('check booking status ' + response.statusCode.toString() + '  id booking: ' + bookingId2.toString());
 
       if (response.statusCode == 200) {
@@ -357,7 +357,7 @@ class _OrderState extends State<Order> {
 
   Future<void> getDriverById(int driverId) async {
     final String apiUrl =
-        'https://techwiz-b3fsfvavawb9fpg8.japanwest-01.azurewebsites.net/api/drivers/$driverId'; // Đặt URL API chính xác
+        'http://10.0.2.2:8080/api/drivers/$driverId'; // Đặt URL API chính xác
     print('check tai xe ' + driverId.toString());
     try {
       final response = await http.get(Uri.parse(apiUrl));
@@ -388,7 +388,7 @@ class _OrderState extends State<Order> {
       print("driver_id" + driverId.toString() + "status la:" + status);
       final response = await http.post(
         Uri.parse(
-            'https://techwiz-b3fsfvavawb9fpg8.japanwest-01.azurewebsites.net/api/drivers/update-status'),
+            'http://10.0.2.2:8080/api/drivers/update-status'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'driverId': driverId,
@@ -410,7 +410,7 @@ class _OrderState extends State<Order> {
     try {
       final response = await http.get(
         Uri.parse(
-            'https://techwiz-b3fsfvavawb9fpg8.japanwest-01.azurewebsites.net/api/bookings/unfinished/$driverId'),
+            'http://10.0.2.2:8080/api/bookings/unfinished/$driverId'),
       );
       print("check response unfinish booking : " + response.statusCode.toString());
       if (response.statusCode == 200 && response.body.isNotEmpty) {
@@ -462,7 +462,7 @@ class _OrderState extends State<Order> {
       // Chỉ kiểm tra đơn hàng mới nếu chưa xác nhận
       final response = await http.get(
         Uri.parse(
-            'https://techwiz-b3fsfvavawb9fpg8.japanwest-01.azurewebsites.net/api/drivers/check-driver/$driverId'),
+            'http://10.0.2.2:8080/api/drivers/check-driver/$driverId'),
       );
       print('check driver booking : ' + response.statusCode.toString());
       if (response.statusCode == 200 && response.body.isNotEmpty) {
@@ -520,7 +520,7 @@ class _OrderState extends State<Order> {
     if (_currentLocation != null) {
       final response = await http.post(
         Uri.parse(
-            'https://techwiz-b3fsfvavawb9fpg8.japanwest-01.azurewebsites.net/api/patientlocation/update-location'),
+            'http://10.0.2.2:8080/api/patientlocation/update-location'),
         headers: {
           'Content-Type': 'application/json',
         },

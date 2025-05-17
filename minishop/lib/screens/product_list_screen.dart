@@ -116,7 +116,7 @@ class ProductListScreen extends StatelessWidget {
                             Text(
                               '\$${product.price.toStringAsFixed(2)}',
                               style: TextStyle(
-                                color: Colors.green[700],
+
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -128,7 +128,7 @@ class ProductListScreen extends StatelessWidget {
                                 label: Text('Thêm'),
                                 style: ElevatedButton.styleFrom(
                                   padding: EdgeInsets.symmetric(vertical: 10),
-                                  backgroundColor: Colors.blueAccent,
+
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12),
                                   ),

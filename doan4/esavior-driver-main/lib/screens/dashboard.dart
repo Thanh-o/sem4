@@ -85,7 +85,7 @@ class _BookingListPageState extends State<BookingListPage> {
     try {
       final response = await http.get(
         Uri.parse(
-            'https://techwiz-b3fsfvavawb9fpg8.japanwest-01.azurewebsites.net/api/bookings/driverId/${widget.driverId}'),
+            'http://10.0.2.2:8080/api/bookings/driverId/${widget.driverId}'),
       );
 
       if (response.statusCode == 200) {
@@ -122,7 +122,7 @@ class _BookingListPageState extends State<BookingListPage> {
     try {
       final response = await http.post(
         Uri.parse(
-            'https://techwiz-b3fsfvavawb9fpg8.japanwest-01.azurewebsites.net/api/bookings/update-status'),
+            'http://10.0.2.2:8080/api/bookings/update-status'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'bookingId': bookingId,

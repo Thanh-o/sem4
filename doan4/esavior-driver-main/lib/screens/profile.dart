@@ -105,7 +105,7 @@ class _ProfileState extends State<Profile> {
   Future<void> updateDriver(Map<String, dynamic> driverData) async {
     final response = await http.put(
       Uri.parse(
-          'https://techwiz-b3fsfvavawb9fpg8.japanwest-01.azurewebsites.net/api/drivers/${widget.driverData?['driverId']}'),
+          'http://10.0.2.2:8080/api/drivers/${widget.driverData?['driverId']}'),
       headers: {
         'Content-Type': 'application/json',
       },

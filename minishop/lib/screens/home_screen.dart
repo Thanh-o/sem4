@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
+  final List<String> categories = [
+    'Điện thoại',
+    'Laptop',
+    'Thời trang',
+    'Phụ kiện',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +41,36 @@ class HomeScreen extends StatelessWidget {
               style: TextStyle(fontSize: 16, color: Colors.grey[700]),
               textAlign: TextAlign.center,
             ),
+            SizedBox(height: 32),
+
+            /// Categories section
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Danh mục nổi bật:',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              ),
+            ),
+            SizedBox(height: 12),
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              children: categories.map((category) {
+                return ActionChip(
+                  label: Text(category),
+                  labelStyle: TextStyle(fontWeight: FontWeight.w500),
+                  backgroundColor: Colors.grey[200],
+                  elevation: 2,
+                  onPressed: () {
+                    // Tạm thời chỉ hiện snackbar, sau này có thể điều hướng tới danh sách lọc theo category
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Đã chọn danh mục: $category')),
+                    );
+                  },
+                );
+              }).toList(),
+            ),
+
             SizedBox(height: 40),
             ElevatedButton.icon(
               icon: Icon(Icons.store),

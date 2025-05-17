@@ -5,7 +5,7 @@ import 'package:workmanager/workmanager.dart';
 
 // Hàm kiểm tra đơn hàng của tài xế
 Future<void> checkDriverBooking(int driverId) async {
-  final String apiUrl = 'https://techwiz-b3fsfvavawb9fpg8.japanwest-01.azurewebsites.net/api/drivers/$driverId';
+  final String apiUrl = 'http://10.0.2.2:8080/api/drivers/$driverId';
 
   try {
     final response = await http.get(Uri.parse(apiUrl));

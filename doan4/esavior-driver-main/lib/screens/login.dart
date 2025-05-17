@@ -36,7 +36,7 @@ class _LoginState extends State<Login> {
 
     try {
       final response = await http.post(
-        Uri.parse('https://techwiz-b3fsfvavawb9fpg8.japanwest-01.azurewebsites.net/api/drivers/login'),
+        Uri.parse('http://10.0.2.2:8080/api/drivers/login'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'email': email,

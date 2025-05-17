@@ -83,7 +83,7 @@ class ProductDetailScreen extends StatelessWidget {
                   icon: Icon(Icons.add_shopping_cart),
                   label: Text('Thêm vào giỏ hàng', style: TextStyle(fontSize: 16)),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blueAccent,
+
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),

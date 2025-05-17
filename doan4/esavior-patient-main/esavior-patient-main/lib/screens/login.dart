@@ -79,7 +79,7 @@ class _LoginState extends State<Login> {
 
     try {
       final response = await http.post(
-        Uri.parse('https://10.0.2.2:8081/api/v1/patients/login'),
+        Uri.parse('http://10.0.2.2:8081/api/v1/patients/login'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'patient_email': email, 'patient_password': password}),
       );
