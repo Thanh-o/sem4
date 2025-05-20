@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:minishop/providers/cart_provider.dart';
+import 'package:minishop/screens/order_detail_screen.dart';
 
 class CheckoutScreen extends StatefulWidget {
   @override
@@ -26,11 +27,31 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               child: Text('Xác nhận'),
               onPressed: () {
                 Navigator.of(dialogContext).pop();
+                // Create the order
+                final order = Order(
+                  id: DateTime.now().millisecondsSinceEpoch.toString(),
+                  items: List.from(cart.items),
+                  totalAmount: cart.totalPrice,
+                  paymentMethod: selectedMethod,
+                  dateTime: DateTime.now(),
+                );
+                // Save the order
+                cart.addOrder(
+                  cart.items,
+                  cart.totalPrice,
+                  selectedMethod,
+                );
                 cart.clearCart();
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('Thanh toán thành công bằng $selectedMethod!')),
                 );
-                Navigator.popUntil(context, (route) => route.isFirst);
+                // Navigate to OrderDetailScreen with the order
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OrderDetailScreen(order: order),
+                  ),
+                );
               },
             ),
           ],

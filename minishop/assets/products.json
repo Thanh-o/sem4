@@ -3,18 +3,21 @@
     "id": 1,
     "name": "Áo thun",
     "price": 10.0,
-    "image": "https://nhanmachatc.com/wp-content/uploads/2021/08/hinh-in-ao-thun-theo-yeu-cau-la-gi.jpg"
+    "image": "https://nhanmachatc.com/wp-content/uploads/2021/08/hinh-in-ao-thun-theo-yeu-cau-la-gi.jpg",
+    "description": "Áo thun cotton thoáng mát, phù hợp đi chơi, dạo phố."
   },
   {
     "id": 2,
     "name": "Quần jeans",
     "price": 20.0,
-    "image": "https://media.istockphoto.com/id/1132154377/vi/anh/jeans.jpg?s=612x612&w=0&k=20&c=vs3t26vIk2dgWyAHPJYZxYlJvdEsnSHWwPCb9i0kXy8="
+    "image": "https://media.istockphoto.com/id/1132154377/vi/anh/jeans.jpg?s=612x612&w=0&k=20&c=vs3t26vIk2dgWyAHPJYZxYlJvdEsnSHWwPCb9i0kXy8=",
+    "description": "Quần jeans xanh đậm, chất liệu bền và dễ phối đồ."
   },
   {
     "id": 3,
     "name": "Giày thể thao",
     "price": 50.0,
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY6OXaiEVN2f4L-gY9xCFDF171gFYoymKyqg&s"
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY6OXaiEVN2f4L-gY9xCFDF171gFYoymKyqg&s",
+    "description": "Giày thể thao êm ái, phù hợp chạy bộ và luyện tập hằng ngày."
   }
 ]

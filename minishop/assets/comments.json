@@ -1,0 +1,24 @@
+{
+  "comments": [
+    {
+      "productId": 1,
+      "user": "User1",
+      "comment": "Áo thun rất thoải mái, chất vải tốt!"
+    },
+    {
+      "productId": 1,
+      "user": "User2",
+      "comment": "Màu sắc đẹp, giao hàng nhanh."
+    },
+    {
+      "productId": 2,
+      "user": "User3",
+      "comment": "Quần jeans ôm vừa vặn, rất thích!"
+    },
+    {
+      "productId": 3,
+      "user": "User4",
+      "comment": "Giày thể thao êm, phù hợp chạy bộ."
+    }
+  ]
+}

@@ -3,9 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:minishop/providers/cart_provider.dart';
 import 'package:minishop/providers/product_provider.dart';
 import 'package:minishop/screens/home_screen.dart'; // <--- mới
-import 'package:minishop/screens/product_list_screen.dart';
+import 'package:minishop/screens/history_screen.dart';
+import 'package:minishop/screens/social_feed_screen.dart';
 import 'package:minishop/screens/cart_screen.dart';
 import 'package:minishop/screens/checkout_screen.dart';
+import 'package:minishop/screens/main_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,12 +27,14 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           useMaterial3: true,
         ),
-        initialRoute: '/', // <--- HomeScreen là mặc định
+        home: MainScreen(), // Dùng MainScreen làm home
+
         routes: {
-          '/': (context) => HomeScreen(),
-          '/products': (context) => ProductListScreen(),
+          '/home': (context) => HomeScreen(),
+          '/history': (context) => HistoryScreen(),
           '/cart': (context) => CartScreen(),
           '/checkout': (context) => CheckoutScreen(),
+          '/social': (context) => SocialFeedScreen(),
         },
       ),
     );
