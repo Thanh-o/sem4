@@ -34,23 +34,29 @@ class Order {
     'Quantity': quantity,
   };
 
-  String toHtmlRow() {
+  String toHtmlRow([int index = 0]) {
     return '''
-  <tr>
-    <td>$item</td>
-    <td>$itemName</td>
-    <td>${price.toStringAsFixed(2)}</td>
-    <td>$currency</td>
-    <td>$quantity</td>
-    <td>
-      <form method="POST" action="/delete" onsubmit="return confirm('Bạn có chắc muốn xóa đơn hàng này?');">
-        <input type="hidden" name="item" value="$item">
-        <button type="submit" class="delete-btn">Xóa</button>
-      </form>
-    </td>
-  </tr>
-  ''';
+<tr>
+  <td>${index + 1}</td>
+  <td>${item}</td>
+  <td>${itemName}</td>
+  <td>${quantity}</td>
+  <td>${price.toStringAsFixed(2)}</td>
+  <td>${currency}</td>
+  <td>
+    <form method="POST" action="/delete" enctype="application/x-www-form-urlencoded" onsubmit="return confirm('Bạn có chắc muốn xóa đơn hàng này?');">
+
+      <input type="hidden" name="item" value="$item">
+<button type="submit" style="background: none; border: none; font-size: 16px; cursor: pointer; color: blue;" title="Xoá đơn hàng">
+  🗑
+</button>
+
+    </form>
+  </td>
+</tr>
+''';
   }
+
 }
 
 const String filePath = 'order.json';
@@ -91,160 +97,130 @@ String renderHtml(List<Order> orders, [String keyword = '']) {
       .where((o) => o.itemName.toLowerCase().contains(keyword.toLowerCase()))
       .toList();
 
-  final rows = filtered.map((o) => o.toHtmlRow()).join();
+  final rows = filtered.asMap().entries.map((entry) => entry.value.toHtmlRow(entry.key)).join();
+
 
   return '''
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Order Manager</title>
+  <title>My Order</title>
   <style>
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: #f0f2f5;
+      font-family: 'Arial', sans-serif;
+      background-color: #fdfdfd;
       margin: 0;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    .container {
-      max-width: 1200px;
-      width: 100%;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      padding: 24px;
+      padding: 0;
     }
     h1 {
-      color: #1a73e8;
+      color: #d87c13;
       text-align: center;
-      margin-bottom: 24px;
-      font-size: 28px;
-      font-weight: 600;
+      margin-top: 30px;
     }
-    .search-form, .add-form {
-      background: #f8f9fa;
-      padding: 20px;
-      border-radius: 8px;
-      margin-bottom: 24px;
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px auto;
+      max-width: 800px;
     }
-    .search-form label, .add-form label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 500;
-      color: #333;
-    }
-    input[type="text"], input[type="number"] {
-      width: 100%;
+    form input[type=text],
+    form input[type=number] {
       padding: 10px;
-      margin-bottom: 12px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 14px;
-      box-sizing: border-box;
+      width: 180px;
+      
+      border-radius: 5px;
     }
-    input[type="submit"], .delete-btn {
-      background: #1a73e8;
-      color: white;
+    form input[type=submit] {
+      padding: 10px 20px;
+      background-color: #d87c13;
       border: none;
-      padding: 10px 16px;
-      border-radius: 6px;
+      color: white;
       cursor: pointer;
-      font-size: 14px;
-      transition: background 0.3s;
+      border-radius: 5px;
     }
-    input[type="submit"]:hover, .delete-btn:hover {
-      background: #1557b0;
-    }
-    .delete-btn {
-      background: #dc3545;
-    }
-    .delete-btn:hover {
-      background: #c82333;
-    }
+
     table {
-      width: 100%;
+      width: 90%;
+      margin: 0 auto 30px;
       border-collapse: collapse;
-      margin-top: 20px;
-      background: #ffffff;
-      border-radius: 8px;
+      background-color: white;
+
       overflow: hidden;
-    }
-    th, td {
-      padding: 12px 16px;
-      text-align: left;
-      border-bottom: 1px solid #eee;
+ 
     }
     th {
-      background: #f8f9fa;
-      color: #333;
-      font-weight: 600;
-      font-size: 14px;
+      background-color: #c6532d;
+      color: white;
+      padding: 12px;
+      text-align: left;
     }
     td {
-      font-size: 14px;
-      color: #444;
+      padding: 10px;
+
     }
-    tr:hover {
-      background: #f1f3f5;
+    td form {
+      margin: 0;
     }
-    @media (max-width: 600px) {
-      .container {
-        padding: 16px;
-      }
-      h1 {
-        font-size: 24px;
-      }
-      input[type="text"], input[type="number"], input[type="submit"], .delete-btn {
-        font-size: 12px;
-        padding: 8px;
-      }
-      th, td {
-        font-size: 12px;
-        padding: 10px;
-      }
-    }
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  margin-top: auto;
+  background-color: #c6532d;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  font-weight: bold;
+  
+}
+
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>My Order</h1>
+  <h1>My Order</h1>
 
-    <form class="search-form" method="GET">
-      <label for="search">Search by Item Name:</label>
-      <input type="text" name="search" id="search" value="$keyword" placeholder="Enter item name">
-      <input type="submit" value="Search">
-    </form>
+  <form method="GET">
+    <input type="text" name="search" id="search" value="$keyword" placeholder="Search by Item Name">
+    <input type="submit" value="Search">
+  </form>
 
-    <form class="add-form" method="POST">
-      <h3>Add New Order</h3>
-      <input type="text" name="item" placeholder="Item ID" required>
-      <input type="text" name="itemName" placeholder="Item Name" required>
-      <input type="number" name="price" placeholder="Price" step="0.01" required>
-      <input type="text" name="currency" placeholder="Currency" required>
-      <input type="number" name="quantity" placeholder="Quantity" required>
-      <input type="submit" value="Add Order">
-    </form>
+  <form method="POST">
+    <input type="text" name="item" placeholder="Item" required>
+    <input type="text" name="itemName" placeholder="Item Name" required>
+    <input type="number" name="price" placeholder="Price" required>
+    <input type="text" name="currency" placeholder="Currency" required value="USD">
+    <input type="number" name="quantity" placeholder="Quantity" required>
+    <input type="submit" value="Add Item to Cart">
+  </form>
 
-    <table>
-      <tr>
-        <th>Item</th>
-        <th>Item Name</th>
-        <th>Price</th>
-        <th>Currency</th>
-        <th>Quantity</th>
-        <th>Action</th>
-      </tr>
-      $rows
-    </table>
-  </div>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Item</th>
+      <th>Item Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Currency</th>
+      <th>Action</th>
+    </tr>
+    $rows
+  </table>
+
+  <div class="footer">Số 8, Tôn Thất Thuyết, Cầu Giấy, Hà Nội</div>
 </body>
 </html>
 ''';
 }
+
 
 Future<void> handleRequest(HttpRequest request) async {
   final orders = loadOrders();
