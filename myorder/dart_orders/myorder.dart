@@ -1,5 +1,5 @@
-import 'dart:convert';
 import 'dart:io';
+import 'dart:convert';
 
 class Order {
   String item;
@@ -26,121 +26,165 @@ class Order {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'Item': item,
-      'ItemName': itemName,
-      'Price': price,
-      'Currency': currency,
-      'Quantity': quantity,
-    };
-  }
+  Map<String, dynamic> toJson() => {
+    'Item': item,
+    'ItemName': itemName,
+    'Price': price,
+    'Currency': currency,
+    'Quantity': quantity,
+  };
 
-  @override
-  String toString() {
-    return '$item | $itemName | $price $currency | Qty: $quantity';
-  }
-}
-
-const String jsonFilePath = 'order.json';
-
-void saveOrdersToFile(List<Order> orders) {
-  final List<Map<String, dynamic>> jsonList =
-  orders.map((order) => order.toJson()).toList();
-  final jsonString = jsonEncode(jsonList);
-  File(jsonFilePath).writeAsStringSync(jsonString);
-
-}
-
-List<Order> loadOrdersFromFile() {
-  final file = File(jsonFilePath);
-  if (file.existsSync()) {
-    final content = file.readAsStringSync();
-    final List<dynamic> jsonList = jsonDecode(content);
-    return jsonList.map((e) => Order.fromJson(e)).toList();
-  } else {
-    // Nếu file chưa tồn tại, khởi tạo với dữ liệu mặc định
-    const initialJson = '''
-    [
-      {"Item": "A1000","ItemName": "Iphone 15","Price": 1200,"Currency":"USD","Quantity":1},
-      {"Item": "A1001","ItemName": "Iphone 16","Price": 1500,"Currency":"USD","Quantity":1}
-    ]
+  String toHtmlRow() {
+    return '''
+    <tr>
+      <td>${item}</td>
+      <td>${itemName}</td>
+      <td>${price.toStringAsFixed(2)}</td>
+      <td>${currency}</td>
+      <td>${quantity}</td>
+    </tr>
     ''';
-    final List<dynamic> jsonList = jsonDecode(initialJson);
-    final orders = jsonList.map((e) => Order.fromJson(e)).toList();
-    saveOrdersToFile(orders); // Ghi file lần đầu
-    return orders;
   }
 }
 
-void main() {
-  List<Order> orders = loadOrdersFromFile();
+const String filePath = 'order.json';
 
-  while (true) {
-    print('\n==== ORDER MENU ====');
-    print('1. Hiển thị tất cả đơn hàng');
-    print('2. Thêm đơn hàng mới');
-    print('3. Tìm kiếm theo tên sản phẩm');
-    print('0. Thoát');
-    stdout.write('Chọn chức năng: ');
-    String? choice = stdin.readLineSync();
+List<Order> loadOrders() {
+  final file = File(filePath);
+  if (!file.existsSync()) {
+    file.writeAsStringSync(jsonEncode([
+      {
+        "Item": "A1000",
+        "ItemName": "Iphone 15",
+        "Price": 1200,
+        "Currency": "USD",
+        "Quantity": 1
+      },
+      {
+        "Item": "A1001",
+        "ItemName": "Iphone 16",
+        "Price": 1500,
+        "Currency": "USD",
+        "Quantity": 1
+      }
+    ]));
+  }
+  final data = jsonDecode(file.readAsStringSync());
+  return List<Order>.from(data.map((o) => Order.fromJson(o)));
+}
 
-    switch (choice) {
-      case '1':
-        print('\n--- Danh sách đơn hàng ---');
-        for (var order in orders) {
-          print(order);
-        }
-        break;
+void saveOrders(List<Order> orders) {
+  final file = File(filePath);
+  file.writeAsStringSync(jsonEncode(orders.map((o) => o.toJson()).toList()));
+}
 
-      case '2':
-        print('\n--- Thêm đơn hàng ---');
-        stdout.write('Item: ');
-        String item = stdin.readLineSync()!;
-        stdout.write('ItemName: ');
-        String itemName = stdin.readLineSync()!;
-        stdout.write('Price: ');
-        double price = double.parse(stdin.readLineSync()!);
-        stdout.write('Currency: ');
-        String currency = stdin.readLineSync()!;
-        stdout.write('Quantity: ');
-        int quantity = int.parse(stdin.readLineSync()!);
+String renderHtml(List<Order> orders, [String keyword = '']) {
+  final filtered = keyword.isEmpty
+      ? orders
+      : orders
+      .where((o) => o.itemName.toLowerCase().contains(keyword.toLowerCase()))
+      .toList();
 
-        Order newOrder = Order(
-          item: item,
-          itemName: itemName,
-          price: price,
-          currency: currency,
-          quantity: quantity,
-        );
+  final rows = filtered.map((o) => o.toHtmlRow()).join();
 
-        orders.add(newOrder);
-        saveOrdersToFile(orders);
-        print('✅ Đã thêm và lưu đơn hàng vào order.json!');
-        break;
+  return '''
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Order Manager</title>
+  <style>
+    body { font-family: Arial; background: #f4f4f4; padding: 20px; }
+    h1 { color: #333; }
+    form, table { background: white; padding: 16px; margin-top: 20px; border-radius: 8px; }
+    input[type=text], input[type=number] { width: 100%; padding: 8px; margin: 4px 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background: #eee; }
+    input[type=submit] { background: #007BFF; color: white; border: none; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Order Manager</h1>
 
-      case '3':
-        stdout.write('\nNhập từ khóa tìm kiếm: ');
-        String keyword = stdin.readLineSync()!.toLowerCase();
-        List<Order> results = orders
-            .where((o) => o.itemName.toLowerCase().contains(keyword))
-            .toList();
-        if (results.isEmpty) {
-          print('❌ Không tìm thấy đơn hàng nào.');
-        } else {
-          print('🔍 Kết quả tìm kiếm:');
-          for (var o in results) {
-            print(o);
-          }
-        }
-        break;
+  <form method="GET">
+    <label for="search">Search by ItemName:</label>
+    <input type="text" name="search" id="search" value="$keyword">
+    <input type="submit" value="Search">
+  </form>
 
-      case '0':
-        print('👋 Tạm biệt!');
-        return;
+  <form method="POST">
+    <h3>Add New Order</h3>
+    <input type="text" name="item" placeholder="Item" required>
+    <input type="text" name="itemName" placeholder="Item Name" required>
+    <input type="number" name="price" placeholder="Price"  required>
+    <input type="text" name="currency" placeholder="Currency" required>
+    <input type="number" name="quantity" placeholder="Quantity" required>
+    <input type="submit" value="Add Order">
+  </form>
 
-      default:
-        print('⚠️ Lựa chọn không hợp lệ!');
-    }
+  <table>
+    <tr>
+      <th>Item</th>
+      <th>Item Name</th>
+      <th>Price</th>
+      <th>Currency</th>
+      <th>Quantity</th>
+    </tr>
+    $rows
+  </table>
+</body>
+</html>
+''';
+}
+
+Future<void> handleRequest(HttpRequest request) async {
+  final orders = loadOrders();
+
+  if (request.method == 'POST') {
+    // Đọc form thêm mới
+    final content = await utf8.decoder.bind(request).join();
+    final params = Uri.splitQueryString(content);
+
+    final newOrder = Order(
+      item: params['item']!,
+      itemName: params['itemName']!,
+      price: double.tryParse(params['price']!) ?? 0,
+      currency: params['currency']!,
+      quantity: int.tryParse(params['quantity']!) ?? 1,
+    );
+
+    orders.add(newOrder);
+    saveOrders(orders);
+
+    // Redirect về trang chính
+    request.response
+      ..statusCode = HttpStatus.found
+      ..headers.set('Location', '/')
+      ..close();
+  } else if (request.method == 'GET') {
+    // ✅ Xử lý tìm kiếm qua query ?search=
+    final keyword = request.uri.queryParameters['search'] ?? '';
+    final html = renderHtml(orders, keyword);
+
+    request.response
+      ..headers.contentType = ContentType.html
+      ..write(html)
+      ..close();
+  } else {
+    // Không hỗ trợ phương thức khác
+    request.response
+      ..statusCode = HttpStatus.methodNotAllowed
+      ..write('Method not allowed')
+      ..close();
+  }
+}
+
+
+void main() async {
+  final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 8080);
+  print('✅ Web server đang chạy tại: http://localhost:8080');
+  await for (HttpRequest request in server) {
+    handleRequest(request);
   }
 }

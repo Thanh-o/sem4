@@ -105,7 +105,7 @@ String renderHtml(List<Order> orders, [String keyword = '']) {
   </style>
 </head>
 <body>
-  <h1>Order Manager</h1>
+  <h1>My Order</h1>
 
   <form method="GET">
     <label for="search">Search by ItemName:</label>
