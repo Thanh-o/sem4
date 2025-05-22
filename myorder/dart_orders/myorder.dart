@@ -34,17 +34,29 @@ class Order {
     'Quantity': quantity,
   };
 
-  String toHtmlRow() {
+  String toHtmlRow([int index = 0]) {
     return '''
-    <tr>
-      <td>${item}</td>
-      <td>${itemName}</td>
-      <td>${price.toStringAsFixed(2)}</td>
-      <td>${currency}</td>
-      <td>${quantity}</td>
-    </tr>
-    ''';
+<tr>
+  <td>${index + 1}</td>
+  <td>${item}</td>
+  <td>${itemName}</td>
+  <td>${quantity}</td>
+  <td>${price.toStringAsFixed(2)}</td>
+  <td>${currency}</td>
+  <td>
+    <form method="POST" action="/delete" enctype="application/x-www-form-urlencoded" onsubmit="return confirm('Bạn có chắc muốn xóa đơn hàng này?');">
+
+      <input type="hidden" name="item" value="$item">
+<button type="submit" style="background: none; border: none; font-size: 16px; cursor: pointer; color: blue;" title="Xoá đơn hàng">
+  🗑
+</button>
+
+    </form>
+  </td>
+</tr>
+''';
   }
+
 }
 
 const String filePath = 'order.json';
@@ -85,64 +97,262 @@ String renderHtml(List<Order> orders, [String keyword = '']) {
       .where((o) => o.itemName.toLowerCase().contains(keyword.toLowerCase()))
       .toList();
 
-  final rows = filtered.map((o) => o.toHtmlRow()).join();
+  final rows = filtered.asMap().entries.map((entry) => entry.value.toHtmlRow(entry.key)).join();
+
 
   return '''
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Order Manager</title>
+  <title>My Order</title>
   <style>
-    body { font-family: Arial; background: #f4f4f4; padding: 20px; }
-    h1 { color: #333; }
-    form, table { background: white; padding: 16px; margin-top: 20px; border-radius: 8px; }
-    input[type=text], input[type=number] { width: 100%; padding: 8px; margin: 4px 0; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background: #eee; }
-    input[type=submit] { background: #007BFF; color: white; border: none; padding: 10px; }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fdfdfd;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      color: #d87c13;
+      text-align: center;
+      margin-top: 30px;
+    }
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px auto;
+      max-width: 800px;
+    }
+    form input[type=text],
+    form input[type=number] {
+      padding: 10px;     
+      border-radius: 5px;
+    }
+    form input[type=submit] {
+      padding: 10px 20px;
+      background-color: #d87c13;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    table {
+      width: 90%;
+      margin: 0 auto 30px;
+      border-collapse: collapse;
+      background-color: white;
+
+      overflow: hidden;
+ 
+    }
+    th {
+      background-color: #c6532d;
+      color: white;
+      padding: 12px;
+      text-align: left;
+    }
+    td {
+      padding: 10px;
+
+    }
+    td form {
+      margin: 0;
+    }
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  margin-top: auto;
+  background-color: #c6532d;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  font-weight: bold;
+  
+}
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 300px;
+  margin-right:50px;
+}
+
+.form-group2 {
+  display: flex;
+  flex-direction: column;
+  
+      min-width: 400px;
+}
+.form-group3 {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 150px;
+}
+
+.form-group label {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+.button-group {
+  justify-content: flex-end;
+  align-items: flex-end;
+  display: flex;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group2 label {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+.form-group2 input[type="text"],
+.form-group2 input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group3 label {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+.form-group3 input[type="text"],
+.form-group3 input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button-group input[type="submit"] {
+  background-color: #c6532d;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
   </style>
 </head>
 <body>
-  <h1>Order Manager</h1>
+  <h1>My Order</h1>
 
   <form method="GET">
-    <label for="search">Search by ItemName:</label>
-    <input type="text" name="search" id="search" value="$keyword">
+    <input type="text" name="search" id="search" value="$keyword" placeholder="Search by Item Name">
     <input type="submit" value="Search">
   </form>
 
-  <form method="POST">
-    <h3>Add New Order</h3>
-    <input type="text" name="item" placeholder="Item" required>
-    <input type="text" name="itemName" placeholder="Item Name" required>
-    <input type="number" name="price" placeholder="Price"  required>
-    <input type="text" name="currency" placeholder="Currency" required>
-    <input type="number" name="quantity" placeholder="Quantity" required>
-    <input type="submit" value="Add Order">
-  </form>
+<form method="POST" class="add-form">
+  <div class="form-row">
+    <div class="form-group">
+      <label>Item</label>
+      <input type="text" name="item" placeholder="Item" required>
+    </div>
+    <div class="form-group2">
+      <label>Item Name</label>
+      <input type="text" name="itemName" placeholder="Item Name" required>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label>Price</label>
+      <input type="number" name="price" placeholder="Price" required>
+    </div>
+    <div class="form-group3">
+      <label>Quantity</label>
+      <input type="number" name="quantity" placeholder="Quantity" required>
+    </div>
+    <div class="form-group3">
+      <label>Currency</label>
+      <input type="text" name="currency" placeholder="Currency" required value="USD">
+    </div>
+
+  </div>
+      <div class="form-group button-group">
+      <input type="submit" value="Add Item to Cart">
+    </div>
+</form>
+
 
   <table>
     <tr>
+      <th>Id</th>
       <th>Item</th>
       <th>Item Name</th>
+      <th>Quantity</th>
       <th>Price</th>
       <th>Currency</th>
-      <th>Quantity</th>
+      <th>Action</th>
     </tr>
     $rows
   </table>
+
+  <div class="footer">Số 8, Tôn Thất Thuyết, Cầu Giấy, Hà Nội</div>
 </body>
 </html>
 ''';
 }
 
+
 Future<void> handleRequest(HttpRequest request) async {
   final orders = loadOrders();
 
   if (request.method == 'POST') {
-    // Đọc form thêm mới
+    if (request.uri.path == '/delete') {
+      final content = await utf8.decoder.bind(request).join();
+      final params = Uri.splitQueryString(content);
+      final itemToDelete = params['item'];
+
+      if (itemToDelete != null) {
+        orders.removeWhere((o) => o.item == itemToDelete);
+        saveOrders(orders);
+      }
+
+      request.response
+        ..statusCode = HttpStatus.found
+        ..headers.set('Location', '/')
+        ..close();
+      return;
+    }
+
     final content = await utf8.decoder.bind(request).join();
     final params = Uri.splitQueryString(content);
 
@@ -157,13 +367,11 @@ Future<void> handleRequest(HttpRequest request) async {
     orders.add(newOrder);
     saveOrders(orders);
 
-    // Redirect về trang chính
     request.response
       ..statusCode = HttpStatus.found
       ..headers.set('Location', '/')
       ..close();
   } else if (request.method == 'GET') {
-    // ✅ Xử lý tìm kiếm qua query ?search=
     final keyword = request.uri.queryParameters['search'] ?? '';
     final html = renderHtml(orders, keyword);
 
@@ -172,14 +380,12 @@ Future<void> handleRequest(HttpRequest request) async {
       ..write(html)
       ..close();
   } else {
-    // Không hỗ trợ phương thức khác
     request.response
       ..statusCode = HttpStatus.methodNotAllowed
       ..write('Method not allowed')
       ..close();
   }
 }
-
 
 void main() async {
   final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 8080);
