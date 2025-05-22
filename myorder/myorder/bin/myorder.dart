@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+// Lớp Order
 class Order {
   String item;
   String itemName;
@@ -26,121 +27,102 @@ class Order {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'Item': item,
-      'ItemName': itemName,
-      'Price': price,
-      'Currency': currency,
-      'Quantity': quantity,
-    };
-  }
-
-  @override
-  String toString() {
-    return '$item | $itemName | $price $currency | Qty: $quantity';
+  String toHtmlRow() {
+    return '''
+    <tr>
+      <td>${item}</td>
+      <td>${itemName}</td>
+      <td>${price.toStringAsFixed(2)}</td>
+      <td>$currency</td>
+      <td>$quantity</td>
+    </tr>
+    ''';
   }
 }
 
+// Đường dẫn đến file JSON
 const String jsonFilePath = 'order.json';
 
-void saveOrdersToFile(List<Order> orders) {
-  final List<Map<String, dynamic>> jsonList =
-  orders.map((order) => order.toJson()).toList();
-  final jsonString = jsonEncode(jsonList);
-  File(jsonFilePath).writeAsStringSync(jsonString);
-
-}
-
-List<Order> loadOrdersFromFile() {
+// Đọc danh sách Order từ file
+List<Order> loadOrders() {
   final file = File(jsonFilePath);
-  if (file.existsSync()) {
-    final content = file.readAsStringSync();
-    final List<dynamic> jsonList = jsonDecode(content);
-    return jsonList.map((e) => Order.fromJson(e)).toList();
-  } else {
-    // Nếu file chưa tồn tại, khởi tạo với dữ liệu mặc định
-    const initialJson = '''
-    [
-      {"Item": "A1000","ItemName": "Iphone 15","Price": 1200,"Currency":"USD","Quantity":1},
-      {"Item": "A1001","ItemName": "Iphone 16","Price": 1500,"Currency":"USD","Quantity":1}
-    ]
-    ''';
-    final List<dynamic> jsonList = jsonDecode(initialJson);
-    final orders = jsonList.map((e) => Order.fromJson(e)).toList();
-    saveOrdersToFile(orders); // Ghi file lần đầu
-    return orders;
+  if (!file.existsSync()) {
+    file.writeAsStringSync(jsonEncode([
+      {
+        "Item": "A1000",
+        "ItemName": "Iphone 15",
+        "Price": 1200,
+        "Currency": "USD",
+        "Quantity": 1
+      },
+      {
+        "Item": "A1001",
+        "ItemName": "Iphone 16",
+        "Price": 1500,
+        "Currency": "USD",
+        "Quantity": 1
+      }
+    ]));
   }
+
+  final content = file.readAsStringSync();
+  final List<dynamic> jsonList = jsonDecode(content);
+  return jsonList.map((e) => Order.fromJson(e)).toList();
 }
 
-void main() {
-  List<Order> orders = loadOrdersFromFile();
+// Tạo HTML để hiển thị danh sách
+String generateHtml(List<Order> orders) {
+  final rows = orders.map((o) => o.toHtmlRow()).join();
+  return '''
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Order List</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background-color: #f2f2f2; }
+    h1 { color: #333; }
+    table { border-collapse: collapse; width: 100%; background: #fff; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #4CAF50; color: white; }
+    tr:hover { background-color: #f5f5f5; }
+  </style>
+</head>
+<body>
+  <h1>Order List</h1>
+  <table>
+    <tr>
+      <th>Item</th>
+      <th>Item Name</th>
+      <th>Price</th>
+      <th>Currency</th>
+      <th>Quantity</th>
+    </tr>
+    $rows
+  </table>
+</body>
+</html>
+''';
+}
 
-  while (true) {
-    print('\n==== ORDER MENU ====');
-    print('1. Hiển thị tất cả đơn hàng');
-    print('2. Thêm đơn hàng mới');
-    print('3. Tìm kiếm theo tên sản phẩm');
-    print('0. Thoát');
-    stdout.write('Chọn chức năng: ');
-    String? choice = stdin.readLineSync();
+void main() async {
+  final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 8080);
+  print('✅ Web server đang chạy tại: http://localhost:8080');
 
-    switch (choice) {
-      case '1':
-        print('\n--- Danh sách đơn hàng ---');
-        for (var order in orders) {
-          print(order);
-        }
-        break;
+  await for (HttpRequest request in server) {
+    if (request.method == 'GET' && request.uri.path == '/') {
+      final orders = loadOrders();
+      final html = generateHtml(orders);
 
-      case '2':
-        print('\n--- Thêm đơn hàng ---');
-        stdout.write('Item: ');
-        String item = stdin.readLineSync()!;
-        stdout.write('ItemName: ');
-        String itemName = stdin.readLineSync()!;
-        stdout.write('Price: ');
-        double price = double.parse(stdin.readLineSync()!);
-        stdout.write('Currency: ');
-        String currency = stdin.readLineSync()!;
-        stdout.write('Quantity: ');
-        int quantity = int.parse(stdin.readLineSync()!);
-
-        Order newOrder = Order(
-          item: item,
-          itemName: itemName,
-          price: price,
-          currency: currency,
-          quantity: quantity,
-        );
-
-        orders.add(newOrder);
-        saveOrdersToFile(orders);
-        print('✅ Đã thêm và lưu đơn hàng vào order.json!');
-        break;
-
-      case '3':
-        stdout.write('\nNhập từ khóa tìm kiếm: ');
-        String keyword = stdin.readLineSync()!.toLowerCase();
-        List<Order> results = orders
-            .where((o) => o.itemName.toLowerCase().contains(keyword))
-            .toList();
-        if (results.isEmpty) {
-          print('❌ Không tìm thấy đơn hàng nào.');
-        } else {
-          print('🔍 Kết quả tìm kiếm:');
-          for (var o in results) {
-            print(o);
-          }
-        }
-        break;
-
-      case '0':
-        print('👋 Tạm biệt!');
-        return;
-
-      default:
-        print('⚠️ Lựa chọn không hợp lệ!');
+      request.response
+        ..headers.contentType = ContentType.html
+        ..write(html)
+        ..close();
+    } else {
+      request.response
+        ..statusCode = HttpStatus.notFound
+        ..write('404 Not Found')
+        ..close();
     }
   }
 }
