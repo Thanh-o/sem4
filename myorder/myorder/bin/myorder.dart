@@ -36,15 +36,22 @@ class Order {
 
   String toHtmlRow() {
     return '''
-    <tr>
-      <td>${item}</td>
-      <td>${itemName}</td>
-      <td>${price.toStringAsFixed(2)}</td>
-      <td>${currency}</td>
-      <td>${quantity}</td>
-    </tr>
-    ''';
+  <tr>
+    <td>${item}</td>
+    <td>${itemName}</td>
+    <td>${price.toStringAsFixed(2)}</td>
+    <td>${currency}</td>
+    <td>${quantity}</td>
+    <td>
+      <form method="POST" action="/delete" onsubmit="return confirm('Bạn có chắc muốn xóa đơn hàng này?');">
+        <input type="hidden" name="item" value="$item">
+        <input type="submit" value="Xóa" style="background-color: red; color: white; border: none; padding: 4px 8px; cursor: pointer;">
+      </form>
+    </td>
+  </tr>
+  ''';
   }
+
 }
 
 const String filePath = 'order.json';
@@ -123,16 +130,18 @@ String renderHtml(List<Order> orders, [String keyword = '']) {
     <input type="submit" value="Add Order">
   </form>
 
-  <table>
-    <tr>
-      <th>Item</th>
-      <th>Item Name</th>
-      <th>Price</th>
-      <th>Currency</th>
-      <th>Quantity</th>
-    </tr>
-    $rows
-  </table>
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Item Name</th>
+    <th>Price</th>
+    <th>Currency</th>
+    <th>Quantity</th>
+    <th>Action</th>
+  </tr>
+  $rows
+</table>
+
 </body>
 </html>
 ''';
@@ -142,7 +151,25 @@ Future<void> handleRequest(HttpRequest request) async {
   final orders = loadOrders();
 
   if (request.method == 'POST') {
-    // Đọc form thêm mới
+    if (request.uri.path == '/delete') {
+      // Xử lý xóa đơn hàng theo item
+      final content = await utf8.decoder.bind(request).join();
+      final params = Uri.splitQueryString(content);
+      final itemToDelete = params['item'];
+
+      if (itemToDelete != null) {
+        orders.removeWhere((o) => o.item == itemToDelete);
+        saveOrders(orders);
+      }
+
+      request.response
+        ..statusCode = HttpStatus.found
+        ..headers.set('Location', '/')
+        ..close();
+      return;
+    }
+
+    // Xử lý POST thêm mới
     final content = await utf8.decoder.bind(request).join();
     final params = Uri.splitQueryString(content);
 
@@ -157,13 +184,11 @@ Future<void> handleRequest(HttpRequest request) async {
     orders.add(newOrder);
     saveOrders(orders);
 
-    // Redirect về trang chính
     request.response
       ..statusCode = HttpStatus.found
       ..headers.set('Location', '/')
       ..close();
   } else if (request.method == 'GET') {
-    // ✅ Xử lý tìm kiếm qua query ?search=
     final keyword = request.uri.queryParameters['search'] ?? '';
     final html = renderHtml(orders, keyword);
 
@@ -172,13 +197,13 @@ Future<void> handleRequest(HttpRequest request) async {
       ..write(html)
       ..close();
   } else {
-    // Không hỗ trợ phương thức khác
     request.response
       ..statusCode = HttpStatus.methodNotAllowed
       ..write('Method not allowed')
       ..close();
   }
 }
+
 
 
 void main() async {
