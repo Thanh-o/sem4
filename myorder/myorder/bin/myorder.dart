@@ -117,7 +117,7 @@ String renderHtml(List<Order> orders, [String keyword = '']) {
     <h3>Add New Order</h3>
     <input type="text" name="item" placeholder="Item" required>
     <input type="text" name="itemName" placeholder="Item Name" required>
-    <input type="number" name="price" placeholder="Price" step="0.01" required>
+    <input type="number" name="price" placeholder="Price"  required>
     <input type="text" name="currency" placeholder="Currency" required>
     <input type="number" name="quantity" placeholder="Quantity" required>
     <input type="submit" value="Add Order">
@@ -142,33 +142,44 @@ Future<void> handleRequest(HttpRequest request) async {
   final orders = loadOrders();
 
   if (request.method == 'POST') {
+    // Đọc form thêm mới
     final content = await utf8.decoder.bind(request).join();
     final params = Uri.splitQueryString(content);
 
     final newOrder = Order(
       item: params['item']!,
       itemName: params['itemName']!,
-      price: double.parse(params['price']!),
+      price: double.tryParse(params['price']!) ?? 0,
       currency: params['currency']!,
-      quantity: int.parse(params['quantity']!),
+      quantity: int.tryParse(params['quantity']!) ?? 1,
     );
 
     orders.add(newOrder);
     saveOrders(orders);
 
+    // Redirect về trang chính
     request.response
       ..statusCode = HttpStatus.found
       ..headers.set('Location', '/')
       ..close();
-  } else {
+  } else if (request.method == 'GET') {
+    // ✅ Xử lý tìm kiếm qua query ?search=
     final keyword = request.uri.queryParameters['search'] ?? '';
     final html = renderHtml(orders, keyword);
+
     request.response
       ..headers.contentType = ContentType.html
       ..write(html)
       ..close();
+  } else {
+    // Không hỗ trợ phương thức khác
+    request.response
+      ..statusCode = HttpStatus.methodNotAllowed
+      ..write('Method not allowed')
+      ..close();
   }
 }
+
 
 void main() async {
   final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 8080);
