@@ -1,7 +1,6 @@
-import 'dart:convert';
 import 'dart:io';
+import 'dart:convert';
 
-// Lớp Order
 class Order {
   String item;
   String itemName;
@@ -27,25 +26,31 @@ class Order {
     );
   }
 
+  Map<String, dynamic> toJson() => {
+    'Item': item,
+    'ItemName': itemName,
+    'Price': price,
+    'Currency': currency,
+    'Quantity': quantity,
+  };
+
   String toHtmlRow() {
     return '''
     <tr>
       <td>${item}</td>
       <td>${itemName}</td>
       <td>${price.toStringAsFixed(2)}</td>
-      <td>$currency</td>
-      <td>$quantity</td>
+      <td>${currency}</td>
+      <td>${quantity}</td>
     </tr>
     ''';
   }
 }
 
-// Đường dẫn đến file JSON
-const String jsonFilePath = 'order.json';
+const String filePath = 'order.json';
 
-// Đọc danh sách Order từ file
 List<Order> loadOrders() {
-  final file = File(jsonFilePath);
+  final file = File(filePath);
   if (!file.existsSync()) {
     file.writeAsStringSync(jsonEncode([
       {
@@ -64,32 +69,60 @@ List<Order> loadOrders() {
       }
     ]));
   }
-
-  final content = file.readAsStringSync();
-  final List<dynamic> jsonList = jsonDecode(content);
-  return jsonList.map((e) => Order.fromJson(e)).toList();
+  final data = jsonDecode(file.readAsStringSync());
+  return List<Order>.from(data.map((o) => Order.fromJson(o)));
 }
 
-// Tạo HTML để hiển thị danh sách
-String generateHtml(List<Order> orders) {
-  final rows = orders.map((o) => o.toHtmlRow()).join();
+void saveOrders(List<Order> orders) {
+  final file = File(filePath);
+  file.writeAsStringSync(jsonEncode(orders.map((o) => o.toJson()).toList()));
+}
+
+String renderHtml(List<Order> orders, [String keyword = '']) {
+  final filtered = keyword.isEmpty
+      ? orders
+      : orders
+      .where((o) => o.itemName.toLowerCase().contains(keyword.toLowerCase()))
+      .toList();
+
+  final rows = filtered.map((o) => o.toHtmlRow()).join();
+
   return '''
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Order List</title>
+  <title>Order Manager</title>
   <style>
-    body { font-family: Arial; padding: 20px; background-color: #f2f2f2; }
+    body { font-family: Arial; background: #f4f4f4; padding: 20px; }
     h1 { color: #333; }
-    table { border-collapse: collapse; width: 100%; background: #fff; }
-    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-    th { background-color: #4CAF50; color: white; }
-    tr:hover { background-color: #f5f5f5; }
+    form, table { background: white; padding: 16px; margin-top: 20px; border-radius: 8px; }
+    input[type=text], input[type=number] { width: 100%; padding: 8px; margin: 4px 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background: #eee; }
+    input[type=submit] { background: #007BFF; color: white; border: none; padding: 10px; }
   </style>
 </head>
 <body>
-  <h1>Order List</h1>
+  <h1>Order Manager</h1>
+
+  <form method="GET">
+    <label for="search">Search by ItemName:</label>
+    <input type="text" name="search" id="search" value="$keyword">
+    <input type="submit" value="Search">
+  </form>
+
+  <form method="POST">
+    <h3>Add New Order</h3>
+    <input type="text" name="item" placeholder="Item" required>
+    <input type="text" name="itemName" placeholder="Item Name" required>
+    <input type="number" name="price" placeholder="Price" step="0.01" required>
+    <input type="text" name="currency" placeholder="Currency" required>
+    <input type="number" name="quantity" placeholder="Quantity" required>
+    <input type="submit" value="Add Order">
+  </form>
+
   <table>
     <tr>
       <th>Item</th>
@@ -105,24 +138,42 @@ String generateHtml(List<Order> orders) {
 ''';
 }
 
+Future<void> handleRequest(HttpRequest request) async {
+  final orders = loadOrders();
+
+  if (request.method == 'POST') {
+    final content = await utf8.decoder.bind(request).join();
+    final params = Uri.splitQueryString(content);
+
+    final newOrder = Order(
+      item: params['item']!,
+      itemName: params['itemName']!,
+      price: double.parse(params['price']!),
+      currency: params['currency']!,
+      quantity: int.parse(params['quantity']!),
+    );
+
+    orders.add(newOrder);
+    saveOrders(orders);
+
+    request.response
+      ..statusCode = HttpStatus.found
+      ..headers.set('Location', '/')
+      ..close();
+  } else {
+    final keyword = request.uri.queryParameters['search'] ?? '';
+    final html = renderHtml(orders, keyword);
+    request.response
+      ..headers.contentType = ContentType.html
+      ..write(html)
+      ..close();
+  }
+}
+
 void main() async {
   final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 8080);
   print('✅ Web server đang chạy tại: http://localhost:8080');
-
   await for (HttpRequest request in server) {
-    if (request.method == 'GET' && request.uri.path == '/') {
-      final orders = loadOrders();
-      final html = generateHtml(orders);
-
-      request.response
-        ..headers.contentType = ContentType.html
-        ..write(html)
-        ..close();
-    } else {
-      request.response
-        ..statusCode = HttpStatus.notFound
-        ..write('404 Not Found')
-        ..close();
-    }
+    handleRequest(request);
   }
 }
