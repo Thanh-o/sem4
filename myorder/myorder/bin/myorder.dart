@@ -128,9 +128,7 @@ String renderHtml(List<Order> orders, [String keyword = '']) {
     }
     form input[type=text],
     form input[type=number] {
-      padding: 10px;
-      width: 180px;
-      
+      padding: 10px;     
       border-radius: 5px;
     }
     form input[type=submit] {
@@ -182,6 +180,94 @@ body {
   font-weight: bold;
   
 }
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 300px;
+  margin-right:50px;
+}
+
+.form-group2 {
+  display: flex;
+  flex-direction: column;
+  
+      min-width: 400px;
+}
+.form-group3 {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 150px;
+}
+
+.form-group label {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+.button-group {
+  justify-content: flex-end;
+  align-items: flex-end;
+  display: flex;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group2 label {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+.form-group2 input[type="text"],
+.form-group2 input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group3 label {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+.form-group3 input[type="text"],
+.form-group3 input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button-group input[type="submit"] {
+  background-color: #c6532d;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
   </style>
 </head>
@@ -193,14 +279,38 @@ body {
     <input type="submit" value="Search">
   </form>
 
-  <form method="POST">
-    <input type="text" name="item" placeholder="Item" required>
-    <input type="text" name="itemName" placeholder="Item Name" required>
-    <input type="number" name="price" placeholder="Price" required>
-    <input type="text" name="currency" placeholder="Currency" required value="USD">
-    <input type="number" name="quantity" placeholder="Quantity" required>
-    <input type="submit" value="Add Item to Cart">
-  </form>
+<form method="POST" class="add-form">
+  <div class="form-row">
+    <div class="form-group">
+      <label>Item</label>
+      <input type="text" name="item" placeholder="Item" required>
+    </div>
+    <div class="form-group2">
+      <label>Item Name</label>
+      <input type="text" name="itemName" placeholder="Item Name" required>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label>Price</label>
+      <input type="number" name="price" placeholder="Price" required>
+    </div>
+    <div class="form-group3">
+      <label>Quantity</label>
+      <input type="number" name="quantity" placeholder="Quantity" required>
+    </div>
+    <div class="form-group3">
+      <label>Currency</label>
+      <input type="text" name="currency" placeholder="Currency" required value="USD">
+    </div>
+
+  </div>
+      <div class="form-group button-group">
+      <input type="submit" value="Add Item to Cart">
+    </div>
+</form>
+
 
   <table>
     <tr>
