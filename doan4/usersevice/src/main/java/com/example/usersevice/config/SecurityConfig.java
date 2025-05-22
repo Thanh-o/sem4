@@ -38,11 +38,14 @@ public class SecurityConfig {
                                 "/api/v1/patients/google-login",
                                 "/api/v1/patients/facebook-login",
                                 "/api/v1/staffs/login",
-                                "/api/v1/staffs/loginStaff"
+                                "/api/v1/staffs/loginStaff",
+                                "/api/v1/doctors/login"
                         ).permitAll()
                         .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/v1/staff/**").hasRole("STAFF")
                         .requestMatchers("/api/v1/patient/**").hasRole("PATIENT")
+                        .requestMatchers("/api/v1/doctor/**").hasRole("DOCTOR")
+
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

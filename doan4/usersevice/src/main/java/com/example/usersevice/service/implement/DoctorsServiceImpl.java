@@ -1,14 +1,19 @@
-package com.example.usersevice.service.impl;
+package com.example.usersevice.service.implement;
 
 import com.example.usersevice.dto.DoctorDTO;
 import com.example.usersevice.dto.LoginRequestDTO;
 import com.example.usersevice.entity.Departments;
 import com.example.usersevice.entity.Doctors;
+import com.example.usersevice.entity.Patients;
 import com.example.usersevice.repository.DepartmentsRepository;
 import com.example.usersevice.repository.DoctorsRepository;
+import com.example.usersevice.security.JwtUtil;
 import com.example.usersevice.service.DoctorsService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -143,13 +148,23 @@ public class DoctorsServiceImpl implements DoctorsService {
                 .collect(Collectors.toList());
     }
 
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public Map<String, Object> login(LoginRequestDTO loginRequest) {
-        Doctors doctor = doctorsRepository.findByDoctorUsername(loginRequest.getUsername())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid credentials."));
-        if (!loginRequest.getPassword().equals(doctor.getDoctor_password())) {
-            throw new IllegalArgumentException("Invalid credentials.");
-        }
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+
+            Doctors doctor = doctorsRepository.findByDoctorUsername(loginRequest.getUsername()).get();
+            String token = jwtUtil.generateToken(doctor.getDoctor_username());
         Map<String, Object> response = new HashMap<>();
         response.put("doctor_id", doctor.getId()); // Đã gán doctor_id
         response.put("doctor_name", doctor.getDoctor_name());
@@ -157,7 +172,11 @@ public class DoctorsServiceImpl implements DoctorsService {
         response.put("department_id", doctor.getDepartment() != null ? doctor.getDepartment().getId() : null);
         response.put("doctor_username", doctor.getDoctor_username());
         response.put("summary", doctor.getSummary());
+            response.put("token", token);
         return response;
+    } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
