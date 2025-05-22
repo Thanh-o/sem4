@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class PostDetailScreen extends StatefulWidget {
   final Map<String, dynamic> post;
@@ -12,65 +13,94 @@ class PostDetailScreen extends StatefulWidget {
 }
 
 class _PostDetailScreenState extends State<PostDetailScreen> {
-  List<Map<String, String>> comments = [];
   final TextEditingController _commentController = TextEditingController();
+  final FlutterSecureStorage secureStorage = const FlutterSecureStorage();
+  List<Map<String, String>> comments = [];
+  Map<String, dynamic> userMap = {}; // userId => userName
 
   @override
   void initState() {
     super.initState();
-    fetchComments();
+    fetchAllCommentsAndUsers();
   }
 
-  Future<void> fetchComments() async {
-    final postId = widget.post['id'];
-    final url = Uri.parse('https://682bf191d29df7a95be4ecee.mockapi.io/comments?postId=$postId');
+  Future<void> fetchAllCommentsAndUsers() async {
+    await fetchUsers();
+    loadCommentsFromPost();
+  }
+
+  Future<void> fetchUsers() async {
+    final url = Uri.parse('https://682bf191d29df7a95be4ecee.mockapi.io/users');
 
     try {
       final response = await http.get(url);
-
       if (response.statusCode == 200) {
-        final List<dynamic> commentData = json.decode(utf8.decode(response.bodyBytes));
-        setState(() {
-          comments = commentData.map<Map<String, String>>((comment) => {
-            'user': comment['user'].toString(),
-            'text': comment['text'].toString(),
-          }).toList();
-        });
-      } else {
-        print('Lỗi lấy bình luận: ${response.statusCode}');
+        final List<dynamic> usersData = json.decode(response.body);
+        userMap = {
+          for (var user in usersData) user['id'].toString(): user['name'].toString()
+        };
       }
     } catch (e) {
-      print('Lỗi khi lấy comment từ server: $e');
+      print('Lỗi khi lấy user: $e');
     }
   }
 
-  Future<void> addCommentToServer(String text) async {
+  void loadCommentsFromPost() {
+    final List<dynamic> commentData = widget.post['commentList'] ?? [];
+
+    setState(() {
+      comments = commentData.map<Map<String, String>>((comment) {
+        final userId = comment['userId'];
+        return {
+          'user': userMap[userId] ?? 'Ẩn danh',
+          'text': comment['text'],
+        };
+      }).toList();
+    });
+  }
+
+  Future<void> addCommentToPost(String text) async {
     if (text.trim().isEmpty) return;
 
+    final String? userId = await secureStorage.read(key: 'mock_token');
+
+    if (userId == null) {
+      print('Chưa đăng nhập');
+      return;
+    }
+
     final postId = widget.post['id'];
-    final url = Uri.parse('https://682bf191d29df7a95be4ecee.mockapi.io/comments');
+    final url = Uri.parse('https://682bf191d29df7a95be4ecee.mockapi.io/posts/$postId');
 
     try {
-      final response = await http.post(
+      final newComment = {
+        'userId': userId,
+        'text': text,
+      };
+
+      final updatedCommentList = List.from(widget.post['commentList'] ?? [])..add(newComment);
+
+      final updatedPost = {
+        'commentList': updatedCommentList,
+        'comments': updatedCommentList.length,
+      };
+
+      final response = await http.put(
         url,
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
-          'postId': postId,
-          'user': 'Bạn',
-          'text': text,
-          'time': DateTime.now().toIso8601String(),
-        }),
+        body: jsonEncode(updatedPost),
       );
 
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         print('Thêm bình luận thành công');
-        // Cập nhật UI ngay lập tức bằng cách thêm comment mới vào list
         setState(() {
-          comments.add({'user': 'Bạn', 'text': text});
+          comments.add({'user': userMap[userId] ?? 'Bạn', 'text': text});
           _commentController.clear();
         });
+        widget.post['commentList'] = updatedCommentList;
+        widget.post['comments'] = updatedCommentList.length;
       } else {
-        print('Lỗi khi thêm bình luận: ${response.statusCode}');
+        print('Lỗi khi cập nhật post: ${response.statusCode}');
       }
     } catch (e) {
       print('Lỗi khi gửi comment lên server: $e');
@@ -78,7 +108,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
   }
 
   void addComment(String text) {
-    addCommentToServer(text);
+    addCommentToPost(text);
   }
 
   @override
@@ -94,12 +124,11 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
         children: [
           Expanded(
             child: SingleChildScrollView(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(post['content'], style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
-                  SizedBox(height: 12),
+
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: Image.network(
@@ -110,25 +139,29 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                       errorBuilder: (context, error, stackTrace) => Container(
                         height: 240,
                         color: Colors.grey[300],
-                        child: Center(child: Icon(Icons.broken_image, size: 60)),
+                        child: const Center(child: Icon(Icons.broken_image, size: 60)),
                       ),
                     ),
                   ),
-                  SizedBox(height: 16),
-                  Row(children: [Icon(Icons.favorite_border), SizedBox(width: 4), Text('${post['likes']} lượt thích')]),
-                  SizedBox(height: 8),
-                  Row(children: [Icon(Icons.comment_outlined), SizedBox(width: 4), Text('${post['comments']} bình luận')]),
-                  SizedBox(height: 8),
-                  Row(children: [Icon(Icons.bookmark_border), SizedBox(width: 4), Text('${post['bookmarked']} đã lưu')]),
-                  SizedBox(height: 20),
-                  Text('Đăng bởi: ${post['name']}', style: TextStyle(fontStyle: FontStyle.italic)),
+
+
+                  const SizedBox(height: 16),
+                  Row(children: [const Icon(Icons.favorite_border), const SizedBox(width: 4), Text('${post['likes']} lượt thích')]),
+                  const SizedBox(height: 8),
+                  Row(children: [const Icon(Icons.comment_outlined), const SizedBox(width: 4), Text('${post['comments'] ?? 0} bình luận')]),
+                  const SizedBox(height: 8),
+                  Row(children: [const Icon(Icons.bookmark_border), const SizedBox(width: 4), Text('${post['bookmarked']} đã lưu')]),
+                  const SizedBox(height: 20),
+                  Text('Đăng bởi: ${post['name']}', style: const TextStyle(fontStyle: FontStyle.italic)),
                   Text('Địa điểm: ${post['location']}'),
                   Text('Thời gian: ${post['time']}'),
-                  SizedBox(height: 20),
-                  Text('Bình luận', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  Divider(),
+                  const SizedBox(height: 12),
+                  Text('Nội dung : ${post['content']}', style: const TextStyle(fontSize: 18)),
+                  const SizedBox(height: 20),
+                  const Text('Bình luận', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  const Divider(),
                   ...comments.map((comment) => ListTile(
-                    leading: CircleAvatar(child: Icon(Icons.person)),
+                    leading: const CircleAvatar(child: Icon(Icons.person)),
                     title: Text(comment['user']!),
                     subtitle: Text(comment['text']!),
                   )),
@@ -136,7 +169,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               ),
             ),
           ),
-          Divider(height: 1),
+          const Divider(height: 1),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             child: Row(
@@ -147,13 +180,13 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                     decoration: InputDecoration(
                       hintText: 'Viết bình luận...',
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                     ),
                   ),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 IconButton(
-                  icon: Icon(Icons.send, color: Colors.pinkAccent),
+                  icon: const Icon(Icons.send, color: Colors.pinkAccent),
                   onPressed: () => addComment(_commentController.text),
                 ),
               ],
@@ -164,4 +197,3 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
     );
   }
 }
-

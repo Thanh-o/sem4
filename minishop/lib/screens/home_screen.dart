@@ -129,24 +129,24 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             // Nút chuyển sang bảng tin xã hội
-            SizedBox(height: 16),
-            ElevatedButton.icon(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => SocialFeedScreen()),
-                );
-              },
-              icon: Icon(Icons.dynamic_feed_outlined),
-              label: Text('Xem bảng tin xã hội'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.pinkAccent,
-                foregroundColor: Colors.white,
-                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                elevation: 2,
-              ),
-            ),
+            // SizedBox(height: 16),
+            // ElevatedButton.icon(
+            //   onPressed: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(builder: (_) => SocialFeedScreen()),
+            //     );
+            //   },
+            //   icon: Icon(Icons.dynamic_feed_outlined),
+            //   label: Text('Xem bảng tin xã hội'),
+            //   style: ElevatedButton.styleFrom(
+            //     backgroundColor: Colors.pinkAccent,
+            //     foregroundColor: Colors.white,
+            //     padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+            //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            //     elevation: 2,
+            //   ),
+            // ),
             SizedBox(height: 24),
 
             // Thanh tìm kiếm
