@@ -1,0 +1,50 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Register Process Flow" id="processFlow">
+    <mxGraphModel dx="1242" dy="671" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="2" value="Người dùng mở form Đăng ký" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="180" y="60" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="3" value="Nhập thông tin: Họ, Tên, Ngày sinh, Giới tính, Username, Password" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;" vertex="1" parent="1">
+          <mxGeometry x="180" y="140" width="240" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="4" value="Nhấn nút Đăng ký" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;" vertex="1" parent="1">
+          <mxGeometry x="180" y="240" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="5" value="Validate dữ liệu" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" vertex="1" parent="1">
+          <mxGeometry x="180" y="320" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="6" value="Thông báo lỗi (Invalid)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" vertex="1" parent="1">
+          <mxGeometry x="20" y="320" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="7" value="Gửi dữ liệu lên backend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="180" y="400" width="200" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="8" value="Kiểm tra username đã tồn tại?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;" vertex="1" parent="1">
+          <mxGeometry x="180" y="480" width="160" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="9" value="Username đã tồn tại" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" vertex="1" parent="1">
+          <mxGeometry x="20" y="500" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="10" value="Đăng ký thành công" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" vertex="1" parent="1">
+          <mxGeometry x="360" y="500" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="Chuyển sang màn hình tiếp theo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;" vertex="1" parent="1">
+          <mxGeometry x="360" y="580" width="200" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Arrows -->
+        <mxCell id="a1" style="endArrow=block;" edge="1" parent="1" source="2" target="3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a2" style="endArrow=block;" edge="1" parent="1" source="3" target="4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a3" style="endArrow=block;" edge="1" parent="1" source="4" target="5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a4" style="endArrow=block;" edge="1" parent="1" source="5" target="6"><mxGeometry relative="1" as="geometry"><mxPoint x="100" y="320" as="targetPoint"/></mxGeometry></mxCell>
+        <mxCell id="a5" style="endArrow=block;" edge="1" parent="1" source="5" target="7"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a6" style="endArrow=block;" edge="1" parent="1" source="7" target="8"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a7" style="endArrow=block;" edge="1" parent="1" source="8" target="9"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a8" style="endArrow=block;" edge="1" parent="1" source="8" target="10"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a9" style="endArrow=block;" edge="1" parent="1" source="10" target="11"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

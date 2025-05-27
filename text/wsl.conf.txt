@@ -1,0 +1,4 @@
+[automount]
+root = /mnt/host
+crossDistro = true
+options = "metadata"

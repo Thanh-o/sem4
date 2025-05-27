@@ -1,0 +1,27 @@
+<fulfillmentToken fulfillmentType="buy" auth="user" xmlns="http://ns.adobe.com/adept">
+  <distributor>urn:uuid:5912a286-0752-4058-830e-0a95d23cb627</distributor>
+  <operatorURL>http://www.e-shabda.com:8081/fulfillment</operatorURL>
+  <transaction>1202599987</transaction>
+  <purchase>2025-02-13T07:20:54+05:30</purchase>
+  <expiration>2025-03-15T07:20:54+05:30</expiration>
+  <resourceItemInfo>
+    <resource>urn:uuid:f43e62d2-8070-43f9-ae4b-f1fdd707c1d0</resource>
+    <resourceItem>0</resourceItem>
+    <metadata>
+      <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">Spring and Spring Boot with Jakarta EE Web Applications_ACE_INTL</dc:title>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Aptech</dc:creator>
+      <dc:publisher xmlns:dc="http://purl.org/dc/elements/1.1/">Aptech</dc:publisher>
+      <dc:format xmlns:dc="http://purl.org/dc/elements/1.1/">application/pdf</dc:format>
+    </metadata>
+    <licenseToken>
+      <resource>urn:uuid:f43e62d2-8070-43f9-ae4b-f1fdd707c1d0</resource>
+      <permissions>
+        <display/>
+        <excerpt/>
+        <print/>
+        <play/>
+      </permissions>
+    </licenseToken>
+  </resourceItemInfo>
+  <hmac>Ic1NF97xHiRK1fl6efIoqEtFYUE=</hmac>
+</fulfillmentToken>

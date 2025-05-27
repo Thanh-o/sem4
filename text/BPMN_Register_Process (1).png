@@ -1,0 +1,25 @@
+digraph {
+	rankdir=LR size="8,5"
+	node [shape=box]
+	Start [label=Start shape=circle]
+	Open [label="Người dùng mở màn hình Đăng ký"]
+	Input [label="Nhập thông tin đăng ký"]
+	Validate [label="Kiểm tra dữ liệu hợp lệ?"]
+	ShowError [label="Hiển thị lỗi" shape=diamond]
+	SendAPI [label="Gửi API đăng ký"]
+	"Success?" [label="Thành công?" shape=diamond]
+	ToLogin [label="Chuyển đến màn hình đăng nhập"]
+	ShowServerError [label="Hiển thị lỗi từ server"]
+	End [label=End shape=circle]
+	Start -> Open
+	Open -> Input
+	Input -> Validate
+	Validate -> ShowError [label="Không hợp lệ"]
+	Validate -> SendAPI [label="Hợp lệ"]
+	SendAPI -> "Success?"
+	"Success?" -> ToLogin [label="Có"]
+	"Success?" -> ShowServerError [label="Không"]
+	ToLogin -> End
+	ShowError -> Input
+	ShowServerError -> Input
+}
