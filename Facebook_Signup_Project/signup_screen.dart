@@ -472,7 +472,7 @@ class _DangKyManHinhState extends State<DangKyManHinh> {
                               child: InkWell(
                                 onTap: () => setState(() => _gender = 'Female'),
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                                  padding: EdgeInsets.symmetric(vertical: 2, horizontal: 3),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     border: Border.all(color: Colors.grey),
@@ -499,7 +499,7 @@ class _DangKyManHinhState extends State<DangKyManHinh> {
                               child: InkWell(
                                 onTap: () => setState(() => _gender = 'Male'),
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                                  padding: EdgeInsets.symmetric(vertical: 2, horizontal: 3),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     border: Border.all(color: Colors.grey),
@@ -525,7 +525,7 @@ class _DangKyManHinhState extends State<DangKyManHinh> {
                               child: InkWell(
                                 onTap: () => setState(() => _gender = 'Custom'),
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                                  padding: EdgeInsets.symmetric(vertical: 2, horizontal: 3),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     border: Border.all(color: Colors.grey),
