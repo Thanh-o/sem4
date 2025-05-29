@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:minishop/signup_screen.dart';
- // Adjust based on your project structure
+import 'package:minishop/main.dart';
+import 'package:minishop/signup_screen.dart'; // Adjust based on your project structure
 
 void main() {
   setUpAll(() {
@@ -9,7 +10,6 @@ void main() {
   });
 
   tearDownAll(() {
-    // Note: We can't directly check if all tests passed here, but this runs after all tests
     print('All tests completed.');
   });
 
@@ -180,5 +180,189 @@ void main() {
     expect(find.text('Redirecting to login...'), findsOneWidget);
 
     print('thành công rồi anh ưi: Login link test passed');
+  });
+
+  testWidgets('Invalid email format shows error', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(home: DangKyManHinh()));
+    await tester.pumpAndSettle();
+
+    await tester.ensureVisible(find.byType(TextFormField).at(2));
+    await tester.enterText(find.byType(TextFormField).at(2), 'invalid');
+    await tester.pumpAndSettle();
+
+    expect(
+      find.byWidgetPredicate(
+            (widget) =>
+        widget is Container &&
+            widget.decoration is BoxDecoration &&
+            (widget.decoration as BoxDecoration).color == Colors.red &&
+            widget.child is Text &&
+            (widget.child as Text).data == '!',
+      ),
+      findsAtLeastNWidgets(1),
+    );
+
+    print('thành công rồi anh ưi: Invalid email format test passed');
+  });
+
+  testWidgets('Minimum valid age (13 years) passes validation', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(home: DangKyManHinh()));
+    await tester.pumpAndSettle();
+
+    final currentYear = DateTime.now().year;
+    final minValidYear = (currentYear - 13).toString();
+
+    await tester.ensureVisible(find.byType(DropdownButtonFormField<String>).at(0));
+    await tester.tap(find.byType(DropdownButtonFormField<String>).at(0));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text('1'));
+    await tester.tap(find.text('1').last);
+    await tester.pumpAndSettle();
+
+    await tester.ensureVisible(find.byType(DropdownButtonFormField<String>).at(1));
+    await tester.tap(find.byType(DropdownButtonFormField<String>).at(1));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text('Jan'));
+    await tester.tap(find.text('Jan').last);
+    await tester.pumpAndSettle();
+
+    await tester.ensureVisible(find.byType(DropdownButtonFormField<String>).at(2));
+    await tester.tap(find.byType(DropdownButtonFormField<String>).at(2));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text(minValidYear));
+    await tester.tap(find.text(minValidYear).last);
+    await tester.pumpAndSettle();
+
+    await tester.ensureVisible(find.text('Sign Up'));
+    await tester.tap(find.text('Sign Up'), warnIfMissed: false);
+    await tester.pumpAndSettle();
+
+    expect(find.text('Must be at least 13 years old.'), findsNothing);
+
+    print('thành công rồi anh ưi: Minimum valid age test passed');
+  });
+
+  testWidgets('Custom gender selection works', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(home: DangKyManHinh()));
+    await tester.pumpAndSettle();
+
+    await tester.ensureVisible(find.text('Custom'));
+    await tester.tap(find.text('Custom'));
+    await tester.pumpAndSettle();
+
+    expect(
+      find.byWidgetPredicate(
+            (widget) => widget is Radio<String> && widget.groupValue == 'Custom' && widget.value == 'Custom',
+      ),
+      findsOneWidget,
+    );
+
+    print('thành công rồi anh ưi: Custom gender selection test passed');
+  });
+
+  testWidgets('Focus navigation through input fields', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(home: DangKyManHinh()));
+    await tester.pumpAndSettle();
+
+    // Start at First Name
+    await tester.ensureVisible(find.byType(TextFormField).at(0));
+    await tester.tap(find.byType(TextFormField).at(0));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextFormField).at(0), 'John');
+    expect(tester.widget<TextFormField>(find.byType(TextFormField).at(0)).controller!.text, 'John');
+
+    // Tab to Surname
+    await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextFormField).at(1), 'Doe');
+    expect(tester.widget<TextFormField>(find.byType(TextFormField).at(1)).controller!.text, 'Doe');
+
+    // Tab to Email
+    await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextFormField).at(2), 'john@example.com');
+    expect(tester.widget<TextFormField>(find.byType(TextFormField).at(2)).controller!.text, 'john@example.com');
+
+    // Tab to Password
+    await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextFormField).at(3), 'password123');
+    expect(tester.widget<TextFormField>(find.byType(TextFormField).at(3)).controller!.text, 'password123');
+
+    print('thành công rồi anh ưi: Focus navigation test passed');
+  });
+
+  testWidgets('Password exact length (8 characters) passes validation', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(home: DangKyManHinh()));
+    await tester.pumpAndSettle();
+
+    await tester.ensureVisible(find.byType(TextFormField).at(3));
+    await tester.enterText(find.byType(TextFormField).at(3), '12345678');
+    await tester.pumpAndSettle();
+
+    expect(
+      find.byWidgetPredicate(
+            (widget) =>
+        widget is Container &&
+            widget.decoration is BoxDecoration &&
+            (widget.decoration as BoxDecoration).color == Colors.red &&
+            widget.child is Text &&
+            (widget.child as Text).data == '!',
+      ),
+      findsNothing,
+    );
+
+    print('thành công rồi anh ưi: Password exact length test passed');
+  });
+
+  testWidgets('Empty DOB with other valid fields shows error', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(home: DangKyManHinh()));
+    await tester.pumpAndSettle();
+
+    await tester.ensureVisible(find.byType(TextFormField).at(0));
+    await tester.enterText(find.byType(TextFormField).at(0), 'John');
+    await tester.ensureVisible(find.byType(TextFormField).at(1));
+    await tester.enterText(find.byType(TextFormField).at(1), 'Doe');
+    await tester.ensureVisible(find.byType(TextFormField).at(2));
+    await tester.enterText(find.byType(TextFormField).at(2), 'john.doe@example.com');
+    await tester.ensureVisible(find.byType(TextFormField).at(3));
+    await tester.enterText(find.byType(TextFormField).at(3), 'password123');
+
+    await tester.ensureVisible(find.text('Male'));
+    await tester.tap(find.text('Male'));
+    await tester.pumpAndSettle();
+
+    await tester.ensureVisible(find.text('Sign Up'));
+    await tester.tap(find.text('Sign Up'), warnIfMissed: false);
+    await tester.pumpAndSettle();
+
+    expect(
+      find.byWidgetPredicate(
+            (widget) =>
+        widget is Container &&
+            widget.decoration is BoxDecoration &&
+            (widget.decoration as BoxDecoration).color == Colors.red &&
+            widget.child is Text &&
+            (widget.child as Text).data == '!',
+      ),
+      findsAtLeastNWidgets(1),
+    );
+
+    expect(find.text('Account created successfully!'), findsNothing);
+
+    print('thành công rồi anh ưi: Empty DOB test passed');
+  });
+
+  testWidgets('Terms and conditions link interaction', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(home: DangKyManHinh()));
+    await tester.pumpAndSettle();
+
+    await tester.ensureVisible(find.text('Terms, Privacy Policy'));
+    await tester.tap(find.text('Terms, Privacy Policy'), warnIfMissed: false);
+    await tester.pumpAndSettle();
+
+    expect(find.text('Terms link tapped'), findsNothing); // Update if UI adds action
+
+    print('thành công rồi anh ưi: Terms link interaction test passed');
   });
 }
