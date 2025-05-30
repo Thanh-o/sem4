@@ -22,13 +22,13 @@ class ToDoApp extends StatelessWidget {
         textTheme: const TextTheme(
           bodyMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
         ),
-        cardTheme: const CardTheme(
-          elevation: 4,
-          margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
-          ),
-        ),
+        // cardTheme: const CardTheme(
+        //   elevation: 4,
+        //   margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+        //   shape: RoundedRectangleBorder(
+        //     borderRadius: BorderRadius.all(Radius.circular(12)),
+        //   ),
+        // ),
       ),
       home: const ToDoListScreen(),
     );
