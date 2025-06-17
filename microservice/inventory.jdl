@@ -1,0 +1,9 @@
+// Tệp JDL cho Inventory
+entity Inventory {
+  id Long
+  quantity Integer required min(0)
+  warehouse String required
+  productId Long required
+}
+
+microservice Inventory with inventory

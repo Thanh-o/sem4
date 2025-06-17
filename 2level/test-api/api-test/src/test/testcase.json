@@ -1,0 +1,2659 @@
+{
+  "info": {
+    "_postman_id": "12345678-1234-1234-1234-123456789012",
+    "name": "Structured Auth API Test Collection",
+    "description": "Collection được tổ chức theo Happy Case, Boundary Case, và Negative Case cho từng API endpoint",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. User Registration API",
+      "item": [
+        {
+          "name": "Happy Cases",
+          "item": [
+            {
+              "name": "Register - Valid Data",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success true\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(true);",
+                      "});",
+                      "",
+                      "pm.test(\"Response contains user data\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.data).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('username');",
+                      "    pm.expect(jsonData.data).to.have.property('email');",
+                      "});",
+                      "",
+                      "pm.test(\"Response time is acceptable\", function () {",
+                      "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+                      "});",
+                      "",
+                      "// Save user data for other tests",
+                      "if (pm.response.code === 201) {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.environment.set(\"userId\", jsonData.data.id);",
+                      "    pm.environment.set(\"username\", jsonData.data.username);",
+                      "    pm.environment.set(\"email\", jsonData.data.email);",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"testuser\",\n    \"email\": \"test@example.com\",\n    \"password\": \"Password123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Register - Strong Password",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "",
+                      "pm.test(\"Strong password accepted\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(true);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"stronguser\",\n    \"email\": \"strong@example.com\",\n    \"password\": \"VeryStrongP@ssw0rd123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Boundary Cases",
+          "item": [
+            {
+              "name": "Register - Minimum Username Length",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201 or 400\", function () {",
+                      "    pm.expect(pm.response.code).to.be.oneOf([201, 400]);",
+                      "});",
+                      "",
+                      "if (pm.response.code === 201) {",
+                      "    pm.test(\"Minimum username length accepted\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(true);",
+                      "    });",
+                      "} else {",
+                      "    pm.test(\"Minimum username length rejected with proper message\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(false);",
+                      "        pm.expect(jsonData.message).to.include(\"Username\");",
+                      "    });",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"abc\",\n    \"email\": \"min@example.com\",\n    \"password\": \"Password123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Register - Maximum Username Length",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201 or 400\", function () {",
+                      "    pm.expect(pm.response.code).to.be.oneOf([201, 400]);",
+                      "});",
+                      "",
+                      "if (pm.response.code === 201) {",
+                      "    pm.test(\"Maximum username length accepted\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(true);",
+                      "    });",
+                      "} else {",
+                      "    pm.test(\"Maximum username length rejected with proper message\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(false);",
+                      "        pm.expect(jsonData.message).to.include(\"Username\");",
+                      "    });",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"maxlengthusername123456789012345\",\n    \"email\": \"max@example.com\",\n    \"password\": \"Password123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Register - Minimum Password Length",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201 or 400\", function () {",
+                      "    pm.expect(pm.response.code).to.be.oneOf([201, 400]);",
+                      "});",
+                      "",
+                      "if (pm.response.code === 201) {",
+                      "    pm.test(\"Minimum password length accepted\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(true);",
+                      "    });",
+                      "} else {",
+                      "    pm.test(\"Minimum password length rejected with proper message\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(false);",
+                      "        pm.expect(jsonData.message).to.include(\"Password\");",
+                      "    });",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"minpassuser\",\n    \"email\": \"minpass@example.com\",\n    \"password\": \"Pass1!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Register - Email at Maximum Length",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201 or 400\", function () {",
+                      "    pm.expect(pm.response.code).to.be.oneOf([201, 400]);",
+                      "});",
+                      "",
+                      "if (pm.response.code === 201) {",
+                      "    pm.test(\"Long email accepted\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(true);",
+                      "    });",
+                      "} else {",
+                      "    pm.test(\"Long email rejected with proper message\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(false);",
+                      "        pm.expect(jsonData.message).to.include(\"Email\");",
+                      "    });",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"longemailuser\",\n    \"email\": \"verylongemailaddressthatmightexceedlimits@verylongdomainname.com\",\n    \"password\": \"Password123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Negative Cases",
+          "item": [
+            {
+              "name": "Register - Empty Request Body",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about missing data\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Dữ liệu không hợp lệ\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Register - Missing Username",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about missing username\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Username\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"missing@example.com\",\n    \"password\": \"Password123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Register - Missing Email",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about missing email\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Email\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"noemail\",\n    \"password\": \"Password123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Register - Missing Password",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about missing password\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Password\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"nopassword\",\n    \"email\": \"nopass@example.com\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Register - Invalid Email Format",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about invalid email\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Email không hợp lệ\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"invalidemail\",\n    \"email\": \"invalid-email-format\",\n    \"password\": \"Password123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Register - Weak Password",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about weak password\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Mật khẩu quá yếu\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"weakpass\",\n    \"email\": \"weak@example.com\",\n    \"password\": \"123\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Register - Duplicate Username",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about duplicate username\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Username đã tồn tại\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"testuser\",\n    \"email\": \"duplicate@example.com\",\n    \"password\": \"Password123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Register - Duplicate Email",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about duplicate email\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Email đã tồn tại\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"duplicateemail\",\n    \"email\": \"test@example.com\",\n    \"password\": \"Password123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Register - Invalid Content Type",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400 or 415\", function () {",
+                      "    pm.expect(pm.response.code).to.be.oneOf([400, 415]);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about content type\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Content-Type\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "username=test&email=test@example.com&password=password123"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Register - SQL Injection Attempt",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"SQL injection prevented\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Dữ liệu không hợp lệ\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"admin'; DROP TABLE users; --\",\n    \"email\": \"hack@example.com\",\n    \"password\": \"Password123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2. User Login API",
+      "item": [
+        {
+          "name": "Happy Cases",
+          "item": [
+            {
+              "name": "Login - Valid Username and Password",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success true\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(true);",
+                      "});",
+                      "",
+                      "pm.test(\"Response contains user data\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.data).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('username');",
+                      "    pm.expect(jsonData.data).to.have.property('email');",
+                      "});",
+                      "",
+                      "pm.test(\"Password not exposed in response\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.data).to.not.have.property('password');",
+                      "});",
+                      "",
+                      "pm.test(\"Response time is acceptable\", function () {",
+                      "    pm.expect(pm.response.responseTime).to.be.below(1000);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"Password123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Login - Valid Email and Password",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success true\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(true);",
+                      "});",
+                      "",
+                      "pm.test(\"Login with email successful\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.data).to.have.property('email');",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"test@example.com\",\n    \"password\": \"Password123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Boundary Cases",
+          "item": [
+            {
+              "name": "Login - Case Insensitive Username",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Case insensitive login works\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(true);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"TESTUSER\",\n    \"password\": \"Password123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Login - Username with Spaces",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200 or 400\", function () {",
+                      "    pm.expect(pm.response.code).to.be.oneOf([200, 400]);",
+                      "});",
+                      "",
+                      "if (pm.response.code === 200) {",
+                      "    pm.test(\"Username with spaces handled correctly\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(true);",
+                      "    });",
+                      "} else {",
+                      "    pm.test(\"Username with spaces rejected properly\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(false);",
+                      "    });",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \" testuser \",\n    \"password\": \"Password123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Negative Cases",
+          "item": [
+            {
+              "name": "Login - Empty Username",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about empty username\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Username không được để trống\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"\",\n    \"password\": \"Password123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Login - Empty Password",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about empty password\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Password không được để trống\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Login - Wrong Password",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about wrong password\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Mật khẩu không đúng\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"WrongPassword123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Login - Non-existent User",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about user not found\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"User không tồn tại\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"nonexistentuser\",\n    \"password\": \"Password123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Login - Missing Username Field",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about missing username\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Username\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"password\": \"Password123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Login - Missing Password Field",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about missing password\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Password\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"testuser\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Login - Brute Force Attempt",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400 or 429\", function () {",
+                      "    pm.expect(pm.response.code).to.be.oneOf([400, 429]);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Brute force protection active\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.satisfy(function(msg) {",
+                      "        return msg.includes('Quá nhiều lần thử') || msg.includes('Mật khẩu không đúng');",
+                      "    });",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"WrongPassword1\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3. Profile Management API",
+      "item": [
+        {
+          "name": "Happy Cases",
+          "item": [
+            {
+              "name": "Get Profile - Valid User ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success true\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(true);",
+                      "});",
+                      "",
+                      "pm.test(\"Response contains user profile\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.data).to.have.property('id');",
+                      "    pm.expect(jsonData.data).to.have.property('username');",
+                      "    pm.expect(jsonData.data).to.have.property('email');",
+                      "});",
+                      "",
+                      "pm.test(\"Password not exposed\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.data).to.not.have.property('password');",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/profile/{{userId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "profile",
+                    "{{userId}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Update Profile - Valid Data",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success true\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(true);",
+                      "});",
+                      "",
+                      "pm.test(\"Profile updated successfully\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.data.username).to.eql('updateduser');",
+                      "    pm.expect(jsonData.data.email).to.eql('updated@example.com');",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"updateduser\",\n    \"email\": \"updated@example.com\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/profile/{{userId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "profile",
+                    "{{userId}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Update Profile - Partial Update",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Partial update successful\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(true);",
+                      "    pm.expect(jsonData.data.username).to.eql('partialupdate');",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"partialupdate\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/profile/{{userId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "profile",
+                    "{{userId}}"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Boundary Cases",
+          "item": [
+            {
+              "name": "Get Profile - Maximum Valid User ID",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200 or 400\", function () {",
+                      "    pm.expect(pm.response.code).to.be.oneOf([200, 400]);",
+                      "});",
+                      "",
+                      "if (pm.response.code === 200) {",
+                      "    pm.test(\"Large user ID handled correctly\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(true);",
+                      "    });",
+                      "} else {",
+                      "    pm.test(\"Large user ID rejected properly\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(false);",
+                      "    });",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/profile/2147483647",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "profile",
+                    "2147483647"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Update Profile - Maximum Length Username",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200 or 400\", function () {",
+                      "    pm.expect(pm.response.code).to.be.oneOf([200, 400]);",
+                      "});",
+                      "",
+                      "if (pm.response.code === 200) {",
+                      "    pm.test(\"Maximum username length accepted\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(true);",
+                      "    });",
+                      "} else {",
+                      "    pm.test(\"Maximum username length rejected\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(false);",
+                      "        pm.expect(jsonData.message).to.include(\"Username\");",
+                      "    });",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"maxlengthusername123456789012345\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/profile/{{userId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "profile",
+                    "{{userId}}"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Negative Cases",
+          "item": [
+            {
+              "name": "Get Profile - Invalid User ID Format",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about invalid ID\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"ID không hợp lệ\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/profile/invalid-id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "profile",
+                    "invalid-id"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Profile - Non-existent User",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about user not found\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"User không tồn tại\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/profile/99999",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "profile",
+                    "99999",
+                    "api",
+                    "auth",
+                    "profile",
+                    "99999"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Update Profile - Empty Request Body",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about empty data\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Dữ liệu không hợp lệ\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/profile/{{userId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "profile",
+                    "{{userId}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Update Profile - Invalid Email Format",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about invalid email\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Email không hợp lệ\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"invalid-email-format\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/profile/{{userId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "profile",
+                    "{{userId}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Update Profile - Duplicate Username",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about duplicate username\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Username đã tồn tại\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"username\": \"testuser\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/profile/{{userId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "profile",
+                    "{{userId}}"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4. Password Management API",
+      "item": [
+        {
+          "name": "Happy Cases",
+          "item": [
+            {
+              "name": "Change Password - Valid Data",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success true\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(true);",
+                      "});",
+                      "",
+                      "pm.test(\"Success message about password change\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Đổi mật khẩu thành công\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"userId\": {{userId}},\n    \"oldPassword\": \"Password123!\",\n    \"newPassword\": \"NewPassword123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/change-password",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "change-password"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Boundary Cases",
+          "item": [
+            {
+              "name": "Change Password - Minimum Length New Password",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200 or 400\", function () {",
+                      "    pm.expect(pm.response.code).to.be.oneOf([200, 400]);",
+                      "});",
+                      "",
+                      "if (pm.response.code === 200) {",
+                      "    pm.test(\"Minimum password length accepted\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(true);",
+                      "    });",
+                      "} else {",
+                      "    pm.test(\"Minimum password length rejected\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(false);",
+                      "        pm.expect(jsonData.message).to.include(\"Password\");",
+                      "    });",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"userId\": {{userId}},\n    \"oldPassword\": \"NewPassword123!\",\n    \"newPassword\": \"Pass1!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/change-password",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "change-password"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Negative Cases",
+          "item": [
+            {
+              "name": "Change Password - Wrong Old Password",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about wrong old password\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Mật khẩu cũ không đúng\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"userId\": {{userId}},\n    \"oldPassword\": \"WrongPassword123!\",\n    \"newPassword\": \"NewPassword123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/change-password",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "change-password"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Change Password - Same as Old Password",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about same password\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Mật khẩu mới không được giống mật khẩu cũ\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"userId\": {{userId}},\n    \"oldPassword\": \"NewPassword123!\",\n    \"newPassword\": \"NewPassword123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/change-password",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "change-password"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Change Password - Missing Fields",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about missing fields\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Thiếu thông tin bắt buộc\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"userId\": {{userId}}\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/change-password",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "change-password"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Change Password - User Not Found",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about user not found\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"User không tồn tại\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"userId\": 99999,\n    \"oldPassword\": \"Password123!\",\n    \"newPassword\": \"NewPassword123!\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/change-password",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "change-password"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "5. User Management API",
+      "item": [
+        {
+          "name": "Happy Cases",
+          "item": [
+            {
+              "name": "Get All Users - Success",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success true\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(true);",
+                      "});",
+                      "",
+                      "pm.test(\"Response contains users array\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.data).to.be.an('array');",
+                      "});",
+                      "",
+                      "pm.test(\"Users don't contain password field\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    if (jsonData.data.length > 0) {",
+                      "        pm.expect(jsonData.data[0]).to.not.have.property('password');",
+                      "    }",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "users"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Delete User - Success",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success true\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(true);",
+                      "});",
+                      "",
+                      "pm.test(\"Success message about user deletion\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Xóa user thành công\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/user/{{userId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "user",
+                    "{{userId}}"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Boundary Cases",
+          "item": [
+            {
+              "name": "Get Users - Large Page Number",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {",
+                      "    pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test(\"Response handles large page number\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(true);",
+                      "    pm.expect(jsonData.data).to.be.an('array');",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/users?page=999&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "999"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Users - Maximum Limit",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200 or 400\", function () {",
+                      "    pm.expect(pm.response.code).to.be.oneOf([200, 400]);",
+                      "});",
+                      "",
+                      "if (pm.response.code === 200) {",
+                      "    pm.test(\"Large limit handled correctly\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(true);",
+                      "    });",
+                      "} else {",
+                      "    pm.test(\"Large limit rejected properly\", function () {",
+                      "        var jsonData = pm.response.json();",
+                      "        pm.expect(jsonData.success).to.eql(false);",
+                      "    });",
+                      "}"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/users?limit=1000",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "1000"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Negative Cases",
+          "item": [
+            {
+              "name": "Delete User - Invalid ID Format",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about invalid ID\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"ID không hợp lệ\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/user/invalid-id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "user",
+                    "invalid-id"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Delete User - Non-existent User",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about user not found\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"User không tồn tại\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/user/99999",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "user",
+                    "99999"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Users - Invalid Query Parameters",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {",
+                      "    pm.response.to.have.status(400);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has success false\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.success).to.eql(false);",
+                      "});",
+                      "",
+                      "pm.test(\"Error message about invalid parameters\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData.message).to.include(\"Tham số không hợp lệ\");",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/users?page=invalid&limit=abc",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "invalid"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "abc"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Global pre-request script",
+          "console.log('Running test: ' + pm.info.requestName);",
+          "console.log('Test category: ' + pm.info.requestName.split(' - ')[0]);"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Global test script",
+          "pm.test('Response has valid JSON structure', function () {",
+          "    pm.response.to.be.json;",
+          "});",
+          "",
+          "pm.test('Response has required fields', function () {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData).to.have.property('success');",
+          "    pm.expect(jsonData).to.have.property('message');",
+          "});",
+          "",
+          "pm.test('Response time is reasonable', function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+          "});"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "userId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "username",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "email",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

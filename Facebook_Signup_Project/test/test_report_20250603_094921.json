@@ -1,0 +1,915 @@
+{
+  "test_summary": {
+    "total_tests": 100,
+    "passed_tests": 60,
+    "failed_tests": 40,
+    "error_tests": 0,
+    "pass_rate": 60.0,
+    "execution_time": 217.63,
+    "start_time": 1748918744.0886936,
+    "end_time": 1748918961.720959,
+    "report_generated": "2025-06-03T09:49:21.750199"
+  },
+  "test_results": [
+    {
+      "test_case_id": "TC001",
+      "test_description": "Valid registration with all required fields",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.76,
+      "timestamp": "2025-06-03 09:45:48"
+    },
+    {
+      "test_case_id": "TC002",
+      "test_description": "Valid registration with phone number",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.69,
+      "timestamp": "2025-06-03 09:45:50"
+    },
+    {
+      "test_case_id": "TC003",
+      "test_description": "Empty first name field",
+      "expected_result": "Error message: First name is required",
+      "actual_result": "Error message: Required field firstName is empty",
+      "status": "FAIL",
+      "execution_time": 0.52,
+      "timestamp": "2025-06-03 09:45:51"
+    },
+    {
+      "test_case_id": "TC004",
+      "test_description": "Empty surname field",
+      "expected_result": "Error message: Surname is required",
+      "actual_result": "Error message: Required field surname is empty",
+      "status": "FAIL",
+      "execution_time": 0.55,
+      "timestamp": "2025-06-03 09:45:53"
+    },
+    {
+      "test_case_id": "TC005",
+      "test_description": "Invalid email format",
+      "expected_result": "Error message: Please enter a valid email address",
+      "actual_result": "Error message: Invalid contact format",
+      "status": "FAIL",
+      "execution_time": 0.63,
+      "timestamp": "2025-06-03 09:45:55"
+    },
+    {
+      "test_case_id": "TC006",
+      "test_description": "Password too short",
+      "expected_result": "Error message: Password must be at least 8 characters",
+      "actual_result": "Error message: Password is too short",
+      "status": "FAIL",
+      "execution_time": 0.76,
+      "timestamp": "2025-06-03 09:45:56"
+    },
+    {
+      "test_case_id": "TC007",
+      "test_description": "No gender selected",
+      "expected_result": "Error message: Please select your gender",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.62,
+      "timestamp": "2025-06-03 09:45:58"
+    },
+    {
+      "test_case_id": "TC008",
+      "test_description": "Invalid date - February 30",
+      "expected_result": "Error message: Invalid date selected",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.86,
+      "timestamp": "2025-06-03 09:46:00"
+    },
+    {
+      "test_case_id": "TC009",
+      "test_description": "Future birth date",
+      "expected_result": "Error message: Birth date cannot be in the future",
+      "actual_result": "Failed to fill form",
+      "status": "FAIL",
+      "execution_time": 10.57,
+      "timestamp": "2025-06-03 09:46:11"
+    },
+    {
+      "test_case_id": "TC010",
+      "test_description": "Minimum age boundary (13 years old)",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.66,
+      "timestamp": "2025-06-03 09:46:13"
+    },
+    {
+      "test_case_id": "TC011",
+      "test_description": "Maximum age boundary (100 years old)",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Failed to fill form",
+      "status": "FAIL",
+      "execution_time": 10.48,
+      "timestamp": "2025-06-03 09:46:24"
+    },
+    {
+      "test_case_id": "TC012",
+      "test_description": "Special characters in name",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.71,
+      "timestamp": "2025-06-03 09:46:26"
+    },
+    {
+      "test_case_id": "TC013",
+      "test_description": "Very long name fields",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.81,
+      "timestamp": "2025-06-03 09:46:28"
+    },
+    {
+      "test_case_id": "TC014",
+      "test_description": "SQL injection in first name",
+      "expected_result": "Error message: Invalid characters in name",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.67,
+      "timestamp": "2025-06-03 09:46:30"
+    },
+    {
+      "test_case_id": "TC015",
+      "test_description": "XSS attempt in first name",
+      "expected_result": "Error message: Invalid characters in name",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.62,
+      "timestamp": "2025-06-03 09:46:31"
+    },
+    {
+      "test_case_id": "TC016",
+      "test_description": "Common weak password",
+      "expected_result": "Error message: Password is too weak",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.63,
+      "timestamp": "2025-06-03 09:46:33"
+    },
+    {
+      "test_case_id": "TC017",
+      "test_description": "Strong password with special characters",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.67,
+      "timestamp": "2025-06-03 09:46:35"
+    },
+    {
+      "test_case_id": "TC018",
+      "test_description": "Password with spaces",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.63,
+      "timestamp": "2025-06-03 09:46:36"
+    },
+    {
+      "test_case_id": "TC019",
+      "test_description": "Email with plus sign",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.63,
+      "timestamp": "2025-06-03 09:46:38"
+    },
+    {
+      "test_case_id": "TC020",
+      "test_description": "Email with subdomain",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.63,
+      "timestamp": "2025-06-03 09:46:39"
+    },
+    {
+      "test_case_id": "TC021",
+      "test_description": "Valid leap year date",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.72,
+      "timestamp": "2025-06-03 09:46:41"
+    },
+    {
+      "test_case_id": "TC022",
+      "test_description": "Invalid leap year date",
+      "expected_result": "Error message: Invalid date selected",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.61,
+      "timestamp": "2025-06-03 09:46:43"
+    },
+    {
+      "test_case_id": "TC023",
+      "test_description": "Unicode characters in password",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.64,
+      "timestamp": "2025-06-03 09:46:44"
+    },
+    {
+      "test_case_id": "TC024",
+      "test_description": "Emoji in first name",
+      "expected_result": "Error message: Invalid characters in name",
+      "actual_result": "Failed to fill form",
+      "status": "FAIL",
+      "execution_time": 0.24,
+      "timestamp": "2025-06-03 09:46:46"
+    },
+    {
+      "test_case_id": "TC025",
+      "test_description": "Emoji in password",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Failed to fill form",
+      "status": "FAIL",
+      "execution_time": 0.31,
+      "timestamp": "2025-06-03 09:46:47"
+    },
+    {
+      "test_case_id": "TC026",
+      "test_description": "Multiple consecutive spaces in name",
+      "expected_result": "Error message: Invalid name format",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.58,
+      "timestamp": "2025-06-03 09:46:49"
+    },
+    {
+      "test_case_id": "TC027",
+      "test_description": "HTML tags in surname",
+      "expected_result": "Error message: Invalid characters in name",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.63,
+      "timestamp": "2025-06-03 09:46:50"
+    },
+    {
+      "test_case_id": "TC028",
+      "test_description": "Very strong password",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.62,
+      "timestamp": "2025-06-03 09:46:52"
+    },
+    {
+      "test_case_id": "TC029",
+      "test_description": "Numeric names",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.66,
+      "timestamp": "2025-06-03 09:46:53"
+    },
+    {
+      "test_case_id": "TC030",
+      "test_description": "International phone number",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Error message: Invalid contact format",
+      "status": "FAIL",
+      "execution_time": 0.62,
+      "timestamp": "2025-06-03 09:46:55"
+    },
+    {
+      "test_case_id": "TC031",
+      "test_description": "Local phone number format",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Error message: Invalid contact format",
+      "status": "FAIL",
+      "execution_time": 0.65,
+      "timestamp": "2025-06-03 09:46:57"
+    },
+    {
+      "test_case_id": "TC032",
+      "test_description": "Minimum password length boundary",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.64,
+      "timestamp": "2025-06-03 09:46:58"
+    },
+    {
+      "test_case_id": "TC033",
+      "test_description": "Maximum password length boundary",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.65,
+      "timestamp": "2025-06-03 09:47:00"
+    },
+    {
+      "test_case_id": "TC034",
+      "test_description": "All fields empty",
+      "expected_result": "Error message: All required fields must be filled",
+      "actual_result": "Error message: Required field firstName is empty",
+      "status": "FAIL",
+      "execution_time": 0.21,
+      "timestamp": "2025-06-03 09:47:01"
+    },
+    {
+      "test_case_id": "TC035",
+      "test_description": "Only required fields filled",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.65,
+      "timestamp": "2025-06-03 09:47:03"
+    },
+    {
+      "test_case_id": "TC036",
+      "test_description": "Duplicate email registration",
+      "expected_result": "Error message: Email already exists",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.65,
+      "timestamp": "2025-06-03 09:47:05"
+    },
+    {
+      "test_case_id": "TC037",
+      "test_description": "Rapid multiple form submissions",
+      "expected_result": "Error message: Please wait before submitting again",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.68,
+      "timestamp": "2025-06-03 09:47:06"
+    },
+    {
+      "test_case_id": "TC038",
+      "test_description": "Form submission with network delay",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.63,
+      "timestamp": "2025-06-03 09:47:08"
+    },
+    {
+      "test_case_id": "TC039",
+      "test_description": "Session timeout during registration",
+      "expected_result": "Error message: Session expired",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.62,
+      "timestamp": "2025-06-03 09:47:09"
+    },
+    {
+      "test_case_id": "TC040",
+      "test_description": "Browser back button usage",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.62,
+      "timestamp": "2025-06-03 09:47:11"
+    },
+    {
+      "test_case_id": "TC041",
+      "test_description": "Form reset functionality",
+      "expected_result": "Form cleared successfully",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.66,
+      "timestamp": "2025-06-03 09:47:13"
+    },
+    {
+      "test_case_id": "TC042",
+      "test_description": "Autocomplete functionality",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.67,
+      "timestamp": "2025-06-03 09:47:14"
+    },
+    {
+      "test_case_id": "TC043",
+      "test_description": "Copy-paste operations",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.64,
+      "timestamp": "2025-06-03 09:47:16"
+    },
+    {
+      "test_case_id": "TC044",
+      "test_description": "Keyboard-only navigation",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.66,
+      "timestamp": "2025-06-03 09:47:18"
+    },
+    {
+      "test_case_id": "TC045",
+      "test_description": "Screen reader compatibility",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.62,
+      "timestamp": "2025-06-03 09:47:19"
+    },
+    {
+      "test_case_id": "TC046",
+      "test_description": "Mobile device registration",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.65,
+      "timestamp": "2025-06-03 09:47:21"
+    },
+    {
+      "test_case_id": "TC047",
+      "test_description": "Tablet device registration",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.66,
+      "timestamp": "2025-06-03 09:47:23"
+    },
+    {
+      "test_case_id": "TC048",
+      "test_description": "High DPI display registration",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.63,
+      "timestamp": "2025-06-03 09:47:24"
+    },
+    {
+      "test_case_id": "TC049",
+      "test_description": "JavaScript disabled",
+      "expected_result": "Error message: JavaScript required",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.74,
+      "timestamp": "2025-06-03 09:47:26"
+    },
+    {
+      "test_case_id": "TC050",
+      "test_description": "Cookies disabled",
+      "expected_result": "Error message: Cookies required",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.73,
+      "timestamp": "2025-06-03 09:47:28"
+    },
+    {
+      "test_case_id": "TC051",
+      "test_description": "Maximum email length",
+      "expected_result": "Error message: Email too long",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.71,
+      "timestamp": "2025-06-03 09:47:29"
+    },
+    {
+      "test_case_id": "TC052",
+      "test_description": "Minimum email length",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.67,
+      "timestamp": "2025-06-03 09:47:31"
+    },
+    {
+      "test_case_id": "TC053",
+      "test_description": "Caps lock enabled",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.7,
+      "timestamp": "2025-06-03 09:47:33"
+    },
+    {
+      "test_case_id": "TC054",
+      "test_description": "Multiple failed login attempts",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.66,
+      "timestamp": "2025-06-03 09:47:35"
+    },
+    {
+      "test_case_id": "TC055",
+      "test_description": "Unix epoch date",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.64,
+      "timestamp": "2025-06-03 09:47:36"
+    },
+    {
+      "test_case_id": "TC056",
+      "test_description": "Far future date",
+      "expected_result": "Error message: Invalid birth year",
+      "actual_result": "Failed to fill form",
+      "status": "FAIL",
+      "execution_time": 10.51,
+      "timestamp": "2025-06-03 09:47:48"
+    },
+    {
+      "test_case_id": "TC057",
+      "test_description": "Browser zoom 200%",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.65,
+      "timestamp": "2025-06-03 09:47:49"
+    },
+    {
+      "test_case_id": "TC058",
+      "test_description": "Browser zoom 50%",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.63,
+      "timestamp": "2025-06-03 09:47:51"
+    },
+    {
+      "test_case_id": "TC059",
+      "test_description": "Daylight saving time change",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.74,
+      "timestamp": "2025-06-03 09:47:53"
+    },
+    {
+      "test_case_id": "TC060",
+      "test_description": "Different timezone",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.62,
+      "timestamp": "2025-06-03 09:47:54"
+    },
+    {
+      "test_case_id": "TC061",
+      "test_description": "VPN connection",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.67,
+      "timestamp": "2025-06-03 09:47:56"
+    },
+    {
+      "test_case_id": "TC062",
+      "test_description": "Ad blocker enabled",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.67,
+      "timestamp": "2025-06-03 09:47:58"
+    },
+    {
+      "test_case_id": "TC063",
+      "test_description": "Browser extensions active",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.66,
+      "timestamp": "2025-06-03 09:47:59"
+    },
+    {
+      "test_case_id": "TC064",
+      "test_description": "Incognito mode",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.64,
+      "timestamp": "2025-06-03 09:48:01"
+    },
+    {
+      "test_case_id": "TC065",
+      "test_description": "Slow internet connection",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.66,
+      "timestamp": "2025-06-03 09:48:03"
+    },
+    {
+      "test_case_id": "TC066",
+      "test_description": "Intermittent connection",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.67,
+      "timestamp": "2025-06-03 09:48:04"
+    },
+    {
+      "test_case_id": "TC067",
+      "test_description": "High server load",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.63,
+      "timestamp": "2025-06-03 09:48:06"
+    },
+    {
+      "test_case_id": "TC068",
+      "test_description": "Database maintenance",
+      "expected_result": "Error message: Service temporarily unavailable",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.67,
+      "timestamp": "2025-06-03 09:48:08"
+    },
+    {
+      "test_case_id": "TC069",
+      "test_description": "Concurrent user registration",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.64,
+      "timestamp": "2025-06-03 09:48:09"
+    },
+    {
+      "test_case_id": "TC070",
+      "test_description": "Browser prefilled form",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.7,
+      "timestamp": "2025-06-03 09:48:11"
+    },
+    {
+      "test_case_id": "TC071",
+      "test_description": "Password manager integration",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.69,
+      "timestamp": "2025-06-03 09:48:13"
+    },
+    {
+      "test_case_id": "TC072",
+      "test_description": "Clipboard operations",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.81,
+      "timestamp": "2025-06-03 09:48:14"
+    },
+    {
+      "test_case_id": "TC073",
+      "test_description": "Special characters everywhere",
+      "expected_result": "Error message: Invalid characters in name",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.67,
+      "timestamp": "2025-06-03 09:48:16"
+    },
+    {
+      "test_case_id": "TC074",
+      "test_description": "Minimum age exactly 13",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.67,
+      "timestamp": "2025-06-03 09:48:18"
+    },
+    {
+      "test_case_id": "TC075",
+      "test_description": "Below minimum age",
+      "expected_result": "Error message: Must be at least 13 years old",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.71,
+      "timestamp": "2025-06-03 09:48:19"
+    },
+    {
+      "test_case_id": "TC076",
+      "test_description": "Maximum age exactly 100",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Failed to fill form",
+      "status": "FAIL",
+      "execution_time": 10.69,
+      "timestamp": "2025-06-03 09:48:31"
+    },
+    {
+      "test_case_id": "TC077",
+      "test_description": "Above maximum age",
+      "expected_result": "Error message: Invalid birth year",
+      "actual_result": "Failed to fill form",
+      "status": "FAIL",
+      "execution_time": 10.49,
+      "timestamp": "2025-06-03 09:48:43"
+    },
+    {
+      "test_case_id": "TC078",
+      "test_description": "Identical first and last names",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.6,
+      "timestamp": "2025-06-03 09:48:44"
+    },
+    {
+      "test_case_id": "TC079",
+      "test_description": "Single character names",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.63,
+      "timestamp": "2025-06-03 09:48:46"
+    },
+    {
+      "test_case_id": "TC080",
+      "test_description": "Numbers in names",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.61,
+      "timestamp": "2025-06-03 09:48:48"
+    },
+    {
+      "test_case_id": "TC081",
+      "test_description": "Mixed case email",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.61,
+      "timestamp": "2025-06-03 09:48:49"
+    },
+    {
+      "test_case_id": "TC082",
+      "test_description": "Mixed case password",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.62,
+      "timestamp": "2025-06-03 09:48:51"
+    },
+    {
+      "test_case_id": "TC083",
+      "test_description": "Password same as email",
+      "expected_result": "Error message: Password cannot be same as email",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.63,
+      "timestamp": "2025-06-03 09:48:52"
+    },
+    {
+      "test_case_id": "TC084",
+      "test_description": "Password contains username",
+      "expected_result": "Error message: Password cannot contain username",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.62,
+      "timestamp": "2025-06-03 09:48:54"
+    },
+    {
+      "test_case_id": "TC085",
+      "test_description": "Common password patterns",
+      "expected_result": "Error message: Password is too common",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.72,
+      "timestamp": "2025-06-03 09:48:56"
+    },
+    {
+      "test_case_id": "TC086",
+      "test_description": "Sequential characters password",
+      "expected_result": "Error message: Password cannot be sequential",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.65,
+      "timestamp": "2025-06-03 09:48:57"
+    },
+    {
+      "test_case_id": "TC087",
+      "test_description": "Repeated characters password",
+      "expected_result": "Error message: Password cannot have repeated characters",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.65,
+      "timestamp": "2025-06-03 09:48:59"
+    },
+    {
+      "test_case_id": "TC088",
+      "test_description": "Keyboard pattern password",
+      "expected_result": "Error message: Password is too predictable",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.64,
+      "timestamp": "2025-06-03 09:49:01"
+    },
+    {
+      "test_case_id": "TC089",
+      "test_description": "Previously breached password",
+      "expected_result": "Error message: Password has been compromised",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "FAIL",
+      "execution_time": 0.7,
+      "timestamp": "2025-06-03 09:49:02"
+    },
+    {
+      "test_case_id": "TC090",
+      "test_description": "Extremely strong password",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.66,
+      "timestamp": "2025-06-03 09:49:04"
+    },
+    {
+      "test_case_id": "TC091",
+      "test_description": "Unicode password",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.64,
+      "timestamp": "2025-06-03 09:49:06"
+    },
+    {
+      "test_case_id": "TC092",
+      "test_description": "Emoji password",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Failed to fill form",
+      "status": "FAIL",
+      "execution_time": 0.38,
+      "timestamp": "2025-06-03 09:49:07"
+    },
+    {
+      "test_case_id": "TC093",
+      "test_description": "Password with spaces",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.6,
+      "timestamp": "2025-06-03 09:49:09"
+    },
+    {
+      "test_case_id": "TC094",
+      "test_description": "Password with tabs",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.62,
+      "timestamp": "2025-06-03 09:49:10"
+    },
+    {
+      "test_case_id": "TC095",
+      "test_description": "Password with newlines",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.64,
+      "timestamp": "2025-06-03 09:49:12"
+    },
+    {
+      "test_case_id": "TC096",
+      "test_description": "Password with quotes",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.68,
+      "timestamp": "2025-06-03 09:49:14"
+    },
+    {
+      "test_case_id": "TC097",
+      "test_description": "Password with backslashes",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.66,
+      "timestamp": "2025-06-03 09:49:15"
+    },
+    {
+      "test_case_id": "TC098",
+      "test_description": "Password with HTML entities",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.68,
+      "timestamp": "2025-06-03 09:49:17"
+    },
+    {
+      "test_case_id": "TC099",
+      "test_description": "Password with SQL injection",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.64,
+      "timestamp": "2025-06-03 09:49:19"
+    },
+    {
+      "test_case_id": "TC100",
+      "test_description": "Password with XSS",
+      "expected_result": "Registration successful with confirmation message",
+      "actual_result": "Registration successful with confirmation message",
+      "status": "PASS",
+      "execution_time": 0.64,
+      "timestamp": "2025-06-03 09:49:20"
+    }
+  ]
+}

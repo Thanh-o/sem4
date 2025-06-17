@@ -1,0 +1,386 @@
+{
+  "auth_service_tests": {
+    "description": "Test cases for AuthService",
+    "test_cases": [
+      {
+        "test_id": "auth_001",
+        "test_name": "Valid User Registration",
+        "test_type": "positive",
+        "description": "Test successful user registration with valid credentials",
+        "input": {
+          "email": "testuser@example.com",
+          "password": "password123"
+        },
+        "expected_output": {
+          "success": true,
+          "status_code": 201
+        },
+        "mock_response": {
+          "status_code": 201,
+          "body": {
+            "id": "1",
+            "email": "testuser@example.com",
+            "createdAt": "2025-01-01T00:00:00.000Z"
+          }
+        }
+      },
+      {
+        "test_id": "auth_002",
+        "test_name": "Invalid User Registration",
+        "test_type": "negative",
+        "description": "Test registration failure with invalid data",
+        "input": {
+          "email": "invalid-email",
+          "password": ""
+        },
+        "expected_output": {
+          "success": false,
+          "status_code": 400
+        },
+        "mock_response": {
+          "status_code": 400,
+          "body": {
+            "error": "Invalid email format"
+          }
+        }
+      },
+      {
+        "test_id": "auth_003",
+        "test_name": "Valid User Login",
+        "test_type": "positive",
+        "description": "Test successful login with valid credentials",
+        "input": {
+          "email": "testuser@example.com",
+          "password": "password123"
+        },
+        "expected_output": {
+          "success": true,
+          "token_stored": true
+        },
+        "mock_response": {
+          "status_code": 200,
+          "body": [
+            {
+              "id": "1",
+              "email": "testuser@example.com",
+              "password": "password123"
+            }
+          ]
+        }
+      },
+      {
+        "test_id": "auth_004",
+        "test_name": "Invalid User Login",
+        "test_type": "negative",
+        "description": "Test login failure with wrong credentials",
+        "input": {
+          "email": "testuser@example.com",
+          "password": "wrongpassword"
+        },
+        "expected_output": {
+          "success": false,
+          "token_stored": false
+        },
+        "mock_response": {
+          "status_code": 200,
+          "body": []
+        }
+      },
+      {
+        "test_id": "auth_005",
+        "test_name": "Logout User",
+        "test_type": "positive",
+        "description": "Test user logout functionality",
+        "input": {},
+        "expected_output": {
+          "token_deleted": true
+        }
+      }
+    ]
+  },
+  "social_feed_tests": {
+    "description": "Test cases for Social Feed functionality",
+    "test_cases": [
+      {
+        "test_id": "feed_001",
+        "test_name": "Fetch Posts Successfully",
+        "test_type": "positive",
+        "description": "Test successful fetching of social media posts",
+        "input": {},
+        "expected_output": {
+          "posts_loaded": true,
+          "post_count": 3
+        },
+        "mock_response": {
+          "posts": {
+            "status_code": 200,
+            "body": [
+              {
+                "id": "1",
+                "userId": "1",
+                "content": "Test post content",
+                "image": "https://example.com/image.jpg",
+                "time": "10:30 1/1/2025",
+                "location": "Hanoi",
+                "commentList": [],
+                "comments": 0
+              }
+            ]
+          },
+          "users": {
+            "status_code": 200,
+            "body": [
+              {
+                "id": "1",
+                "name": "Test User",
+                "email": "test@example.com",
+                "avatar": "https://example.com/avatar.jpg",
+                "likedPosts": [],
+                "bookmarkedPosts": []
+              }
+            ]
+          }
+        }
+      },
+      {
+        "test_id": "feed_002",
+        "test_name": "Like Post Successfully",
+        "test_type": "positive",
+        "description": "Test successful liking of a post",
+        "input": {
+          "post_id": "1",
+          "user_id": "1",
+          "is_liked": true
+        },
+        "expected_output": {
+          "like_added": true,
+          "posts_refreshed": true
+        },
+        "mock_response": {
+          "get_user": {
+            "status_code": 200,
+            "body": {
+              "id": "1",
+              "likedPosts": []
+            }
+          },
+          "update_user": {
+            "status_code": 200,
+            "body": {
+              "id": "1",
+              "likedPosts": ["1"]
+            }
+          }
+        }
+      },
+      {
+        "test_id": "feed_003",
+        "test_name": "Bookmark Post Successfully",
+        "test_type": "positive",
+        "description": "Test successful bookmarking of a post",
+        "input": {
+          "post_id": "1",
+          "user_id": "1",
+          "is_bookmarked": true
+        },
+        "expected_output": {
+          "bookmark_added": true,
+          "posts_refreshed": true
+        },
+        "mock_response": {
+          "get_user": {
+            "status_code": 200,
+            "body": {
+              "id": "1",
+              "bookmarkedPosts": []
+            }
+          },
+          "update_user": {
+            "status_code": 200,
+            "body": {
+              "id": "1",
+              "bookmarkedPosts": ["1"]
+            }
+          }
+        }
+      }
+    ]
+  },
+  "post_creation_tests": {
+    "description": "Test cases for Post Creation functionality",
+    "test_cases": [
+      {
+        "test_id": "post_001",
+        "test_name": "Create Post Successfully",
+        "test_type": "positive",
+        "description": "Test successful creation of a new post",
+        "input": {
+          "location": "Hanoi",
+          "content": "This is a test post",
+          "image": "https://example.com/test-image.jpg",
+          "user_id": "1"
+        },
+        "expected_output": {
+          "post_created": true,
+          "navigation_back": true
+        },
+        "mock_response": {
+          "get_user": {
+            "status_code": 200,
+            "body": {
+              "id": "1",
+              "name": "Test User"
+            }
+          },
+          "create_post": {
+            "status_code": 201,
+            "body": {
+              "id": "2",
+              "name": "Test User",
+              "location": "Hanoi",
+              "content": "This is a test post",
+              "image": "https://example.com/test-image.jpg",
+              "userId": "1"
+            }
+          }
+        }
+      },
+      {
+        "test_id": "post_002",
+        "test_name": "Create Post Without User Info",
+        "test_type": "negative",
+        "description": "Test post creation failure when user info cannot be fetched",
+        "input": {
+          "location": "Hanoi",
+          "content": "This is a test post",
+          "image": "https://example.com/test-image.jpg",
+          "user_id": null
+        },
+        "expected_output": {
+          "post_created": false,
+          "error_message": "Không thể lấy thông tin người dùng"
+        },
+        "mock_response": {
+          "get_user": {
+            "status_code": 404,
+            "body": null
+          }
+        }
+      }
+    ]
+  },
+  "profile_tests": {
+    "description": "Test cases for Profile functionality",
+    "test_cases": [
+      {
+        "test_id": "profile_001",
+        "test_name": "Fetch User Profile Successfully",
+        "test_type": "positive",
+        "description": "Test successful fetching of user profile data",
+        "input": {
+          "user_id": "1"
+        },
+        "expected_output": {
+          "profile_loaded": true,
+          "user_name": "Test User",
+          "user_email": "test@example.com"
+        },
+        "mock_response": {
+          "status_code": 200,
+          "body": {
+            "id": "1",
+            "name": "Test User",
+            "email": "test@example.com",
+            "avatar": "https://example.com/avatar.jpg",
+            "createdAt": "2025-01-01T00:00:00.000Z"
+          }
+        }
+      },
+      {
+        "test_id": "profile_002",
+        "test_name": "Update User Profile Successfully",
+        "test_type": "positive",
+        "description": "Test successful updating of user profile data",
+        "input": {
+          "user_id": "1",
+          "name": "Updated Name",
+          "email": "updated@example.com"
+        },
+        "expected_output": {
+          "profile_updated": true,
+          "success_message": "Profile updated successfully"
+        },
+        "mock_response": {
+          "status_code": 200,
+          "body": {
+            "id": "1",
+            "name": "Updated Name",
+            "email": "updated@example.com"
+          }
+        }
+      },
+      {
+        "test_id": "profile_003",
+        "test_name": "Fetch Profile Without Login",
+        "test_type": "negative",
+        "description": "Test profile fetch failure when user is not logged in",
+        "input": {
+          "user_id": null
+        },
+        "expected_output": {
+          "profile_loaded": false,
+          "error_message": "User not logged in."
+        }
+      }
+    ]
+  },
+  "comment_tests": {
+    "description": "Test cases for Comment functionality",
+    "test_cases": [
+      {
+        "test_id": "comment_001",
+        "test_name": "Add Comment Successfully",
+        "test_type": "positive",
+        "description": "Test successful addition of comment to a post",
+        "input": {
+          "post_id": "1",
+          "user_id": "1",
+          "comment_text": "This is a test comment"
+        },
+        "expected_output": {
+          "comment_added": true,
+          "comment_visible": true
+        },
+        "mock_response": {
+          "update_post": {
+            "status_code": 200,
+            "body": {
+              "id": "1",
+              "commentList": [
+                {
+                  "userId": "1",
+                  "text": "This is a test comment"
+                }
+              ],
+              "comments": 1
+            }
+          }
+        }
+      },
+      {
+        "test_id": "comment_002",
+        "test_name": "Add Empty Comment",
+        "test_type": "negative",
+        "description": "Test prevention of adding empty comment",
+        "input": {
+          "post_id": "1",
+          "user_id": "1",
+          "comment_text": ""
+        },
+        "expected_output": {
+          "comment_added": false
+        }
+      }
+    ]
+  }
+}

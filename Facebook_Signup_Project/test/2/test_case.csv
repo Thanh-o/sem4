@@ -1,0 +1,101 @@
+TestCase_ID,Test_Description,First_Name,Surname,Day,Month,Year,Gender,Contact,Password,Expected_Result,Test_Type
+TC001,Valid registration with all fields filled,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Positive
+TC002,Valid registration with phone number,Jane,Smith,20,Feb,1985,Female,0123456789,mypassword,Success,Positive
+TC003,Empty first name field,,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Error,Negative
+TC004,Empty surname field,John,,15,Jan,1990,Male,john.doe@email.com,password123,Error,Negative
+TC005,Empty contact field,John,Doe,15,Jan,1990,Male,,password123,Error,Negative
+TC006,Empty password field,John,Doe,15,Jan,1990,Male,john.doe@email.com,,Error,Negative
+TC007,Password less than 8 characters,John,Doe,15,Jan,1990,Male,john.doe@email.com,pass,Error,Negative
+TC008,Invalid email format,John,Doe,15,Jan,1990,Male,invalid-email,password123,Error,Negative
+TC009,Email without @ symbol,John,Doe,15,Jan,1990,Male,johndoe.com,password123,Error,Negative
+TC010,Email without domain,John,Doe,15,Jan,1990,Male,john@,password123,Error,Negative
+TC011,Special characters in first name,@#$%,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Error,Negative
+TC012,Numbers in first name,John123,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Error,Negative
+TC013,Special characters in surname,John,@#$%,15,Jan,1990,Male,john.doe@email.com,password123,Error,Negative
+TC014,Numbers in surname,John,Doe123,15,Jan,1990,Male,john.doe@email.com,password123,Error,Negative
+TC015,Very long first name,JohnJohnJohnJohnJohnJohnJohnJohnJohnJohn,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Error,Boundary
+TC016,Very long surname,John,DoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoeDoe,15,Jan,1990,Male,john.doe@email.com,password123,Error,Boundary
+TC017,Single character first name,J,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Boundary
+TC018,Single character surname,John,D,15,Jan,1990,Male,john.doe@email.com,password123,Success,Boundary
+TC019,No day selected,John,Doe,,Jan,1990,Male,john.doe@email.com,password123,Error,Negative
+TC020,No month selected,John,Doe,15,,1990,Male,john.doe@email.com,password123,Error,Negative
+TC021,No year selected,John,Doe,15,Jan,,Male,john.doe@email.com,password123,Error,Negative
+TC022,Invalid day 32,John,Doe,32,Jan,1990,Male,john.doe@email.com,password123,Error,Negative
+TC023,Invalid day 0,John,Doe,0,Jan,1990,Male,john.doe@email.com,password123,Error,Negative
+TC024,February 29 non-leap year,John,Doe,29,Feb,1990,Male,john.doe@email.com,password123,Error,Negative
+TC025,February 29 leap year,John,Doe,29,Feb,2000,Male,john.doe@email.com,password123,Success,Positive
+TC026,Future birth date,John,Doe,15,Jan,2030,Male,john.doe@email.com,password123,Error,Negative
+TC027,Birth date today,John,Doe,2,Jun,2025,Male,john.doe@email.com,password123,Error,Negative
+TC028,Age under 13,John,Doe,15,Jan,2015,Male,john.doe@email.com,password123,Error,Negative
+TC029,Age exactly 13,John,Doe,2,Jun,2012,Male,john.doe@email.com,password123,Success,Boundary
+TC030,Very old age,John,Doe,15,Jan,1925,Male,john.doe@email.com,password123,Success,Boundary
+TC031,No gender selected,John,Doe,15,Jan,1990,,john.doe@email.com,password123,Error,Negative
+TC032,Female gender selection,John,Doe,15,Jan,1990,Female,john.doe@email.com,password123,Success,Positive
+TC033,Custom gender selection,John,Doe,15,Jan,1990,Custom,john.doe@email.com,password123,Success,Positive
+TC034,Phone number with country code,John,Doe,15,Jan,1990,Male,+84901234567,password123,Success,Positive
+TC035,Phone number without country code,John,Doe,15,Jan,1990,Male,0901234567,password123,Success,Positive
+TC036,Invalid phone number format,John,Doe,15,Jan,1990,Male,123-abc-456,password123,Error,Negative
+TC037,Phone number too short,John,Doe,15,Jan,1990,Male,123,password123,Error,Negative
+TC038,Phone number too long,John,Doe,15,Jan,1990,Male,012345678901234567890,password123,Error,Negative
+TC039,Password with special characters,John,Doe,15,Jan,1990,Male,john.doe@email.com,Pass@123!,Success,Positive
+TC040,Password with numbers only,John,Doe,15,Jan,1990,Male,john.doe@email.com,12345678,Success,Positive
+TC041,Password with uppercase letters,John,Doe,15,Jan,1990,Male,john.doe@email.com,PASSWORD,Success,Positive
+TC042,Password with lowercase letters,John,Doe,15,Jan,1990,Male,john.doe@email.com,password,Success,Positive
+TC043,Password with mixed case,John,Doe,15,Jan,1990,Male,john.doe@email.com,PassWord,Success,Positive
+TC044,Very long password,John,Doe,15,Jan,1990,Male,john.doe@email.com,verylongpasswordwithmanychars,Success,Boundary
+TC045,Password with spaces,John,Doe,15,Jan,1990,Male,john.doe@email.com,pass word,Success,Positive
+TC046,Duplicate email registration,John,Doe,15,Jan,1990,Male,existing@email.com,password123,Error,Negative
+TC047,Email with plus sign,John,Doe,15,Jan,1990,Male,john+test@email.com,password123,Success,Positive
+TC048,Email with dots,John,Doe,15,Jan,1990,Male,john.doe.test@email.com,password123,Success,Positive
+TC049,Email with subdomain,John,Doe,15,Jan,1990,Male,john@mail.google.com,password123,Success,Positive
+TC050,Email with numbers,John,Doe,15,Jan,1990,Male,john123@email.com,password123,Success,Positive
+TC051,Whitespace in first name, John ,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Error,Negative
+TC052,Whitespace in surname,John, Doe ,15,Jan,1990,Male,john.doe@email.com,password123,Error,Negative
+TC053,Leading/trailing spaces in email,John,Doe,15,Jan,1990,Male, john@email.com ,password123,Error,Negative
+TC054,SQL injection in first name,'; DROP TABLE users; --,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Error,Security
+TC055,XSS in first name,<script>alert('xss')</script>,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Error,Security
+TC056,HTML tags in surname,John,<b>Doe</b>,15,Jan,1990,Male,john.doe@email.com,password123,Error,Security
+TC057,Unicode characters in name,Jöhn,Döe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Positive
+TC058,Emoji in name,John😀,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Error,Negative
+TC059,Chinese characters in name,李,王,15,Jan,1990,Male,john.doe@email.com,password123,Success,Positive
+TC060,Arabic characters in name,محمد,أحمد,15,Jan,1990,Male,john.doe@email.com,password123,Success,Positive
+TC061,Multiple @ in email,John,Doe,15,Jan,1990,Male,john@@email.com,password123,Error,Negative
+TC062,Email starting with dot,John,Doe,15,Jan,1990,Male,.john@email.com,password123,Error,Negative
+TC063,Email ending with dot,John,Doe,15,Jan,1990,Male,john@email.com.,password123,Error,Negative
+TC064,Email with consecutive dots,John,Doe,15,Jan,1990,Male,john..doe@email.com,password123,Error,Negative
+TC065,Very long email address,John,Doe,15,Jan,1990,Male,verylongemailaddressthatexceedstypicallimits@verylongdomainname.com,password123,Error,Boundary
+TC066,Password starting with space,John,Doe,15,Jan,1990,Male,john.doe@email.com, password,Error,Negative
+TC067,Password ending with space,John,Doe,15,Jan,1990,Male,john.doe@email.com,password ,Error,Negative
+TC068,All fields with minimum valid values,A,B,1,Jan,1925,Female,a@b.co,password1,Success,Boundary
+TC069,Day 31 in April,John,Doe,31,Apr,1990,Male,john.doe@email.com,password123,Error,Negative
+TC070,Day 31 in February,John,Doe,31,Feb,1990,Male,john.doe@email.com,password123,Error,Negative
+TC071,Day 30 in February,John,Doe,30,Feb,1990,Male,john.doe@email.com,password123,Error,Negative
+TC072,Valid day 30 in April,John,Doe,30,Apr,1990,Male,john.doe@email.com,password123,Success,Positive
+TC073,Valid day 31 in January,John,Doe,31,Jan,1990,Male,john.doe@email.com,password123,Success,Positive
+TC074,Case sensitive email,John,Doe,15,Jan,1990,Male,JOHN.DOE@EMAIL.COM,password123,Success,Positive
+TC075,Mixed case in email domain,John,Doe,15,Jan,1990,Male,john@EMAIL.com,password123,Success,Positive
+TC076,Hyphen in email,John,Doe,15,Jan,1990,Male,john-doe@email.com,password123,Success,Positive
+TC077,Underscore in email,John,Doe,15,Jan,1990,Male,john_doe@email.com,password123,Success,Positive
+TC078,Numbers in email domain,John,Doe,15,Jan,1990,Male,john@email123.com,password123,Success,Positive
+TC079,IP address as email domain,John,Doe,15,Jan,1990,Male,john@192.168.1.1,password123,Success,Positive
+TC080,Email with international domain,John,Doe,15,Jan,1990,Male,john@email.co.uk,password123,Success,Positive
+TC081,Form submission without selecting any radio button,John,Doe,15,Jan,1990,,john.doe@email.com,password123,Error,Negative
+TC082,Multiple gender selections (if possible),John,Doe,15,Jan,1990,Male Female,john.doe@email.com,password123,Error,Negative
+TC083,Rapid multiple form submissions,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Error,Performance
+TC084,Form submission with disabled JavaScript,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Compatibility
+TC085,Form submission on mobile device,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Mobile
+TC086,Form submission with slow network,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Network
+TC087,Browser back button after submission,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Navigation
+TC088,Page refresh during form filling,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Error,Navigation
+TC089,Copy-paste in form fields,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Usability
+TC090,Tab navigation through form,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Accessibility
+TC091,Screen reader compatibility,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Accessibility
+TC092,High contrast mode testing,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Accessibility
+TC093,Form validation with Enter key,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Keyboard
+TC094,Escape key behavior in form,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Keyboard
+TC095,Form auto-completion testing,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Browser
+TC096,Private browsing mode testing,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Browser
+TC097,Form submission with ad blocker,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Browser
+TC098,Maximum concurrent users,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Load
+TC099,Form validation error messages,John,Doe,15,Jan,1990,Male,invalid-email,short,Error,Validation
+TC100,Password visibility toggle,John,Doe,15,Jan,1990,Male,john.doe@email.com,password123,Success,Usability

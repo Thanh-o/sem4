@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7d6d9ea2-ae75-476a-9f95-481bbea05c54" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/sem4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sem4.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/ApplicationDemoSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/ApplicationDemoSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/GatewayApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/GatewayApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/GeneratedByJHipster.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/GeneratedByJHipster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/aop/logging/LoggingAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/aop/logging/LoggingAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/aop/logging/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/aop/logging/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/ApplicationProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/ApplicationProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/AsyncConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/AsyncConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/CRLFLogConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/CRLFLogConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/DatabaseConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/DatabaseConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/DateTimeFormatConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/DateTimeFormatConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/ElasticsearchConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/ElasticsearchConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/EurekaWorkaroundConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/EurekaWorkaroundConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/JacksonConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/JacksonConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/LiquibaseConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/LiquibaseConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/LoggingAspectConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/LoggingAspectConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/LoggingConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/LoggingConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/ReactorConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/ReactorConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/SecurityJwtConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/SecurityJwtConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/WebConfigurer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/WebConfigurer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/config/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/domain/AbstractAuditingEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/domain/AbstractAuditingEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/domain/Authority.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/domain/Authority.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/domain/AuthorityCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/domain/AuthorityCallback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/domain/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/domain/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/management/SecurityMetersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/management/SecurityMetersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/management/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/management/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/AuthorityRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/AuthorityRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/EntityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/EntityManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/UserSqlHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/UserSqlHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/rowmapper/ColumnConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/rowmapper/ColumnConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/rowmapper/UserRowMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/rowmapper/UserRowMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/rowmapper/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/rowmapper/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/search/UserSearchRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/search/UserSearchRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/search/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/repository/search/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/security/AuthoritiesConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/security/AuthoritiesConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/security/DomainUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/security/DomainUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/security/SecurityUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/security/SecurityUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/security/UserNotActivatedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/security/UserNotActivatedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/security/jwt/JWTRelayGatewayFilterFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/security/jwt/JWTRelayGatewayFilterFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/security/jwt/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/security/jwt/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/security/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/security/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/EmailAlreadyUsedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/EmailAlreadyUsedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/InvalidPasswordException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/InvalidPasswordException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/MailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/MailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/UsernameAlreadyUsedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/UsernameAlreadyUsedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/dto/AdminUserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/dto/AdminUserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/dto/PasswordChangeDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/dto/PasswordChangeDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/dto/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/dto/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/dto/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/mapper/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/mapper/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/service/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/filter/SpaWebFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/filter/SpaWebFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/filter/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/filter/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/AccountResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/AccountResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/AuthenticateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/AuthenticateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/AuthorityResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/AuthorityResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/GatewayResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/GatewayResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/PublicUserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/PublicUserResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/UserResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/BadRequestAlertException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/BadRequestAlertException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/ElasticsearchExceptionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/ElasticsearchExceptionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/EmailAlreadyUsedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/EmailAlreadyUsedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/ErrorConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/ErrorConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/ExceptionTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/ExceptionTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/FieldErrorVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/FieldErrorVM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/InvalidPasswordException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/InvalidPasswordException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/LoginAlreadyUsedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/LoginAlreadyUsedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/QuerySyntaxException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/QuerySyntaxException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/errors/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/vm/KeyAndPasswordVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/vm/KeyAndPasswordVM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/vm/LoginVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/vm/LoginVM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/vm/ManagedUserVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/vm/ManagedUserVM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/vm/RouteVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/vm/RouteVM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/vm/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/mycompany/gateway/web/rest/vm/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/IntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/IntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/TechnicalStructureTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/TechnicalStructureTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/AsyncSyncConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/AsyncSyncConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/ElasticsearchTestConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/ElasticsearchTestConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/ElasticsearchTestContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/ElasticsearchTestContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/EmbeddedElasticsearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/EmbeddedElasticsearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/EmbeddedSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/EmbeddedSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/JHipsterBlockHoundIntegration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/JHipsterBlockHoundIntegration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/MysqlTestContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/MysqlTestContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/SpringBootTestClassOrderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/SpringBootTestClassOrderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/SqlTestContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/SqlTestContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/SqlTestContainersSpringContextCustomizerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/SqlTestContainersSpringContextCustomizerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/TestContainersSpringContextCustomizerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/config/TestContainersSpringContextCustomizerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/domain/AssertUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/domain/AssertUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/domain/AuthorityAsserts.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/domain/AuthorityAsserts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/domain/AuthorityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/domain/AuthorityTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/domain/AuthorityTestSamples.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/domain/AuthorityTestSamples.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/management/SecurityMetersServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/management/SecurityMetersServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/security/DomainUserDetailsServiceIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/security/DomainUserDetailsServiceIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/security/SecurityUtilsUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/security/SecurityUtilsUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/security/jwt/AuthenticationIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/security/jwt/AuthenticationIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/security/jwt/JwtAuthenticationTestUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/security/jwt/JwtAuthenticationTestUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/security/jwt/TokenAuthenticationIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/security/jwt/TokenAuthenticationIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/security/jwt/TokenAuthenticationSecurityMetersIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/security/jwt/TokenAuthenticationSecurityMetersIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/service/MailServiceIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/service/MailServiceIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/service/UserServiceIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/service/UserServiceIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/service/mapper/UserMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/service/mapper/UserMapperTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/filter/SpaWebFilterIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/filter/SpaWebFilterIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/filter/SpaWebFilterTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/filter/SpaWebFilterTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/AccountResourceIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/AccountResourceIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/AuthenticateControllerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/AuthenticateControllerIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/AuthorityResourceIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/AuthorityResourceIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/PublicUserResourceIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/PublicUserResourceIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/TestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/TestUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/UserResourceIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/UserResourceIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/WithUnauthenticatedMockUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/WithUnauthenticatedMockUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/errors/ElasticsearchExceptionMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/errors/ElasticsearchExceptionMapperTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/errors/ExceptionTranslatorIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/errors/ExceptionTranslatorIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/errors/ExceptionTranslatorTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/test/java/com/mycompany/gateway/web/rest/errors/ExceptionTranslatorTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/ApplicationWebXml.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/ApplicationWebXml.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/GeneratedByJHipster.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/GeneratedByJHipster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/InventoryApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/InventoryApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/aop/logging/LoggingAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/aop/logging/LoggingAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/aop/logging/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/aop/logging/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/client/UserFeignClientInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/client/UserFeignClientInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/client/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/client/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/ApplicationProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/ApplicationProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/AsyncConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/AsyncConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/CRLFLogConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/CRLFLogConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/CacheConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/CacheConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/DatabaseConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/DatabaseConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/DateTimeFormatConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/DateTimeFormatConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/ElasticsearchConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/ElasticsearchConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/EurekaWorkaroundConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/EurekaWorkaroundConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/FeignConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/FeignConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/JacksonConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/JacksonConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/LiquibaseConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/LiquibaseConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/LoggingAspectConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/LoggingAspectConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/LoggingConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/LoggingConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/SecurityJwtConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/SecurityJwtConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/SpringDocConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/SpringDocConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/WebConfigurer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/WebConfigurer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/config/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/domain/AbstractAuditingEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/domain/AbstractAuditingEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/domain/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/domain/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/domain/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/domain/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/management/SecurityMetersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/management/SecurityMetersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/management/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/management/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/repository/InventoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/repository/InventoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/repository/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/repository/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/security/AuthoritiesConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/security/AuthoritiesConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/security/SecurityUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/security/SecurityUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/security/SpringSecurityAuditorAware.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/security/SpringSecurityAuditorAware.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/security/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/security/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/InventoryResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/InventoryResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/errors/BadRequestAlertException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/errors/BadRequestAlertException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/errors/ElasticsearchExceptionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/errors/ElasticsearchExceptionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/errors/ErrorConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/errors/ErrorConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/errors/ExceptionTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/errors/ExceptionTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/errors/FieldErrorVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/errors/FieldErrorVM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/errors/QuerySyntaxException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/errors/QuerySyntaxException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/errors/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/errors/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/main/java/com/mycompany/inventory/web/rest/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/IntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/IntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/TechnicalStructureTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/TechnicalStructureTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/AsyncSyncConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/AsyncSyncConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/CRLFLogConverterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/CRLFLogConverterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/ElasticsearchTestConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/ElasticsearchTestConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/ElasticsearchTestContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/ElasticsearchTestContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/EmbeddedElasticsearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/EmbeddedElasticsearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/EmbeddedRedis.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/EmbeddedRedis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/EmbeddedSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/EmbeddedSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/MysqlTestContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/MysqlTestContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/RedisTestContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/RedisTestContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/RedisTestContainersSpringContextCustomizerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/RedisTestContainersSpringContextCustomizerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/SpringBootTestClassOrderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/SpringBootTestClassOrderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/SqlTestContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/SqlTestContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/SqlTestContainersSpringContextCustomizerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/SqlTestContainersSpringContextCustomizerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/TestContainersSpringContextCustomizerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/TestContainersSpringContextCustomizerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/WebConfigurerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/WebConfigurerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/WebConfigurerTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/WebConfigurerTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/timezone/HibernateTimeZoneIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/config/timezone/HibernateTimeZoneIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/domain/AssertUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/domain/AssertUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/domain/InventoryAsserts.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/domain/InventoryAsserts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/domain/InventoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/domain/InventoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/domain/InventoryTestSamples.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/domain/InventoryTestSamples.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/management/SecurityMetersServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/management/SecurityMetersServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/repository/timezone/DateTimeWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/repository/timezone/DateTimeWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/repository/timezone/DateTimeWrapperRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/repository/timezone/DateTimeWrapperRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/security/SecurityUtilsUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/security/SecurityUtilsUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/security/jwt/AuthenticationIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/security/jwt/AuthenticationIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/security/jwt/JwtAuthenticationTestUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/security/jwt/JwtAuthenticationTestUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/security/jwt/TestAuthenticationResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/security/jwt/TestAuthenticationResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/security/jwt/TokenAuthenticationIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/security/jwt/TokenAuthenticationIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/security/jwt/TokenAuthenticationSecurityMetersIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/security/jwt/TokenAuthenticationSecurityMetersIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/web/rest/InventoryResourceIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/web/rest/InventoryResourceIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/web/rest/TestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/web/rest/TestUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/web/rest/WithUnauthenticatedMockUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/web/rest/WithUnauthenticatedMockUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/web/rest/errors/ElasticsearchExceptionMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/web/rest/errors/ElasticsearchExceptionMapperTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/web/rest/errors/ExceptionTranslatorIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/web/rest/errors/ExceptionTranslatorIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/web/rest/errors/ExceptionTranslatorTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/com/mycompany/inventory/web/rest/errors/ExceptionTranslatorTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Inventory/src/test/java/gatling/simulations/InventoryGatlingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/src/test/java/gatling/simulations/InventoryGatlingTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/ApplicationWebXml.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/ApplicationWebXml.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/GeneratedByJHipster.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/GeneratedByJHipster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/ProductApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/ProductApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/aop/logging/LoggingAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/aop/logging/LoggingAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/aop/logging/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/aop/logging/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/client/UserFeignClientInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/client/UserFeignClientInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/client/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/client/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/ApplicationProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/ApplicationProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/AsyncConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/AsyncConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/CRLFLogConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/CRLFLogConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/CacheConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/CacheConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/DatabaseConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/DatabaseConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/DateTimeFormatConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/DateTimeFormatConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/ElasticsearchConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/ElasticsearchConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/EurekaWorkaroundConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/EurekaWorkaroundConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/FeignConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/FeignConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/JacksonConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/JacksonConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/LiquibaseConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/LiquibaseConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/LoggingAspectConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/LoggingAspectConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/LoggingConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/LoggingConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/SecurityJwtConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/SecurityJwtConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/SpringDocConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/SpringDocConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/WebConfigurer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/WebConfigurer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/config/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/domain/AbstractAuditingEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/domain/AbstractAuditingEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/domain/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/domain/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/domain/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/domain/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/management/SecurityMetersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/management/SecurityMetersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/management/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/management/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/repository/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/repository/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/repository/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/repository/search/ProductSearchRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/repository/search/ProductSearchRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/repository/search/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/repository/search/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/security/AuthoritiesConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/security/AuthoritiesConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/security/SecurityUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/security/SecurityUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/security/SpringSecurityAuditorAware.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/security/SpringSecurityAuditorAware.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/security/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/security/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/service/dto/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/service/dto/ProductDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/service/dto/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/service/dto/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/service/mapper/EntityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/service/mapper/EntityMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/service/mapper/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/service/mapper/ProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/service/mapper/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/service/mapper/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/service/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/service/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/ProductResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/ProductResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/errors/BadRequestAlertException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/errors/BadRequestAlertException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/errors/ElasticsearchExceptionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/errors/ElasticsearchExceptionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/errors/ErrorConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/errors/ErrorConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/errors/ExceptionTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/errors/ExceptionTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/errors/FieldErrorVM.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/errors/FieldErrorVM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/errors/QuerySyntaxException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/errors/QuerySyntaxException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/errors/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/errors/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/main/java/com/mycompany/product/web/rest/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/IntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/IntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/TechnicalStructureTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/TechnicalStructureTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/AsyncSyncConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/AsyncSyncConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/CRLFLogConverterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/CRLFLogConverterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/ElasticsearchTestConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/ElasticsearchTestConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/ElasticsearchTestContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/ElasticsearchTestContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/EmbeddedElasticsearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/EmbeddedElasticsearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/EmbeddedRedis.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/EmbeddedRedis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/EmbeddedSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/EmbeddedSQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/MysqlTestContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/MysqlTestContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/RedisTestContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/RedisTestContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/RedisTestContainersSpringContextCustomizerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/RedisTestContainersSpringContextCustomizerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/SpringBootTestClassOrderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/SpringBootTestClassOrderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/SqlTestContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/SqlTestContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/SqlTestContainersSpringContextCustomizerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/SqlTestContainersSpringContextCustomizerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/TestContainersSpringContextCustomizerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/TestContainersSpringContextCustomizerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/WebConfigurerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/WebConfigurerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/WebConfigurerTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/WebConfigurerTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/timezone/HibernateTimeZoneIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/config/timezone/HibernateTimeZoneIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/domain/AssertUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/domain/AssertUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/domain/ProductAsserts.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/domain/ProductAsserts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/domain/ProductTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/domain/ProductTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/domain/ProductTestSamples.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/domain/ProductTestSamples.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/management/SecurityMetersServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/management/SecurityMetersServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/repository/timezone/DateTimeWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/repository/timezone/DateTimeWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/repository/timezone/DateTimeWrapperRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/repository/timezone/DateTimeWrapperRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/security/SecurityUtilsUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/security/SecurityUtilsUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/security/jwt/AuthenticationIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/security/jwt/AuthenticationIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/security/jwt/JwtAuthenticationTestUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/security/jwt/JwtAuthenticationTestUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/security/jwt/TestAuthenticationResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/security/jwt/TestAuthenticationResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/security/jwt/TokenAuthenticationIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/security/jwt/TokenAuthenticationIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/security/jwt/TokenAuthenticationSecurityMetersIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/security/jwt/TokenAuthenticationSecurityMetersIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/service/dto/ProductDTOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/service/dto/ProductDTOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/service/mapper/ProductMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/service/mapper/ProductMapperTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/web/rest/ProductResourceIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/web/rest/ProductResourceIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/web/rest/TestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/web/rest/TestUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/web/rest/WithUnauthenticatedMockUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/web/rest/WithUnauthenticatedMockUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/web/rest/errors/ElasticsearchExceptionMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/web/rest/errors/ElasticsearchExceptionMapperTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/web/rest/errors/ExceptionTranslatorIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/web/rest/errors/ExceptionTranslatorIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/web/rest/errors/ExceptionTranslatorTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/com/mycompany/product/web/rest/errors/ExceptionTranslatorTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Product/src/test/java/gatling/simulations/ProductGatlingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Product/src/test/java/gatling/simulations/ProductGatlingTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2vwgqtHROA5NfrASsBBbI2OheZ7" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Boss/GitHub/sem4/minishop",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "configurable.group.appearance",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="GatewayApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.mycompany.gateway.GatewayApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InventoryApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="inventory" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.mycompany.inventory.InventoryApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="product" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.mycompany.product.ProductApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.24807.4" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.24807.4" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7d6d9ea2-ae75-476a-9f95-481bbea05c54" name="Changes" comment="" />
+      <created>1745061744946</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1745061744946</updated>
+      <workItem from="1745061746059" duration="1882000" />
+      <workItem from="1745070925537" duration="8801000" />
+      <workItem from="1745081450323" duration="1831000" />
+      <workItem from="1745113035477" duration="32000" />
+      <workItem from="1745113076074" duration="1066000" />
+      <workItem from="1745114199653" duration="6154000" />
+      <workItem from="1745121934450" duration="16000" />
+      <workItem from="1745249817231" duration="11000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

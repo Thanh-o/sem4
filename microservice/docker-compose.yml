@@ -1,0 +1,205 @@
+services:
+  gateway:
+    image: gateway
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,api-docs
+      - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+      - SPRING_R2DBC_URL=r2dbc:mysql://gateway-mysql:3306/gateway?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
+      - SPRING_LIQUIBASE_URL=jdbc:mysql://gateway-mysql:3306/gateway?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
+      - SPRING_ELASTICSEARCH_URIS=http://gateway-elasticsearch:9200
+      - JHIPSTER_REGISTRY_PASSWORD=admin
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/management/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 40
+    depends_on:
+      gateway-mysql:
+        condition: service_healthy
+      gateway-elasticsearch:
+        condition: service_healthy
+      jhipster-registry:
+        condition: service_healthy
+
+  gateway-mysql:
+    image: mysql:9.2.0
+    ports:
+      - 3306:3306
+    volumes:
+      - ./config/mysql:/etc/mysql/conf.d
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=gateway
+    command: mysqld --lower_case_table_names=1 --skip-mysqlx --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+    healthcheck:
+      test: ["CMD-SHELL", "mysql -e 'SHOW DATABASES;' && sleep 5"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+
+  gateway-elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    environment:
+      - ES_JAVA_OPTS=-Xms256m -Xmx256m
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - 9200:9200
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200/_cluster/health?wait_for_status=green&timeout=10s"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+
+  inventory:
+    image: inventory
+    ports:
+      - 8082:8080
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,api-docs
+      - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+      - SPRING_DATASOURCE_URL=jdbc:mysql://inventory-mysql:3306/inventory?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
+      - SPRING_LIQUIBASE_URL=jdbc:mysql://inventory-mysql:3306/inventory?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
+      - JHIPSTER_CACHE_REDIS_SERVER=redis://inventory-redis:6379
+      - JHIPSTER_CACHE_REDIS_CLUSTER=false
+      - SPRING_ELASTICSEARCH_URIS=http://inventory-elasticsearch:9200
+      - JHIPSTER_REGISTRY_PASSWORD=admin
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8082/management/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 40
+    depends_on:
+      inventory-mysql:
+        condition: service_healthy
+      inventory-elasticsearch:
+        condition: service_healthy
+      jhipster-registry:
+        condition: service_healthy
+
+  inventory-mysql:
+    image: mysql:9.2.0
+    ports:
+      - 3307:3306
+    volumes:
+      - ./config/mysql:/etc/mysql/conf.d
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=inventory
+    command: mysqld --lower_case_table_names=1 --skip-mysqlx --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+    healthcheck:
+      test: ["CMD-SHELL", "mysql -e 'SHOW DATABASES;' && sleep 5"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+
+  inventory-elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    environment:
+      - ES_JAVA_OPTS=-Xms256m -Xmx256m
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - 9201:9200
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200/_cluster/health?wait_for_status=green&timeout=10s"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+
+  inventory-redis:
+    image: redis:7.4.2
+    ports:
+      - 6379:6379
+
+  product:
+    image: product
+    ports:
+      - 8081:8080
+
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,api-docs
+      - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+      - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+      - SPRING_DATASOURCE_URL=jdbc:mysql://product-mysql:3306/product?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
+      - SPRING_LIQUIBASE_URL=jdbc:mysql://product-mysql:3306/product?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
+      - JHIPSTER_CACHE_REDIS_SERVER=redis://product-redis:6379
+      - JHIPSTER_CACHE_REDIS_CLUSTER=false
+      - SPRING_ELASTICSEARCH_URIS=http://product-elasticsearch:9200
+      - JHIPSTER_REGISTRY_PASSWORD=admin
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/management/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 40
+    depends_on:
+      product-mysql:
+        condition: service_healthy
+      product-elasticsearch:
+        condition: service_healthy
+      jhipster-registry:
+        condition: service_healthy
+
+  product-mysql:
+    image: mysql:9.2.0
+    ports:
+      - 3308:3306
+    volumes:
+      - ./config/mysql:/etc/mysql/conf.d
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=product
+    command: mysqld --lower_case_table_names=1 --skip-mysqlx --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+    healthcheck:
+      test: ["CMD-SHELL", "mysql -e 'SHOW DATABASES;' && sleep 5"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+
+  product-elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    environment:
+      - ES_JAVA_OPTS=-Xms256m -Xmx256m
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - 9202:9200
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200/_cluster/health?wait_for_status=green&timeout=10s"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+
+  product-redis:
+    image: redis:7.4.2
+    ports:
+      - 6380:6379
+
+  jhipster-registry:
+    image: jhipster/jhipster-registry:v7.4.0
+    volumes:
+      - ./central-server-config:/central-config
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_SECURITY_USER_PASSWORD=admin
+      - JHIPSTER_REGISTRY_PASSWORD=admin
+      - SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_TYPE=native
+      - SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_SEARCH_LOCATIONS=file:./central-config
+    ports:
+      - 8761:8761
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761/management/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 10

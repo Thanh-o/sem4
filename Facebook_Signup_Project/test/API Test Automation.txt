@@ -1,0 +1,25 @@
+I. Quy trình thực hiện API Test Automation
+Bước 1: Hiểu API cần test
+Đọc API documentation (Swagger, Postman collection, tài liệu mô tả...)
+Xác định các endpoint, method, request/response, dữ liệu mẫu.
+
+Bước 2: Xây dựng Test Case API
+Liệt kê các kịch bản kiểm thử (test case):
+- Test happy case (dữ liệu hợp lệ)
+- Test boundary case (giá trị biên)
+- Test negative case (dữ liệu sai, thiếu)
+Xác định input, expected output cho mỗi case.
+Bước 3: Thiết lập môi trường & công cụ
+Với Postman + Newman
+
+1. Cài đặt Postman và tạo collection.
+2. Tạo các request, group vào folder (test suite).
+3. Viết script test tại tab Tests của mỗi request (dùng Javascript).
+4. Export collection ra file JSON.
+
+API Testing
+REST API Concepts
+Postman Advanced Features
+REST Assured Framework
+JSON/XML Parsing
+API Test Automation

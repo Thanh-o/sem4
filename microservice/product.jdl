@@ -1,0 +1,15 @@
+// Tệp JDL cho Product
+entity Product {
+  id Long
+  name String required
+  price BigDecimal required min(0)
+  description String
+  category String
+}
+
+microservice Product with product
+
+paginate Product with infinite-scroll
+service Product with serviceClass
+search Product with elasticsearch
+dto Product with mapstruct

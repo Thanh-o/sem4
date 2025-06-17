@@ -1,0 +1,313 @@
+2025-06-05T09:25:48.484+07:00  INFO 23052 --- [main] org.example.apitest.ApiTestApplication   : Starting ApiTestApplication using Java 21.0.5 with PID 23052 (C:\Boss\GitHub\sem4\2level\test-api\api-test\target\classes started by Nguyen Trung Thanh in C:\Boss\GitHub\sem4\2level\test-api)
+2025-06-05T09:25:48.488+07:00  INFO 23052 --- [main] org.example.apitest.ApiTestApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-06-05T09:25:49.661+07:00  INFO 23052 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-05T09:25:49.721+07:00  INFO 23052 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48 ms. Found 1 JPA repository interface.
+2025-06-05T09:25:51.467+07:00  INFO 23052 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-06-05T09:25:51.483+07:00  INFO 23052 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-06-05T09:25:51.484+07:00  INFO 23052 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-06-05T09:25:51.586+07:00  INFO 23052 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-06-05T09:25:51.587+07:00  INFO 23052 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3042 ms
+2025-06-05T09:25:52.136+07:00  INFO 23052 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-05T09:25:52.211+07:00  INFO 23052 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
+2025-06-05T09:25:52.264+07:00  INFO 23052 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-06-05T09:25:52.531+07:00  INFO 23052 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-05T09:25:52.558+07:00  INFO 23052 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-06-05T09:25:52.837+07:00  INFO 23052 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.p6spy.engine.wrapper.ConnectionWrapper@72bce309
+2025-06-05T09:25:52.839+07:00  INFO 23052 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-06-05T09:25:52.888+07:00  INFO 23052 --- [main] p6spy                                    : ConnectionId: 0 | Execution Time: 15 ms | SELECT @@character_set_database, @@sql_mode
+2025-06-05T09:25:52.906+07:00  WARN 23052 --- [main] org.hibernate.dialect.Dialect            : HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
+2025-06-05T09:25:52.911+07:00  WARN 23052 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-05T09:25:53.711+07:00  INFO 23052 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-05T09:25:53.772+07:00  INFO 23052 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-05T09:25:54.092+07:00  INFO 23052 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : JSqlParser is in classpath; If applicable, JSqlParser will be used
+2025-06-05T09:25:54.092+07:00  INFO 23052 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-06-05T09:25:54.772+07:00  WARN 23052 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-05T09:25:54.816+07:00  WARN 23052 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 9d621828-0cac-4953-886b-fca5b4ee75b3
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-06-05T09:25:55.412+07:00  INFO 23052 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-06-05T09:25:55.524+07:00  INFO 23052 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3d640f70, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5dae85f7, org.springframework.security.web.context.SecurityContextHolderFilter@5de7948a, org.springframework.security.web.header.HeaderWriterFilter@7d968ec1, org.springframework.web.filter.CorsFilter@4a52c13c, org.springframework.security.web.authentication.logout.LogoutFilter@5a530836, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4fb0884d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7aaaca20, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@47651c28, org.springframework.security.web.access.ExceptionTranslationFilter@e646b14, org.springframework.security.web.access.intercept.AuthorizationFilter@be694c0]
+2025-06-05T09:25:56.109+07:00  INFO 23052 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2025-06-05T09:25:56.118+07:00  INFO 23052 --- [main] org.example.apitest.ApiTestApplication   : Started ApiTestApplication in 8.318 seconds (process running for 9.247)
+2025-06-05T09:25:56.462+07:00  INFO 23052 --- [RMI TCP Connection(2)-172.29.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-05T09:25:56.462+07:00  INFO 23052 --- [RMI TCP Connection(2)-172.29.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-06-05T09:25:56.464+07:00  INFO 23052 --- [RMI TCP Connection(2)-172.29.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-06-05T09:26:16.328+07:00  WARN 23052 --- [http-nio-8080-exec-1] o.s.w.s.h.HandlerMappingIntrospector     : Cache miss for REQUEST dispatch to '/api/auth/register' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
+2025-06-05T09:26:16.337+07:00  WARN 23052 --- [http-nio-8080-exec-1] o.s.w.s.h.HandlerMappingIntrospector     : Cache miss for REQUEST dispatch to '/api/auth/register' (previous null). Performing MatchableHandlerMapping lookup. This is logged once only at WARN level, and every time at TRACE.
+2025-06-05T09:26:16.552+07:00 DEBUG 23052 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+    limit
+        ?
+2025-06-05T09:26:16.604+07:00  INFO 23052 --- [http-nio-8080-exec-1] p6spy                                    : ConnectionId: 0 | Execution Time: 40 ms | select u1_0.id from users u1_0 where u1_0.username='testuser' limit 1
+2025-06-05T09:26:16.703+07:00 DEBUG 23052 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+    limit
+        ?
+2025-06-05T09:26:16.704+07:00  INFO 23052 --- [http-nio-8080-exec-2] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id from users u1_0 where u1_0.username='stronguser' limit 1
+2025-06-05T09:26:16.788+07:00 DEBUG 23052 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+    limit
+        ?
+2025-06-05T09:26:16.790+07:00  INFO 23052 --- [http-nio-8080-exec-8] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id from users u1_0 where u1_0.username='abc' limit 1
+2025-06-05T09:26:16.868+07:00 DEBUG 23052 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+    limit
+        ?
+2025-06-05T09:26:16.869+07:00  INFO 23052 --- [http-nio-8080-exec-6] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id from users u1_0 where u1_0.username='maxlengthusername123456789012345' limit 1
+2025-06-05T09:26:16.933+07:00 DEBUG 23052 --- [http-nio-8080-exec-10] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+    limit
+        ?
+2025-06-05T09:26:16.934+07:00  INFO 23052 --- [http-nio-8080-exec-10] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id from users u1_0 where u1_0.username='minpassuser' limit 1
+2025-06-05T09:26:17.023+07:00 DEBUG 23052 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+    limit
+        ?
+2025-06-05T09:26:17.024+07:00  INFO 23052 --- [http-nio-8080-exec-1] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id from users u1_0 where u1_0.username='longemailuser' limit 1
+2025-06-05T09:26:17.547+07:00 DEBUG 23052 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+    limit
+        ?
+2025-06-05T09:26:17.549+07:00  INFO 23052 --- [http-nio-8080-exec-8] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id from users u1_0 where u1_0.username='testuser' limit 1
+2025-06-05T09:26:17.637+07:00 DEBUG 23052 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+    limit
+        ?
+2025-06-05T09:26:17.638+07:00  INFO 23052 --- [http-nio-8080-exec-6] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id from users u1_0 where u1_0.username='duplicateemail' limit 1
+2025-06-05T09:26:17.639+07:00 DEBUG 23052 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    limit
+        ?
+2025-06-05T09:26:17.642+07:00  INFO 23052 --- [http-nio-8080-exec-6] p6spy                                    : ConnectionId: 0 | Execution Time: 1 ms | select u1_0.id from users u1_0 where u1_0.email='test@example.com' limit 1
+2025-06-05T09:26:17.708+07:00  WARN 23052 --- [http-nio-8080-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'text/plain;charset=UTF-8' is not supported]
+2025-06-05T09:26:17.787+07:00 DEBUG 23052 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+    limit
+        ?
+2025-06-05T09:26:17.789+07:00  INFO 23052 --- [http-nio-8080-exec-3] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id from users u1_0 where u1_0.username='admin''; DROP TABLE users; --' limit 1
+2025-06-05T09:26:17.874+07:00 DEBUG 23052 --- [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.password,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2025-06-05T09:26:17.876+07:00  INFO 23052 --- [http-nio-8080-exec-5] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id,u1_0.email,u1_0.password,u1_0.username from users u1_0 where u1_0.username='testuser'
+2025-06-05T09:26:18.060+07:00 DEBUG 23052 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.password,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-06-05T09:26:18.061+07:00  INFO 23052 --- [http-nio-8080-exec-2] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id,u1_0.email,u1_0.password,u1_0.username from users u1_0 where u1_0.email='test@example.com'
+2025-06-05T09:26:18.231+07:00 DEBUG 23052 --- [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.password,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2025-06-05T09:26:18.232+07:00  INFO 23052 --- [http-nio-8080-exec-7] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id,u1_0.email,u1_0.password,u1_0.username from users u1_0 where u1_0.username='TESTUSER'
+2025-06-05T09:26:18.370+07:00 DEBUG 23052 --- [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.password,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2025-06-05T09:26:18.377+07:00  INFO 23052 --- [http-nio-8080-exec-9] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id,u1_0.email,u1_0.password,u1_0.username from users u1_0 where u1_0.username=' testuser '
+2025-06-05T09:26:18.645+07:00 DEBUG 23052 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.password,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2025-06-05T09:26:18.646+07:00  INFO 23052 --- [http-nio-8080-exec-2] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id,u1_0.email,u1_0.password,u1_0.username from users u1_0 where u1_0.username='testuser'
+2025-06-05T09:26:18.762+07:00 DEBUG 23052 --- [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.password,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2025-06-05T09:26:18.762+07:00  INFO 23052 --- [http-nio-8080-exec-7] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id,u1_0.email,u1_0.password,u1_0.username from users u1_0 where u1_0.username='nonexistentuser'
+2025-06-05T09:26:18.952+07:00 DEBUG 23052 --- [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.password,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+2025-06-05T09:26:18.954+07:00  INFO 23052 --- [http-nio-8080-exec-5] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id,u1_0.email,u1_0.password,u1_0.username from users u1_0 where u1_0.username='testuser'
+2025-06-05T09:26:19.345+07:00 DEBUG 23052 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.password,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2025-06-05T09:26:19.348+07:00  INFO 23052 --- [http-nio-8080-exec-6] p6spy                                    : ConnectionId: 0 | Execution Time: 2 ms | select u1_0.id,u1_0.email,u1_0.password,u1_0.username from users u1_0 where u1_0.id=2147483647
+2025-06-05T09:26:19.350+07:00  INFO 23052 --- [http-nio-8080-exec-6] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | 
+2025-06-05T09:26:19.533+07:00  WARN 23052 --- [http-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "invalid-id"]
+2025-06-05T09:26:19.827+07:00  WARN 23052 --- [http-nio-8080-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character (',' (code 44)): expected a value]
+2025-06-05T09:26:19.917+07:00  WARN 23052 --- [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character (',' (code 44)): expected a value]
+2025-06-05T09:26:19.979+07:00  WARN 23052 --- [http-nio-8080-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character (',' (code 44)): expected a value]
+2025-06-05T09:26:20.057+07:00  WARN 23052 --- [http-nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character (',' (code 44)): expected a value]
+2025-06-05T09:26:20.148+07:00  WARN 23052 --- [http-nio-8080-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('}' (code 125)): expected a value]
+2025-06-05T09:26:20.248+07:00 DEBUG 23052 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.password,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2025-06-05T09:26:20.249+07:00  INFO 23052 --- [http-nio-8080-exec-3] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id,u1_0.email,u1_0.password,u1_0.username from users u1_0 where u1_0.id=99999
+2025-06-05T09:26:20.250+07:00  INFO 23052 --- [http-nio-8080-exec-3] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | 
+2025-06-05T09:26:20.341+07:00 DEBUG 23052 --- [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.password,
+        u1_0.username 
+    from
+        users u1_0
+2025-06-05T09:26:20.344+07:00  INFO 23052 --- [http-nio-8080-exec-5] p6spy                                    : ConnectionId: 0 | Execution Time: 2 ms | select u1_0.id,u1_0.email,u1_0.password,u1_0.username from users u1_0
+2025-06-05T09:26:20.346+07:00  INFO 23052 --- [http-nio-8080-exec-5] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | 
+2025-06-05T09:26:20.515+07:00 DEBUG 23052 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.password,
+        u1_0.username 
+    from
+        users u1_0
+2025-06-05T09:26:20.517+07:00  INFO 23052 --- [http-nio-8080-exec-2] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id,u1_0.email,u1_0.password,u1_0.username from users u1_0
+2025-06-05T09:26:20.518+07:00  INFO 23052 --- [http-nio-8080-exec-2] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | 
+2025-06-05T09:26:20.601+07:00 DEBUG 23052 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.password,
+        u1_0.username 
+    from
+        users u1_0
+2025-06-05T09:26:20.601+07:00  INFO 23052 --- [http-nio-8080-exec-8] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id,u1_0.email,u1_0.password,u1_0.username from users u1_0
+2025-06-05T09:26:20.605+07:00  INFO 23052 --- [http-nio-8080-exec-8] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | 
+2025-06-05T09:26:20.649+07:00  WARN 23052 --- [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: "invalid-id"]
+2025-06-05T09:26:20.691+07:00 DEBUG 23052 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.password,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.id=?
+2025-06-05T09:26:20.692+07:00  INFO 23052 --- [http-nio-8080-exec-6] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id,u1_0.email,u1_0.password,u1_0.username from users u1_0 where u1_0.id=99999
+2025-06-05T09:26:20.693+07:00  INFO 23052 --- [http-nio-8080-exec-6] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | 
+2025-06-05T09:26:20.747+07:00 DEBUG 23052 --- [http-nio-8080-exec-10] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.email,
+        u1_0.password,
+        u1_0.username 
+    from
+        users u1_0
+2025-06-05T09:26:20.748+07:00  INFO 23052 --- [http-nio-8080-exec-10] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id,u1_0.email,u1_0.password,u1_0.username from users u1_0
+2025-06-05T09:26:20.750+07:00  INFO 23052 --- [http-nio-8080-exec-10] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | 
+2025-06-05T09:27:30.374+07:00 DEBUG 23052 --- [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+    limit
+        ?
+2025-06-05T09:27:30.376+07:00  INFO 23052 --- [http-nio-8080-exec-5] p6spy                                    : ConnectionId: 0 | Execution Time: 0 ms | select u1_0.id from users u1_0 where u1_0.username='testuser' limit 1
+2025-06-05T09:30:14.448+07:00  INFO 23052 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-05T09:30:14.450+07:00  INFO 23052 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-06-05T09:30:14.461+07:00  INFO 23052 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

@@ -1,0 +1,3190 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Sign-Up Test Report</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background-color: #f8f9fa;
+        }
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .summary-card h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .summary-card .number {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .pass { color: #28a745; }
+        .fail { color: #dc3545; }
+        .error { color: #ffc107; }
+        .total { color: #007bff; }
+        .results {
+            padding: 30px;
+        }
+        .results h2 {
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .test-case {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        .test-case-header {
+            padding: 15px 20px;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .test-case-body {
+            padding: 20px;
+            background-color: white;
+        }
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .status-pass {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .status-fail {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .status-error {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .test-details {
+            display: grid;
+            gap: 15px;
+        }
+        .test-detail {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 10px;
+        }
+        .test-detail strong {
+            color: #666;
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Facebook Sign-Up Test Report</h1>
+            <p>Generated on 2025-06-03 09:49:21</p>
+        </div>
+        
+        <div class="summary">
+            <div class="summary-card">
+                <h3>Total Tests</h3>
+                <div class="number total">100</div>
+            </div>
+            <div class="summary-card">
+                <h3>Passed</h3>
+                <div class="number pass">60</div>
+            </div>
+            <div class="summary-card">
+                <h3>Failed</h3>
+                <div class="number fail">40</div>
+            </div>
+            <div class="summary-card">
+                <h3>Errors</h3>
+                <div class="number error">0</div>
+            </div>
+            <div class="summary-card">
+                <h3>Pass Rate</h3>
+                <div class="number pass">60.0%</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 60.0%"></div>
+                </div>
+            </div>
+            <div class="summary-card">
+                <h3>Execution Time</h3>
+                <div class="number total">217.63s</div>
+            </div>
+        </div>
+        
+        <div class="results">
+            <h2>Test Case Results</h2>
+        
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC001</strong>
+                        <span style="margin-left: 10px; color: #666;">Valid registration with all required fields</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.76s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:45:48</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC002</strong>
+                        <span style="margin-left: 10px; color: #666;">Valid registration with phone number</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.69s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:45:50</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC003</strong>
+                        <span style="margin-left: 10px; color: #666;">Empty first name field</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: First name is required</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Error message: Required field firstName is empty</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.52s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:45:51</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC004</strong>
+                        <span style="margin-left: 10px; color: #666;">Empty surname field</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Surname is required</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Error message: Required field surname is empty</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.55s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:45:53</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC005</strong>
+                        <span style="margin-left: 10px; color: #666;">Invalid email format</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Please enter a valid email address</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Error message: Invalid contact format</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.63s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:45:55</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC006</strong>
+                        <span style="margin-left: 10px; color: #666;">Password too short</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Password must be at least 8 characters</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Error message: Password is too short</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.76s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:45:56</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC007</strong>
+                        <span style="margin-left: 10px; color: #666;">No gender selected</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Please select your gender</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.62s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:45:58</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC008</strong>
+                        <span style="margin-left: 10px; color: #666;">Invalid date - February 30</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Invalid date selected</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.86s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC009</strong>
+                        <span style="margin-left: 10px; color: #666;">Future birth date</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Birth date cannot be in the future</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Failed to fill form</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>10.57s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:11</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC010</strong>
+                        <span style="margin-left: 10px; color: #666;">Minimum age boundary (13 years old)</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.66s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:13</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC011</strong>
+                        <span style="margin-left: 10px; color: #666;">Maximum age boundary (100 years old)</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Failed to fill form</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>10.48s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:24</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC012</strong>
+                        <span style="margin-left: 10px; color: #666;">Special characters in name</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.71s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:26</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC013</strong>
+                        <span style="margin-left: 10px; color: #666;">Very long name fields</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.81s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:28</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC014</strong>
+                        <span style="margin-left: 10px; color: #666;">SQL injection in first name</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Invalid characters in name</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.67s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC015</strong>
+                        <span style="margin-left: 10px; color: #666;">XSS attempt in first name</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Invalid characters in name</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.62s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:31</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC016</strong>
+                        <span style="margin-left: 10px; color: #666;">Common weak password</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Password is too weak</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.63s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:33</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC017</strong>
+                        <span style="margin-left: 10px; color: #666;">Strong password with special characters</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.67s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:35</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC018</strong>
+                        <span style="margin-left: 10px; color: #666;">Password with spaces</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.63s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:36</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC019</strong>
+                        <span style="margin-left: 10px; color: #666;">Email with plus sign</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.63s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:38</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC020</strong>
+                        <span style="margin-left: 10px; color: #666;">Email with subdomain</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.63s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:39</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC021</strong>
+                        <span style="margin-left: 10px; color: #666;">Valid leap year date</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.72s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:41</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC022</strong>
+                        <span style="margin-left: 10px; color: #666;">Invalid leap year date</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Invalid date selected</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.61s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:43</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC023</strong>
+                        <span style="margin-left: 10px; color: #666;">Unicode characters in password</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.64s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:44</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC024</strong>
+                        <span style="margin-left: 10px; color: #666;">Emoji in first name</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Invalid characters in name</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Failed to fill form</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.24s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:46</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC025</strong>
+                        <span style="margin-left: 10px; color: #666;">Emoji in password</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Failed to fill form</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.31s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:47</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC026</strong>
+                        <span style="margin-left: 10px; color: #666;">Multiple consecutive spaces in name</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Invalid name format</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.58s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:49</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC027</strong>
+                        <span style="margin-left: 10px; color: #666;">HTML tags in surname</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Invalid characters in name</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.63s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:50</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC028</strong>
+                        <span style="margin-left: 10px; color: #666;">Very strong password</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.62s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:52</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC029</strong>
+                        <span style="margin-left: 10px; color: #666;">Numeric names</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.66s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:53</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC030</strong>
+                        <span style="margin-left: 10px; color: #666;">International phone number</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Error message: Invalid contact format</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.62s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:55</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC031</strong>
+                        <span style="margin-left: 10px; color: #666;">Local phone number format</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Error message: Invalid contact format</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.65s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:57</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC032</strong>
+                        <span style="margin-left: 10px; color: #666;">Minimum password length boundary</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.64s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:46:58</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC033</strong>
+                        <span style="margin-left: 10px; color: #666;">Maximum password length boundary</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.65s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC034</strong>
+                        <span style="margin-left: 10px; color: #666;">All fields empty</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: All required fields must be filled</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Error message: Required field firstName is empty</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.21s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:01</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC035</strong>
+                        <span style="margin-left: 10px; color: #666;">Only required fields filled</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.65s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:03</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC036</strong>
+                        <span style="margin-left: 10px; color: #666;">Duplicate email registration</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Email already exists</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.65s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:05</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC037</strong>
+                        <span style="margin-left: 10px; color: #666;">Rapid multiple form submissions</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Please wait before submitting again</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.68s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:06</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC038</strong>
+                        <span style="margin-left: 10px; color: #666;">Form submission with network delay</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.63s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:08</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC039</strong>
+                        <span style="margin-left: 10px; color: #666;">Session timeout during registration</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Session expired</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.62s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:09</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC040</strong>
+                        <span style="margin-left: 10px; color: #666;">Browser back button usage</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.62s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:11</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC041</strong>
+                        <span style="margin-left: 10px; color: #666;">Form reset functionality</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Form cleared successfully</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.66s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:13</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC042</strong>
+                        <span style="margin-left: 10px; color: #666;">Autocomplete functionality</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.67s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:14</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC043</strong>
+                        <span style="margin-left: 10px; color: #666;">Copy-paste operations</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.64s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:16</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC044</strong>
+                        <span style="margin-left: 10px; color: #666;">Keyboard-only navigation</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.66s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:18</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC045</strong>
+                        <span style="margin-left: 10px; color: #666;">Screen reader compatibility</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.62s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:19</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC046</strong>
+                        <span style="margin-left: 10px; color: #666;">Mobile device registration</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.65s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:21</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC047</strong>
+                        <span style="margin-left: 10px; color: #666;">Tablet device registration</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.66s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:23</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC048</strong>
+                        <span style="margin-left: 10px; color: #666;">High DPI display registration</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.63s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:24</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC049</strong>
+                        <span style="margin-left: 10px; color: #666;">JavaScript disabled</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: JavaScript required</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.74s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:26</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC050</strong>
+                        <span style="margin-left: 10px; color: #666;">Cookies disabled</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Cookies required</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.73s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:28</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC051</strong>
+                        <span style="margin-left: 10px; color: #666;">Maximum email length</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Email too long</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.71s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:29</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC052</strong>
+                        <span style="margin-left: 10px; color: #666;">Minimum email length</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.67s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:31</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC053</strong>
+                        <span style="margin-left: 10px; color: #666;">Caps lock enabled</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.7s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:33</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC054</strong>
+                        <span style="margin-left: 10px; color: #666;">Multiple failed login attempts</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.66s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:35</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC055</strong>
+                        <span style="margin-left: 10px; color: #666;">Unix epoch date</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.64s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:36</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC056</strong>
+                        <span style="margin-left: 10px; color: #666;">Far future date</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Invalid birth year</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Failed to fill form</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>10.51s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:48</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC057</strong>
+                        <span style="margin-left: 10px; color: #666;">Browser zoom 200%</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.65s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:49</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC058</strong>
+                        <span style="margin-left: 10px; color: #666;">Browser zoom 50%</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.63s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:51</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC059</strong>
+                        <span style="margin-left: 10px; color: #666;">Daylight saving time change</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.74s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:53</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC060</strong>
+                        <span style="margin-left: 10px; color: #666;">Different timezone</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.62s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:54</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC061</strong>
+                        <span style="margin-left: 10px; color: #666;">VPN connection</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.67s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:56</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC062</strong>
+                        <span style="margin-left: 10px; color: #666;">Ad blocker enabled</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.67s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:58</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC063</strong>
+                        <span style="margin-left: 10px; color: #666;">Browser extensions active</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.66s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:47:59</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC064</strong>
+                        <span style="margin-left: 10px; color: #666;">Incognito mode</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.64s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:01</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC065</strong>
+                        <span style="margin-left: 10px; color: #666;">Slow internet connection</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.66s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:03</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC066</strong>
+                        <span style="margin-left: 10px; color: #666;">Intermittent connection</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.67s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:04</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC067</strong>
+                        <span style="margin-left: 10px; color: #666;">High server load</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.63s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:06</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC068</strong>
+                        <span style="margin-left: 10px; color: #666;">Database maintenance</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Service temporarily unavailable</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.67s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:08</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC069</strong>
+                        <span style="margin-left: 10px; color: #666;">Concurrent user registration</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.64s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:09</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC070</strong>
+                        <span style="margin-left: 10px; color: #666;">Browser prefilled form</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.7s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:11</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC071</strong>
+                        <span style="margin-left: 10px; color: #666;">Password manager integration</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.69s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:13</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC072</strong>
+                        <span style="margin-left: 10px; color: #666;">Clipboard operations</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.81s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:14</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC073</strong>
+                        <span style="margin-left: 10px; color: #666;">Special characters everywhere</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Invalid characters in name</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.67s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:16</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC074</strong>
+                        <span style="margin-left: 10px; color: #666;">Minimum age exactly 13</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.67s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:18</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC075</strong>
+                        <span style="margin-left: 10px; color: #666;">Below minimum age</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Must be at least 13 years old</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.71s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:19</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC076</strong>
+                        <span style="margin-left: 10px; color: #666;">Maximum age exactly 100</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Failed to fill form</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>10.69s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:31</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC077</strong>
+                        <span style="margin-left: 10px; color: #666;">Above maximum age</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Invalid birth year</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Failed to fill form</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>10.49s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:43</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC078</strong>
+                        <span style="margin-left: 10px; color: #666;">Identical first and last names</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.6s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:44</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC079</strong>
+                        <span style="margin-left: 10px; color: #666;">Single character names</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.63s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:46</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC080</strong>
+                        <span style="margin-left: 10px; color: #666;">Numbers in names</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.61s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:48</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC081</strong>
+                        <span style="margin-left: 10px; color: #666;">Mixed case email</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.61s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:49</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC082</strong>
+                        <span style="margin-left: 10px; color: #666;">Mixed case password</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.62s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:51</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC083</strong>
+                        <span style="margin-left: 10px; color: #666;">Password same as email</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Password cannot be same as email</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.63s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:52</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC084</strong>
+                        <span style="margin-left: 10px; color: #666;">Password contains username</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Password cannot contain username</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.62s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:54</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC085</strong>
+                        <span style="margin-left: 10px; color: #666;">Common password patterns</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Password is too common</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.72s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:56</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC086</strong>
+                        <span style="margin-left: 10px; color: #666;">Sequential characters password</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Password cannot be sequential</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.65s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:57</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC087</strong>
+                        <span style="margin-left: 10px; color: #666;">Repeated characters password</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Password cannot have repeated characters</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.65s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:48:59</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC088</strong>
+                        <span style="margin-left: 10px; color: #666;">Keyboard pattern password</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Password is too predictable</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.64s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:49:01</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC089</strong>
+                        <span style="margin-left: 10px; color: #666;">Previously breached password</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Error message: Password has been compromised</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.7s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:49:02</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC090</strong>
+                        <span style="margin-left: 10px; color: #666;">Extremely strong password</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.66s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:49:04</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC091</strong>
+                        <span style="margin-left: 10px; color: #666;">Unicode password</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.64s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:49:06</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC092</strong>
+                        <span style="margin-left: 10px; color: #666;">Emoji password</span>
+                    </div>
+                    <span class="status-badge status-fail">FAIL</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Failed to fill form</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.38s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:49:07</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC093</strong>
+                        <span style="margin-left: 10px; color: #666;">Password with spaces</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.6s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:49:09</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC094</strong>
+                        <span style="margin-left: 10px; color: #666;">Password with tabs</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.62s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:49:10</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC095</strong>
+                        <span style="margin-left: 10px; color: #666;">Password with newlines</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.64s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:49:12</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC096</strong>
+                        <span style="margin-left: 10px; color: #666;">Password with quotes</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.68s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:49:14</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC097</strong>
+                        <span style="margin-left: 10px; color: #666;">Password with backslashes</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.66s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:49:15</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC098</strong>
+                        <span style="margin-left: 10px; color: #666;">Password with HTML entities</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.68s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:49:17</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC099</strong>
+                        <span style="margin-left: 10px; color: #666;">Password with SQL injection</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.64s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:49:19</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="test-case">
+                <div class="test-case-header">
+                    <div>
+                        <strong>TC100</strong>
+                        <span style="margin-left: 10px; color: #666;">Password with XSS</span>
+                    </div>
+                    <span class="status-badge status-pass">PASS</span>
+                </div>
+                <div class="test-case-body">
+                    <div class="test-details">
+                        <div class="test-detail">
+                            <strong>Expected Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Actual Result:</strong>
+                            <span>Registration successful with confirmation message</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Execution Time:</strong>
+                            <span>0.64s</span>
+                        </div>
+                        <div class="test-detail">
+                            <strong>Timestamp:</strong>
+                            <span>2025-06-03 09:49:20</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="footer">
+            <p>Test Report Generated by Facebook Sign-Up Test Automation Framework</p>
+        </div>
+    </div>
+</body>
+</html>
+        

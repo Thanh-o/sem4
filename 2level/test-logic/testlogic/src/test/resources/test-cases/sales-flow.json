@@ -1,0 +1,932 @@
+[
+  {
+    "name": "Complete Sales Flow - Happy Path",
+    "description": "Test complete sales flow from product listing to order confirmation",
+    "steps": [
+      {
+        "action": "GET",
+        "endpoint": "/products",
+        "expectedStatus": 200,
+        "expectedContent": "Products",
+        "description": "Get products page"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/products/1",
+        "expectedStatus": 200,
+        "expectedContent": "Add to Cart",
+        "description": "Get product details page"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "2"
+        },
+        "expectedStatus": 302,
+        "expectedRedirect": "/products/1",
+        "description": "Add product to cart"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/cart",
+        "expectedStatus": 200,
+        "expectedContent": "Shopping Cart",
+        "description": "View cart page"
+      }
+    ]
+  },
+  {
+    "name": "Product Search - Valid Keyword",
+    "description": "Test product search functionality with valid keyword",
+    "steps": [
+      {
+        "action": "GET",
+        "endpoint": "/products?keyword=Laptop",
+        "expectedStatus": 200,
+        "expectedContent": "Products",
+        "description": "Search for products with keyword 'Laptop'"
+      }
+    ]
+  },
+  {
+    "name": "Product Search - Case Insensitive",
+    "description": "Test product search with different cases",
+    "steps": [
+      {
+        "action": "GET",
+        "endpoint": "/products?keyword=LAPTOP",
+        "expectedStatus": 200,
+        "expectedContent": "Products",
+        "description": "Search with uppercase keyword"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/products?keyword=laptop",
+        "expectedStatus": 200,
+        "expectedContent": "Products",
+        "description": "Search with lowercase keyword"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/products?keyword=LaPtOp",
+        "expectedStatus": 200,
+        "expectedContent": "Products",
+        "description": "Search with mixed case keyword"
+      }
+    ]
+  },
+  {
+    "name": "Product Search - Empty Keyword",
+    "description": "Test product search with empty keyword",
+    "steps": [
+      {
+        "action": "GET",
+        "endpoint": "/products?keyword=",
+        "expectedStatus": 200,
+        "expectedContent": "Products",
+        "description": "Search with empty keyword should show all products"
+      }
+    ]
+  },
+  {
+    "name": "Product Search - No Results",
+    "description": "Test product search with keyword that returns no results",
+    "steps": [
+      {
+        "action": "GET",
+        "endpoint": "/products?keyword=NonExistentProduct12345",
+        "expectedStatus": 200,
+        "expectedContent": "No products found",
+        "description": "Search for non-existent product"
+      }
+    ]
+  },
+  {
+    "name": "Product Search - Special Characters",
+    "description": "Test product search with special characters",
+    "steps": [
+      {
+        "action": "GET",
+        "endpoint": "/products?keyword=@#$%",
+        "expectedStatus": 200,
+        "expectedContent": "Products",
+        "description": "Search with special characters"
+      }
+    ]
+  },
+  {
+    "name": "Product Details - Valid Product ID",
+    "description": "Test accessing product details with valid ID",
+    "steps": [
+      {
+        "action": "GET",
+        "endpoint": "/products/1",
+        "expectedStatus": 200,
+        "expectedContent": "Add to Cart",
+        "description": "Access product details for ID 1"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/products/2",
+        "expectedStatus": 200,
+        "expectedContent": "Add to Cart",
+        "description": "Access product details for ID 2"
+      }
+    ]
+  },
+  {
+    "name": "Product Details - Invalid Product ID",
+    "description": "Test accessing product details with invalid ID",
+    "steps": [
+      {
+        "action": "GET",
+        "endpoint": "/products/999",
+        "expectedStatus": 302,
+        "expectedRedirect": "/products",
+        "description": "Access non-existent product should redirect to products page"
+      }
+    ]
+  },
+  {
+    "name": "Add to Cart - Multiple Items",
+    "description": "Test adding multiple items to cart",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "3"
+        },
+        "expectedStatus": 302,
+        "expectedRedirect": "/products/1",
+        "description": "Add 3 items to cart"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/cart",
+        "expectedStatus": 200,
+        "expectedContent": "Shopping Cart",
+        "description": "Verify items in cart"
+      }
+    ]
+  },
+  {
+    "name": "Add to Cart - Same Product Multiple Times",
+    "description": "Test adding same product multiple times",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "2"
+        },
+        "expectedStatus": 302,
+        "description": "Add 2 items first time"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "3"
+        },
+        "expectedStatus": 302,
+        "description": "Add 3 more items (should combine to 5 total)"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/cart",
+        "expectedStatus": 200,
+        "expectedContent": "Shopping Cart",
+        "description": "Verify combined quantity in cart"
+      }
+    ]
+  },
+  {
+    "name": "Add to Cart - Different Products",
+    "description": "Test adding different products to cart",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "2"
+        },
+        "expectedStatus": 302,
+        "description": "Add product 1 to cart"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/2",
+        "formData": {
+          "quantity": "1"
+        },
+        "expectedStatus": 302,
+        "description": "Add product 2 to cart"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/3",
+        "formData": {
+          "quantity": "3"
+        },
+        "expectedStatus": 302,
+        "description": "Add product 3 to cart"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/cart",
+        "expectedStatus": 200,
+        "expectedContent": "Shopping Cart",
+        "description": "Verify all products in cart"
+      }
+    ]
+  },
+  {
+    "name": "Add to Cart - Invalid Product ID",
+    "description": "Test adding non-existent product to cart",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/999",
+        "formData": {
+          "quantity": "1"
+        },
+        "expectedStatus": 302,
+        "expectedRedirect": "/products/999",
+        "description": "Try to add non-existent product"
+      }
+    ]
+  },
+  {
+    "name": "Cart Update - Change Quantity",
+    "description": "Test updating cart item quantity",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "2"
+        },
+        "expectedStatus": 302,
+        "description": "Add items to cart first"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/update/1",
+        "formData": {
+          "quantity": "5"
+        },
+        "expectedStatus": 302,
+        "expectedRedirect": "/cart",
+        "description": "Update quantity to 5"
+      }
+    ]
+  },
+  {
+    "name": "Cart Update - Set Quantity to Zero",
+    "description": "Test updating cart item quantity to zero (should remove item)",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "3"
+        },
+        "expectedStatus": 302,
+        "description": "Add items to cart"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/update/1",
+        "formData": {
+          "quantity": "0"
+        },
+        "expectedStatus": 302,
+        "expectedRedirect": "/cart",
+        "description": "Set quantity to 0 (should remove item)"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/cart",
+        "expectedStatus": 200,
+        "expectedContent": "Your cart is empty",
+        "description": "Verify item removed from cart"
+      }
+    ]
+  },
+  {
+    "name": "Cart Update - Invalid Product ID",
+    "description": "Test updating non-existent cart item",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/update/999",
+        "formData": {
+          "quantity": "5"
+        },
+        "expectedStatus": 302,
+        "expectedRedirect": "/cart",
+        "description": "Try to update non-existent cart item"
+      }
+    ]
+  },
+  {
+    "name": "Remove From Cart",
+    "description": "Test removing item from cart",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "1"
+        },
+        "expectedStatus": 302,
+        "description": "Add item to cart"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/remove/1",
+        "expectedStatus": 302,
+        "expectedRedirect": "/cart",
+        "description": "Remove item from cart"
+      }
+    ]
+  },
+  {
+    "name": "Remove From Cart - One of Multiple Items",
+    "description": "Test removing one item when cart has multiple items",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "2"
+        },
+        "expectedStatus": 302,
+        "description": "Add product 1 to cart"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/2",
+        "formData": {
+          "quantity": "1"
+        },
+        "expectedStatus": 302,
+        "description": "Add product 2 to cart"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/remove/1",
+        "expectedStatus": 302,
+        "expectedRedirect": "/cart",
+        "description": "Remove product 1 from cart"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/cart",
+        "expectedStatus": 200,
+        "expectedContent": "Shopping Cart",
+        "description": "Verify product 2 still in cart"
+      }
+    ]
+  },
+  {
+    "name": "Remove From Cart - Invalid Product ID",
+    "description": "Test removing non-existent item from cart",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/remove/999",
+        "expectedStatus": 302,
+        "expectedRedirect": "/cart",
+        "description": "Try to remove non-existent item"
+      }
+    ]
+  },
+  {
+    "name": "Clear Cart - With Items",
+    "description": "Test clearing cart that has items",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "2"
+        },
+        "expectedStatus": 302,
+        "description": "Add product 1 to cart"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/2",
+        "formData": {
+          "quantity": "3"
+        },
+        "expectedStatus": 302,
+        "description": "Add product 2 to cart"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/3",
+        "formData": {
+          "quantity": "1"
+        },
+        "expectedStatus": 302,
+        "description": "Add product 3 to cart"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/clear",
+        "expectedStatus": 302,
+        "expectedRedirect": "/cart",
+        "description": "Clear entire cart"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/cart",
+        "expectedStatus": 200,
+        "expectedContent": "Your cart is empty",
+        "description": "Verify cart is cleared"
+      }
+    ]
+  },
+  {
+    "name": "Clear Cart - Already Empty",
+    "description": "Test clearing cart that is already empty",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/clear",
+        "expectedStatus": 302,
+        "expectedRedirect": "/cart",
+        "description": "Clear empty cart"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/cart",
+        "expectedStatus": 200,
+        "expectedContent": "Your cart is empty",
+        "description": "Verify cart remains empty"
+      }
+    ]
+  },
+  {
+    "name": "View Cart - Empty Cart",
+    "description": "Test viewing empty cart",
+    "steps": [
+      {
+        "action": "GET",
+        "endpoint": "/cart",
+        "expectedStatus": 200,
+        "expectedContent": "Your cart is empty",
+        "description": "View empty cart"
+      }
+    ]
+  },
+  {
+    "name": "View Cart - With Items",
+    "description": "Test viewing cart with items",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "2"
+        },
+        "expectedStatus": 302,
+        "description": "Add items to cart"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/cart",
+        "expectedStatus": 200,
+        "expectedContent": "Shopping Cart",
+        "description": "View cart with items"
+      }
+    ]
+  },
+  {
+    "name": "Checkout - Empty Cart",
+    "description": "Test checkout with empty cart",
+    "steps": [
+      {
+        "action": "GET",
+        "endpoint": "/checkout",
+        "expectedStatus": 302,
+        "expectedRedirect": "/cart",
+        "description": "Try to checkout with empty cart should redirect to cart"
+      }
+    ]
+  },
+  {
+    "name": "Checkout - Valid Cart",
+    "description": "Test checkout with valid cart",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "1"
+        },
+        "expectedStatus": 302,
+        "description": "Add item to cart"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/checkout",
+        "expectedStatus": 200,
+        "expectedContent": "Checkout",
+        "description": "Access checkout page with valid cart"
+      }
+    ]
+  },
+  {
+    "name": "Place Order - Valid Data",
+    "description": "Test placing order with valid customer data",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "2"
+        },
+        "expectedStatus": 302,
+        "description": "Add items to cart"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/checkout/place-order",
+        "formData": {
+          "customerName": "Alice Johnson",
+          "customerEmail": "alice@example.com",
+          "shippingAddress": "456 Elm Street, Springfield, IL 62701"
+        },
+        "expectedStatus": 302,
+        "expectedRedirect": "/orders/",
+        "description": "Place order with valid data"
+      }
+    ]
+  },
+  {
+    "name": "Place Order - Different Customer Data",
+    "description": "Test placing order with different customer information",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/2",
+        "formData": {
+          "quantity": "1"
+        },
+        "expectedStatus": 302,
+        "description": "Add different product to cart"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/checkout/place-order",
+        "formData": {
+          "customerName": "Bob Smith",
+          "customerEmail": "bob.smith@company.com",
+          "shippingAddress": "789 Oak Avenue, Suite 100, Chicago, IL 60601"
+        },
+        "expectedStatus": 302,
+        "expectedRedirect": "/orders/",
+        "description": "Place order with different customer data"
+      }
+    ]
+  },
+  {
+    "name": "Place Order - Long Customer Name",
+    "description": "Test placing order with long customer name",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "1"
+        },
+        "expectedStatus": 302,
+        "description": "Add item to cart"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/checkout/place-order",
+        "formData": {
+          "customerName": "Christopher Alexander Montgomery Wellington III",
+          "customerEmail": "christopher.wellington@example.com",
+          "shippingAddress": "123 Very Long Street Name Boulevard, Apartment 456, New York, NY 10001"
+        },
+        "expectedStatus": 302,
+        "expectedRedirect": "/orders/",
+        "description": "Place order with long customer name"
+      }
+    ]
+  },
+  {
+    "name": "Place Order - Special Characters in Data",
+    "description": "Test placing order with special characters",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "1"
+        },
+        "expectedStatus": 302,
+        "description": "Add item to cart"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/checkout/place-order",
+        "formData": {
+          "customerName": "José María García-López",
+          "customerEmail": "jose.garcia@example.com",
+          "shippingAddress": "Calle de la Constitución, 123, 2º B, Madrid, España"
+        },
+        "expectedStatus": 302,
+        "expectedRedirect": "/orders/",
+        "description": "Place order with special characters"
+      }
+    ]
+  },
+  {
+    "name": "Multiple Orders Flow",
+    "description": "Test placing multiple orders in sequence",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "1"
+        },
+        "expectedStatus": 302,
+        "description": "Add item for first order"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/checkout/place-order",
+        "formData": {
+          "customerName": "First Customer",
+          "customerEmail": "first@example.com",
+          "shippingAddress": "123 First Street"
+        },
+        "expectedStatus": 302,
+        "expectedRedirect": "/orders/",
+        "description": "Place first order"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/2",
+        "formData": {
+          "quantity": "2"
+        },
+        "expectedStatus": 302,
+        "description": "Add item for second order"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/checkout/place-order",
+        "formData": {
+          "customerName": "Second Customer",
+          "customerEmail": "second@example.com",
+          "shippingAddress": "456 Second Avenue"
+        },
+        "expectedStatus": 302,
+        "expectedRedirect": "/orders/",
+        "description": "Place second order"
+      }
+    ]
+  },
+  {
+    "name": "Large Quantity Order Flow",
+    "description": "Test ordering with large quantity",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "10"
+        },
+        "expectedStatus": 302,
+        "description": "Add large quantity to cart"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/cart",
+        "expectedStatus": 200,
+        "expectedContent": "Shopping Cart",
+        "description": "Verify large quantity in cart"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/checkout/place-order",
+        "formData": {
+          "customerName": "Bulk Customer",
+          "customerEmail": "bulk@example.com",
+          "shippingAddress": "789 Warehouse District, Industrial Zone"
+        },
+        "expectedStatus": 302,
+        "expectedRedirect": "/orders/",
+        "description": "Place large quantity order"
+      }
+    ]
+  },
+  {
+    "name": "Mixed Products Large Order",
+    "description": "Test ordering multiple products with large quantities",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "5"
+        },
+        "expectedStatus": 302,
+        "description": "Add 5 of product 1"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/2",
+        "formData": {
+          "quantity": "3"
+        },
+        "expectedStatus": 302,
+        "description": "Add 3 of product 2"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/3",
+        "formData": {
+          "quantity": "7"
+        },
+        "expectedStatus": 302,
+        "description": "Add 7 of product 3"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/cart",
+        "expectedStatus": 200,
+        "expectedContent": "Shopping Cart",
+        "description": "Verify mixed products in cart"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/checkout/place-order",
+        "formData": {
+          "customerName": "Mixed Order Customer",
+          "customerEmail": "mixed@example.com",
+          "shippingAddress": "321 Mixed Products Lane"
+        },
+        "expectedStatus": 302,
+        "expectedRedirect": "/orders/",
+        "description": "Place mixed products order"
+      }
+    ]
+  },
+  {
+    "name": "Cart Operations Sequence",
+    "description": "Test sequence of cart operations",
+    "steps": [
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "3"
+        },
+        "expectedStatus": 302,
+        "description": "Add 3 items"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/2",
+        "formData": {
+          "quantity": "2"
+        },
+        "expectedStatus": 302,
+        "description": "Add different product"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/update/1",
+        "formData": {
+          "quantity": "5"
+        },
+        "expectedStatus": 302,
+        "description": "Update first product quantity"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/remove/2",
+        "expectedStatus": 302,
+        "description": "Remove second product"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/3",
+        "formData": {
+          "quantity": "1"
+        },
+        "expectedStatus": 302,
+        "description": "Add third product"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/cart",
+        "expectedStatus": 200,
+        "expectedContent": "Shopping Cart",
+        "description": "Verify final cart state"
+      }
+    ]
+  },
+  {
+    "name": "Complete Flow with Cart Modifications",
+    "description": "Test complete flow with cart modifications before checkout",
+    "steps": [
+      {
+        "action": "GET",
+        "endpoint": "/products",
+        "expectedStatus": 200,
+        "description": "Start at products page"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/1",
+        "formData": {
+          "quantity": "2"
+        },
+        "expectedStatus": 302,
+        "description": "Add product 1"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/2",
+        "formData": {
+          "quantity": "1"
+        },
+        "expectedStatus": 302,
+        "description": "Add product 2"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/update/1",
+        "formData": {
+          "quantity": "4"
+        },
+        "expectedStatus": 302,
+        "description": "Update product 1 quantity"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/add/3",
+        "formData": {
+          "quantity": "1"
+        },
+        "expectedStatus": 302,
+        "description": "Add product 3"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/cart/remove/2",
+        "expectedStatus": 302,
+        "description": "Remove product 2"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/cart",
+        "expectedStatus": 200,
+        "description": "Review final cart"
+      },
+      {
+        "action": "GET",
+        "endpoint": "/checkout",
+        "expectedStatus": 200,
+        "description": "Go to checkout"
+      },
+      {
+        "action": "POST",
+        "endpoint": "/checkout/place-order",
+        "formData": {
+          "customerName": "Final Customer",
+          "customerEmail": "final@example.com",
+          "shippingAddress": "999 Final Street, Last City"
+        },
+        "expectedStatus": 302,
+        "expectedRedirect": "/orders/",
+        "description": "Complete the order"
+      }
+    ]
+  },
+  {
+    "name": "View Cart - Empty Cart",
+    "description": "Test viewing empty cart",
+    "steps": [
+      {
+        "action": "GET",
+        "endpoint": "/cart",
+        "expectedStatus": 200,
+        "expectedContent": "Your cart is empty",
+        "description": "View empty cart"
+      }
+    ]
+  }
+]
