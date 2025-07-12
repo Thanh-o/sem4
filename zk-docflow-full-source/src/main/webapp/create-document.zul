@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+    <window title="Tạo văn bản mới" border="normal" width="600px" height="500px"
+            position="center" apply="com.example.composer.CreateDocumentComposer">
+        <vbox spacing="10px" style="padding: 20px;">
+            <grid>
+                <columns>
+                    <column width="120px"/>
+                    <column/>
+                </columns>
+                <rows>
+                    <row>
+                        <label value="Tiêu đề:"/>
+                        <textbox id="txtTitle" width="400px" placeholder="Nhập tiêu đề văn bản"/>
+                    </row>
+                    <row>
+                        <label value="Loại văn bản:"/>
+                        <radiogroup id="rgDocumentType">
+                            <radio label="Văn bản đi" value="DI" checked="true"/>
+                            <radio label="Văn bản đến" value="DEN"/>
+                        </radiogroup>
+                    </row>
+                    <row>
+                        <label value="Nội dung:"/>
+                        <textbox id="txtContent" rows="10" width="400px" 
+                                placeholder="Nhập nội dung văn bản"/>
+                    </row>
+                </rows>
+            </grid>
+            
+            <hbox spacing="10px">
+                <button id="btnSave" label="Lưu" style="background-color: #28a745; color: white;"/>
+                <button id="btnCancel" label="Hủy" style="background-color: #6c757d; color: white;"/>
+            </hbox>
+        </vbox>
+    </window>
+</zk>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+    <borderlayout height="100%">
+        <north height="60px" border="none">
+            <div style="background-color: #007bff; color: white; padding: 15px;">
+                <hbox width="100%" pack="stretch">
+                    <label value="HỆ THỐNG QUẢN LÝ VĂN BẢN" style="font-size: 20px; font-weight: bold;"/>
+                    <hbox>
+                        <label id="lblWelcome" style="margin-right: 20px;"/>
+                        <button id="btnLogout" label="Đăng xuất"/>
+                    </hbox>
+                </hbox>
+            </div>
+        </north>
+        
+        <center apply="com.example.composer.MainComposer">
+            <tabbox>
+                <tabs>
+                    <tab label="Danh sách văn bản"/>
+                    <tab label="Thống kê"/>
+                </tabs>
+                <tabpanels>
+                    <tabpanel>
+                        <vbox spacing="10px">
+                            <hbox>
+                                <button id="btnCreateDocument" label="Tạo văn bản mới" 
+                                        style="background-color: #28a745; color: white;"/>
+                            </hbox>
+                            
+                            <listbox id="lstDocuments" height="400px">
+                                <listhead>
+                                    <listheader label="Tiêu đề" width="200px"/>
+                                    <listheader label="Loại" width="100px"/>
+                                    <listheader label="Trạng thái" width="120px"/>
+                                    <listheader label="Người tạo" width="150px"/>
+                                    <listheader label="Được giao" width="150px"/>
+                                    <listheader label="Thao tác" width="150px"/>
+                                </listhead>
+                            </listbox>
+                        </vbox>
+                    </tabpanel>
+                    
+                    <tabpanel>
+                        <vbox spacing="20px">
+                            <label value="Thống kê văn bản" style="font-size: 18px; font-weight: bold;"/>
+                            
+                            <grid id="gridStats" width="400px">
+                                <columns>
+                                    <column label="Loại/Trạng thái" width="200px"/>
+                                    <column label="Số lượng" width="100px"/>
+                                </columns>
+                                <rows/>
+                            </grid>
+                        </vbox>
+                    </tabpanel>
+                </tabpanels>
+            </tabbox>
+        </center>
+    </borderlayout>
+</zk>

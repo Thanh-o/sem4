@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+    <window title="Xem chi tiết văn bản" border="normal" width="800px" height="600px"
+            position="center" apply="com.example.composer.ViewDocumentComposer">
+        <vbox spacing="15px" style="padding: 20px;">
+            <!-- Document Details -->
+            <groupbox>
+                <caption label="Thông tin văn bản"/>
+                <grid>
+                    <columns>
+                        <column width="150px"/>
+                        <column/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <label value="Tiêu đề:"/>
+                            <label id="lblTitle" style="font-weight: bold;"/>
+                        </row>
+                        <row>
+                            <label value="Loại văn bản:"/>
+                            <label id="lblDocumentType"/>
+                        </row>
+                        <row>
+                            <label value="Trạng thái:"/>
+                            <label id="lblStatus"/>
+                        </row>
+                        <row>
+                            <label value="Người tạo:"/>
+                            <label id="lblCreatedBy"/>
+                        </row>
+                        <row>
+                            <label value="Được giao:"/>
+                            <label id="lblAssignedTo"/>
+                        </row>
+                        <row>
+                            <label value="Ngày tạo:"/>
+                            <label id="lblCreatedAt"/>
+                        </row>
+                        <row>
+                            <label value="Nội dung:"/>
+                            <textbox id="txtContent" rows="8" width="500px" readonly="true"/>
+                        </row>
+                    </rows>
+                </grid>
+            </groupbox>
+            
+            <!-- Timeline History -->
+            <groupbox>
+                <caption label="Lịch sử xử lý"/>
+                <vbox id="vboxTimeline" spacing="5px"/>
+            </groupbox>
+            
+            <hbox spacing="10px">
+                <button id="btnBack" label="Quay lại" style="background-color: #6c757d; color: white;"/>
+            </hbox>
+        </vbox>
+    </window>
+</zk>

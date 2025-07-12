@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+    <window title="Đăng nhập hệ thống" border="normal" width="400px" 
+            position="center" apply="com.example.composer.LoginComposer">
+        <vbox spacing="10px" align="center">
+            <image src="/images/logo.png" width="100px" height="100px"/>
+            <label value="HỆ THỐNG QUẢN LÝ VĂN BẢN" style="font-size: 18px; font-weight: bold;"/>
+            
+            <grid>
+                <columns>
+                    <column width="120px"/>
+                    <column/>
+                </columns>
+                <rows>
+                    <row>
+                        <label value="Tên đăng nhập:"/>
+                        <textbox id="txtUsername" width="200px" placeholder="Nhập tên đăng nhập"/>
+                    </row>
+                    <row>
+                        <label value="Mật khẩu:"/>
+                        <textbox id="txtPassword" type="password" width="200px" placeholder="Nhập mật khẩu"/>
+                    </row>
+                </rows>
+            </grid>
+            
+            <hbox spacing="10px">
+                <button id="btnLogin" label="Đăng nhập" style="background-color: #007bff; color: white;"/>
+            </hbox>
+            
+            <separator height="20px"/>
+            <label value="Tài khoản demo:" style="font-weight: bold;"/>
+            <label value="admin/admin123 (Lãnh đạo)"/>
+            <label value="nhanvien1/nv123 (Nhân viên)"/>
+        </vbox>
+    </window>
+</zk>
