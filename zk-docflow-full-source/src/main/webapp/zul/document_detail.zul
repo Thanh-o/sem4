@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+    <window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.example.zkdoc.viewmodel.DocumentDetailViewModel')">
+        <vbox>
+            <label value="Document Details" />
+            <grid>
+                <rows>
+                    <row>
+                        <label value="Number" />
+                        <label value="@bind(vm.document.documentNumber)" />
+                    </row>
+                    <row>
+                        <label value="Title" />
+                        <label value="@bind(vm.document.title)" />
+                    </row>
+                    <row>
+                        <label value="Type" />
+                        <label value="@bind(vm.document.type)" />
+                    </row>
+                    <row>
+                        <label value="Status" />
+                        <label value="@bind(vm.document.status)" /> <!-- Thay <custom> bằng <label> -->
+                    </row>
+                </rows>
+            </grid>
+            <button label="Back" onClick="@command('goBack')" />
+        </vbox>
+    </window>
+</zk>

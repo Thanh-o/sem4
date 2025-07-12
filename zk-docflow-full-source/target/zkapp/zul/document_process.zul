@@ -1,0 +1,24 @@
+<window title="Xử lý văn bản" border="normal" width="100%"
+        viewModel="@id('vm') @init('com.example.zkdoc.viewmodel.DocumentProcessViewModel')"
+        apply="org.zkoss.bind.BindComposer">
+    <vlayout style="padding:15px">
+        <label value="Tiêu đề: @load(vm.selectedDocument.title)" style="font-weight:bold"/>
+        <label value="Loại: @load(vm.selectedDocument.type)"/>
+        <label value="Số hiệu: @load(vm.selectedDocument.code)"/>
+        <label value="Ngày tạo: @load(vm.selectedDocument.date)"/>
+        <label value="Trạng thái: @load(vm.selectedDocument.status)" style="color:blue"/>
+
+        <separator/>
+
+        <hbox spacing="10px">
+            <button label="Phê duyệt" onClick="@command('approve')"/>
+            <combobox model="@bind(vm.userList)" selectedItem="@bind(vm.selectedUser)" placeholder="Người nhận"/>
+            <button label="Chuyển tiếp" onClick="@command('forward')"/>
+            <button label="Từ chối" onClick="@command('reject')"/>
+        </hbox>
+
+        <separator/>
+
+        <include src="/zul/timeline.zul"/>
+    </vlayout>
+</window>

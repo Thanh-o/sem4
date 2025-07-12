@@ -1,0 +1,15 @@
+<window title="Dashboard" border="normal" width="100%"
+        viewModel="@id('vm') @init('com.example.zkdoc.viewmodel.DashboardViewModel')">
+    <vlayout style="padding: 15px">
+        <label value="Tổng hợp văn bản" style="font-weight: bold; font-size: 16px"/>
+        <grid>
+            <rows>
+                <row><label value="Văn bản Đi:"/><label value="@load(vm.soVanBanDi)"/></row>
+                <row><label value="Văn bản Đến:"/><label value="@load(vm.soVanBanDen)"/></row>
+                <row><label value="Đang xử lý:"/><label value="@load(vm.dangXuLy)"/></row>
+                <row><label value="Hoàn thành:"/><label value="@load(vm.hoanThanh)"/></row>
+            </rows>
+        </grid>
+        <button label="Xem danh sách văn bản" onClick="@command('goToList')"/>
+    </vlayout>
+</window>

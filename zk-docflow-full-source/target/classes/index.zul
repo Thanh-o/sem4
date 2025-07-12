@@ -1,0 +1,4 @@
+<?page title="ZK Document Workflow" contentType="text/html;charset=UTF-8"?>
+<zk>
+    <include src="zul/login.zul"/>
+</zk>

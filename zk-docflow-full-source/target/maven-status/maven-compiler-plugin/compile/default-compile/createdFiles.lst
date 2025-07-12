@@ -1,0 +1,11 @@
+com\example\zkdoc\model\Document.class
+com\example\zkdoc\viewmodel\DocumentListViewModel.class
+com\example\zkdoc\viewmodel\DocumentCreateViewModel.class
+com\example\zkdoc\viewmodel\LoginViewModel.class
+com\example\zkdoc\viewmodel\DocumentDetailViewModel.class
+com\example\zkdoc\model\User.class
+com\example\zkdoc\util\DatabaseUtil.class
+com\example\zkdoc\service\DocumentService.class
+com\example\zkdoc\component\TimelineComponent.class
+com\example\zkdoc\model\DocumentHistory.class
+com\example\zkdoc\service\UserService.class

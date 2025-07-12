@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+    <window apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.example.zkdoc.viewmodel.DocumentListViewModel')">
+        <vbox>
+            <hbox>
+                <textbox value="@bind(vm.searchKeyword)" />
+                <button label="Search" onClick="@command('search')" />
+                <button label="Create New" onClick="Executions.sendRedirect('/document_create.zul')" />
+            </hbox>
+            <grid model="@bind(vm.documents)" paginal="@ref(paginal)">
+                <columns>
+                    <column label="Number" />
+                    <column label="Title" />
+                    <column label="Type" />
+                    <column label="Status" />
+                    <column label="Action" />
+                </columns>
+                <template name="model">
+                    <row>
+                        <label value="@bind(each.documentNumber)" />
+                        <label value="@bind(each.title)" />
+                        <label value="@bind(each.type)" />
+                        <label value="@bind(each.status)" />
+                        <button label="View" onClick="@command('viewDetails', document=each)" />
+                    </row>
+                </template>
+            </grid>
+            <paging id="paginal" pageSize="10" />
+        </vbox>
+    </window>
+</zk>
