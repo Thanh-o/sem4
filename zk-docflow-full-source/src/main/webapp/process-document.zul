@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+    <window title="Xử lý văn bản" border="normal" width="700px" height="500px"
+            position="center" apply="com.example.composer.ProcessDocumentComposer">
+        <vbox spacing="15px" style="padding: 20px;">
+
+            <groupbox>
+                <caption label="Thông tin văn bản"/>
+                <grid>
+                    <columns>
+                        <column width="150px"/>
+                        <column/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <label value="Tiêu đề:"/>
+                            <label id="lblTitle"/>
+                        </row>
+                        <row>
+                            <label value="Loại văn bản:"/>
+                            <label id="lblType"/>
+                        </row>
+                        <row>
+                            <label value="Nội dung:"/>
+                            <textbox id="txtContent" rows="6" width="500px" readonly="true"/>
+                        </row>
+                    </rows>
+                </grid>
+            </groupbox>
+
+            <groupbox>
+                <caption label="Xử lý văn bản"/>
+                <grid>
+                    <columns>
+                        <column width="150px"/>
+                        <column/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <label value="Chọn người xử lý tiếp theo:"/>
+                            <combobox id="cbAssignee" autodrop="true" placeholder="Chọn người..."/>
+                        </row>
+                        <row>
+                            <label value="Ghi chú:"/>
+                            <textbox id="txtComment" width="500px" rows="3"/>
+                        </row>
+                    </rows>
+                </grid>
+            </groupbox>
+
+            <hbox spacing="10px">
+                <button label="Phê duyệt" id="btnApprove" style="background-color: #28a745; color: black;"/>
+                <button label="Chuyển tiếp" id="btnForward" style="background-color: #ffc107; color: black;"/>
+                <button label="Từ chối" id="btnReject" style="background-color: #dc3545; color: black;"/>
+                <button label="Quay lại" id="btnBack" style="background-color: #6c757d; color: black;"/>
+            </hbox>
+        </vbox>
+    </window>
+</zk>

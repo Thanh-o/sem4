@@ -25,12 +25,24 @@
                         <textbox id="txtContent" rows="10" width="400px" 
                                 placeholder="Nhập nội dung văn bản"/>
                     </row>
+                    <row id="rowAddress">
+                        <label id="lblAddress" value="Nơi nhận:"/>
+                        <textbox id="txtAddress" width="400px" placeholder="Nhập nơi nhận"/>
+                    </row>
+                    <row>
+                        <label value="Tệp đính kèm:"/>
+                        <hbox>
+                            <button id="btnUpload" label="Tải lên tệp" />
+                            <vbox id="vboxFileList" />
+                        </hbox>
+                    </row>
+
                 </rows>
             </grid>
             
             <hbox spacing="10px">
-                <button id="btnSave" label="Lưu" style="background-color: #28a745; color: white;"/>
-                <button id="btnCancel" label="Hủy" style="background-color: #6c757d; color: white;"/>
+                <button id="btnSave" label="Lưu" style="background-color: #28a745; color: black;"/>
+                <button id="btnCancel" label="Hủy" style="background-color: #6c757d; color: black;"/>
             </hbox>
         </vbox>
     </window>

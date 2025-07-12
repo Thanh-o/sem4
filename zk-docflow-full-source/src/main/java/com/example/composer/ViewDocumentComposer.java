@@ -10,6 +10,7 @@ import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zul.A;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Vbox;
@@ -42,7 +43,11 @@ public class ViewDocumentComposer extends SelectorComposer<Component> {
     
     @Wire
     private Vbox vboxTimeline;
-    
+    @Wire private Label lblAddress;
+    @Wire private A linkAttachment;
+
+
+
     private DocumentHistoryDAO historyDAO = new DocumentHistoryDAO();
     private Document selectedDocument;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -72,10 +77,20 @@ public class ViewDocumentComposer extends SelectorComposer<Component> {
         lblDocumentType.setValue(selectedDocument.getDocumentTypeDisplay());
         lblStatus.setValue(selectedDocument.getStatusDisplay());
         lblCreatedBy.setValue(selectedDocument.getCreatedByName());
+        lblAddress.setValue(selectedDocument.getAddress());
         lblAssignedTo.setValue(selectedDocument.getAssignedToName() != null ? 
                               selectedDocument.getAssignedToName() : "Chưa giao");
         lblCreatedAt.setValue(dateFormat.format(selectedDocument.getCreatedAt()));
         txtContent.setValue(selectedDocument.getContent());
+        if (selectedDocument.getAttachment() != null && !selectedDocument.getAttachment().isEmpty()) {
+            linkAttachment.setHref("/uploads/" + selectedDocument.getAttachment());
+            linkAttachment.setVisible(true);
+        } else {
+            linkAttachment.setLabel("Không có tệp");
+            linkAttachment.setHref(null);
+            linkAttachment.setVisible(true); // vẫn hiển thị dòng này nhưng báo không có
+        }
+
     }
     
     private void loadTimeline() {

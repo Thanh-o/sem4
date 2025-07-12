@@ -10,9 +10,11 @@ public class Document {
     private String status;
     private int createdBy;
     private Integer assignedTo;
+    private String address;
     private Timestamp createdAt;
     private Timestamp updatedAt;
-    
+    private String attachment;
+
     // Additional fields for display
     private String createdByName;
     private String assignedToName;
@@ -50,6 +52,9 @@ public class Document {
     public Integer getAssignedTo() { return assignedTo; }
     public void setAssignedTo(Integer assignedTo) { this.assignedTo = assignedTo; }
 
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
+
     public Timestamp getCreatedAt() { return createdAt; }
     public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
 
@@ -62,6 +67,8 @@ public class Document {
     public String getAssignedToName() { return assignedToName; }
     public void setAssignedToName(String assignedToName) { this.assignedToName = assignedToName; }
 
+    public String getAttachment() { return attachment; }
+    public void setAttachment(String attachment) { this.attachment = attachment; }
     public String getStatusDisplay() {
         switch (status) {
             case "CHO_XU_LY": return "Chờ xử lý";

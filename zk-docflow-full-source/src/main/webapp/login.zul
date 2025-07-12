@@ -24,7 +24,7 @@
             </grid>
             
             <hbox spacing="10px">
-                <button id="btnLogin" label="Đăng nhập" style="background-color: #007bff; color: white;"/>
+                <button id="btnLogin" label="Đăng nhập" style="background-color: #007bff; color: black;"/>
             </hbox>
             
             <separator height="20px"/>

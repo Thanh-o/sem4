@@ -60,6 +60,16 @@
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.11.0</version> <!-- hoặc phiên bản mới hơn -->
+        </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <version>2.0.1</version>
+        </dependency>
 
 
         <!-- JSTL (nếu dùng) -->
@@ -86,12 +96,12 @@
 
     <build>
         <finalName>zkapp</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.4.44.v20210927</version> <!-- hoặc phiên bản bạn muốn -->
-            </plugin>
-        </plugins>
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.eclipse.jetty</groupId>-->
+<!--                <artifactId>jetty-maven-plugin</artifactId>-->
+<!--                <version>9.4.44.v20210927</version> &lt;!&ndash; hoặc phiên bản bạn muốn &ndash;&gt;-->
+<!--            </plugin>-->
+<!--        </plugins>-->
     </build>
 </project>

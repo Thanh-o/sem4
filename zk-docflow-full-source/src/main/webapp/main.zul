@@ -12,7 +12,7 @@
                 </hbox>
             </div>
         </north>
-        
+
         <center apply="com.example.composer.MainComposer">
             <tabbox>
                 <tabs>
@@ -23,27 +23,43 @@
                     <tabpanel>
                         <vbox spacing="10px">
                             <hbox>
-                                <button id="btnCreateDocument" label="Tạo văn bản mới" 
-                                        style="background-color: #28a745; color: white;"/>
+                                <button id="btnCreateDocument" label="Tạo văn bản mới"
+                                        style="background-color: #28a745; color: black;"/>
                             </hbox>
-                            
+                            <separator width="10px"/>
+                            <button id="btnViewAll" label="Xem tất cả văn bản"
+                                    visible="false"
+                                    style="background-color: #17a2b8; color: black;"/>
+
+
                             <listbox id="lstDocuments" height="400px">
                                 <listhead>
-                                    <listheader label="Tiêu đề" width="200px"/>
-                                    <listheader label="Loại" width="100px"/>
-                                    <listheader label="Trạng thái" width="120px"/>
-                                    <listheader label="Người tạo" width="150px"/>
-                                    <listheader label="Được giao" width="150px"/>
-                                    <listheader label="Thao tác" width="150px"/>
+                                    <listheader label="Tiêu đề">
+                                        <textbox id="filterTitle" width="180px" />
+                                    </listheader>
+                                    <listheader label="Loại">
+                                        <textbox id="filterType" width="80px" />
+                                    </listheader>
+                                    <listheader label="Trạng thái">
+                                        <textbox id="filterStatus" width="100px" />
+                                    </listheader>
+                                    <listheader label="Người tạo">
+                                        <textbox id="filterCreatedBy" width="130px" />
+                                    </listheader>
+                                    <listheader label="Được giao">
+                                        <textbox id="filterAssignedTo" width="130px" />
+                                    </listheader>
+                                    <listheader label="Thao tác"/>
                                 </listhead>
                             </listbox>
+
                         </vbox>
                     </tabpanel>
-                    
+
                     <tabpanel>
                         <vbox spacing="20px">
                             <label value="Thống kê văn bản" style="font-size: 18px; font-weight: bold;"/>
-                            
+
                             <grid id="gridStats" width="400px">
                                 <columns>
                                     <column label="Loại/Trạng thái" width="200px"/>

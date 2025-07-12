@@ -9,7 +9,8 @@ public class DocumentHistory {
     private String action;
     private String comment;
     private Timestamp createdAt;
-    
+    private String actorName;
+    private String formattedTime;
     // Additional fields for display
     private String userName;
 

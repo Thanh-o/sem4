@@ -92,8 +92,10 @@ public class DocumentDAO {
     }
 
     public boolean createDocument(Document document) {
-        String sql = "INSERT INTO document (title, content, document_type, created_by, status) VALUES (?, ?, ?, ?, ?)";
-        
+        String sql = "INSERT INTO document (title, content, document_type, created_by, status, address, attachment) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+
+
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             
@@ -102,7 +104,9 @@ public class DocumentDAO {
             stmt.setString(3, document.getDocumentType());
             stmt.setInt(4, document.getCreatedBy());
             stmt.setString(5, document.getStatus());
-            
+            stmt.setString(6, document.getAddress());
+            stmt.setString(7, document.getAttachment());
+
             int result = stmt.executeUpdate();
             
             if (result > 0) {
@@ -191,7 +195,10 @@ public class DocumentDAO {
         document.setDocumentType(rs.getString("document_type"));
         document.setStatus(rs.getString("status"));
         document.setCreatedBy(rs.getInt("created_by"));
-        
+        document.setAddress(rs.getString("address"));
+        document.setAttachment(rs.getString("attachment"));
+
+
         int assignedTo = rs.getInt("assigned_to");
         if (!rs.wasNull()) {
             document.setAssignedTo(assignedTo);

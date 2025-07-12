@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zk>
-    <window title="Xem chi tiết văn bản" border="normal" width="800px" height="600px"
+    <window title="Xem chi tiết văn bản" border="normal" width="800px"
             position="center" apply="com.example.composer.ViewDocumentComposer">
         <vbox spacing="15px" style="padding: 20px;">
             <!-- Document Details -->
@@ -33,12 +33,20 @@
                             <label id="lblAssignedTo"/>
                         </row>
                         <row>
+                            <label id="lblAddressLabel" value="Nơi gửi/Nơi nhận:"/>
+                            <label id="lblAddress"/>
+                        </row>
+                        <row>
                             <label value="Ngày tạo:"/>
                             <label id="lblCreatedAt"/>
                         </row>
                         <row>
                             <label value="Nội dung:"/>
                             <textbox id="txtContent" rows="8" width="500px" readonly="true"/>
+                        </row>
+                        <row>
+                            <label value="Tệp đính kèm:"/>
+                            <a id="linkAttachment" label="Tải xuống" target="_blank" />
                         </row>
                     </rows>
                 </grid>
@@ -51,7 +59,7 @@
             </groupbox>
             
             <hbox spacing="10px">
-                <button id="btnBack" label="Quay lại" style="background-color: #6c757d; color: white;"/>
+                <button id="btnBack" label="Quay lại" style="background-color: #6c757d; color: black;"/>
             </hbox>
         </vbox>
     </window>
