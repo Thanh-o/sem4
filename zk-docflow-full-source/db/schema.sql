@@ -1,55 +1,48 @@
--- 📄 db/schema.sql
+CREATE DATABASE IF NOT EXISTS document_workflow;
+USE document_workflow;
 
--- Bảng tài khoản người dùng
 CREATE TABLE user (
-                      id INT AUTO_INCREMENT PRIMARY KEY,
-                      username VARCHAR(50) NOT NULL,
-                      password VARCHAR(100) NOT NULL,
-                      role VARCHAR(20) NOT NULL -- NHANVIEN, LANHDAO
+                      id INT PRIMARY KEY AUTO_INCREMENT,
+                      username VARCHAR(50) NOT NULL UNIQUE,
+                      password VARCHAR(255) NOT NULL,
+                      full_name VARCHAR(100) NOT NULL,
+                      role ENUM('EMPLOYEE', 'LEADER') NOT NULL,
+                      email VARCHAR(100),
+                      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO user (username, password, role) VALUES
-                                                ('nhanvien1', '123456', 'NHANVIEN'),
-                                                ('lanhdao1', '123456', 'LANHDAO');
-
-
--- Bảng thông tin văn bản
 CREATE TABLE document (
-                          id INT AUTO_INCREMENT PRIMARY KEY,
-                          type VARCHAR(10) NOT NULL, -- DI, DEN
+                          id INT PRIMARY KEY AUTO_INCREMENT,
+                          document_number VARCHAR(50) NOT NULL UNIQUE,
                           title VARCHAR(255) NOT NULL,
                           content TEXT,
-                          code VARCHAR(50) NOT NULL,
-                          date DATE NOT NULL,
-                          created_by INT,
-                          receiver_or_sender VARCHAR(255),
-                          status VARCHAR(20) DEFAULT 'CHO_XU_LY',
-                          FOREIGN KEY (created_by) REFERENCES user(id)
+                          type ENUM('OUTGOING', 'INCOMING') NOT NULL,
+                          recipient_place VARCHAR(255),
+                          sender_place VARCHAR(255),
+                          issue_date DATE,
+                          receive_date DATE,
+                          creator_id INT NOT NULL,
+                          status ENUM('PENDING', 'PROCESSING', 'COMPLETED') NOT NULL DEFAULT 'PENDING',
+                          attachment_path VARCHAR(255),
+                          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                          FOREIGN KEY (creator_id) REFERENCES user(id),
+                          FULLTEXT (title, content)
 );
 
--- FULLTEXT INDEX cho tìm kiếm toàn văn
--- (áp dụng nếu dùng MySQL InnoDB hoặc MyISAM)
-ALTER TABLE document ADD FULLTEXT(title, content);
-
--- Bảng lịch sử xử lý văn bản
 CREATE TABLE document_history (
-                                  id INT AUTO_INCREMENT PRIMARY KEY,
+                                  id INT PRIMARY KEY AUTO_INCREMENT,
                                   document_id INT NOT NULL,
-                                  handler_id INT NOT NULL,
-                                  action VARCHAR(50) NOT NULL, -- PHE_DUYET, CHUYEN_TIEP, TU_CHOI
-                                  time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                                  note TEXT,
+                                  user_id INT NOT NULL,
+                                  action ENUM('CREATED', 'APPROVED', 'FORWARDED', 'REJECTED') NOT NULL,
+                                  comments TEXT,
+                                  action_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                  next_handler_id INT,
                                   FOREIGN KEY (document_id) REFERENCES document(id),
-                                  FOREIGN KEY (handler_id) REFERENCES user(id)
+                                  FOREIGN KEY (user_id) REFERENCES user(id),
+                                  FOREIGN KEY (next_handler_id) REFERENCES user(id)
 );
 
--- Dữ liệu mẫu
-INSERT INTO document (type, title, content, code, date, created_by, receiver_or_sender, status)
-VALUES
-    ('DI', 'Thư mời họp tổng kết', 'Nội dung cuộc họp tổng kết cuối năm', 'CV-01', CURDATE(), 1, 'Sở Giáo dục', 'CHO_XU_LY'),
-    ('DEN', 'Báo cáo tài chính quý I', 'Chi tiết báo cáo doanh thu', 'CV-02', CURDATE(), 2, 'Sở Tài chính', 'DANG_XU_LY');
-
-INSERT INTO document_history (document_id, handler_id, action, note)
-VALUES
-    (1, 1, 'TAO_MOI', 'Khởi tạo văn bản'),
-    (2, 2, 'CHUYEN_TIEP', 'Chuyển tiếp cho lãnh đạo xử lý');
+INSERT INTO user (username, password, full_name, role, email) VALUES
+                                                                  ('admin', 'password123', 'Admin User', 'LEADER', 'admin@example.com'),
+                                                                  ('employee1', 'password123', 'John Doe', 'EMPLOYEE', 'john@example.com');
