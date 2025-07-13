@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+    <window title="Tìm kiếm nâng cao" border="normal" width="90%"
+            apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.example.viewmodel.AdvancedSearchViewModel')">
+
+
+        <vbox spacing="10px" style="padding: 20px;"
+             >
+
+            <!-- Bộ lọc -->
+            <groupbox mold="3d">
+                <caption label="🔍 Điều kiện tìm kiếm"/>
+                <grid>
+                    <rows>
+                        <row>
+                            <label value="Từ ngày:" width="100px"/>
+                            <datebox value="@bind(vm.fromDate)" format="yyyy-MM-dd"/>
+                        </row>
+                        <row>
+                            <label value="Đến ngày:" width="100px"/>
+                            <datebox value="@bind(vm.toDate)" format="yyyy-MM-dd"/>
+                        </row>
+                        <row>
+                            <label value="Người xử lý cuối:"/>
+                            <textbox value="@bind(vm.lastProcessor)"/>
+                        </row>
+                        <row>
+                            <label value="Trạng thái:"/>
+                            <combobox value="@bind(vm.selectedStatus)" autodrop="true" >
+                                <comboitem label="Tất cả" value=""/>
+                                <comboitem label="CHO_XU_LY" value="CHO_XU_LY"/>
+                                <comboitem label="DANG_XU_LY" value="DANG_XU_LY"/>
+                                <comboitem label="HOAN_THANH" value="HOAN_THANH"/>
+                                <comboitem label="TU_CHOI" value="TU_CHOI"/>
+
+                            </combobox>
+                        </row>
+                        <row>
+                            <label value="Từ khóa trong tiêu đề/nội dung:"/>
+                            <textbox value="@bind(vm.keyword)" width="400px"/>
+                        </row>
+
+                           </rows>
+
+                </grid>
+
+            </groupbox>
+            <hbox spacing="10px">
+            <button label="🔎 Tìm kiếm" onClick="@command('search')" sclass="btn btn-primary"/>
+            <button label="Quay lại" onClick="@command('goBack')"
+                    style="background-color: #6c757d; color: black;"/>
+            </hbox>
+
+            <!-- Kết quả -->
+            <listbox model="@bind(vm.resultDocuments)" mold="paging" pageSize="10">
+
+            <listhead>
+                    <listheader label="Tiêu đề" sort="auto"/>
+                    <listheader label="Trạng thái" sort="auto"/>
+                    <listheader label="Người xử lý cuối" sort="auto"/>
+                    <listheader label="Ngày ban hành" sort="auto"/>
+                </listhead>
+                <template name="model" var="doc">
+                    <listitem>
+                        <listcell label="@load(doc.title)"/>
+                        <listcell label="@load(doc.statusDisplay)"/>
+                        <listcell label="@load(doc.assignedToName)"/>
+                        <listcell>
+                            <label value="@load(doc.createdAt) @converter('formatedDate', format='dd/MM/yyyy HH:mm')"/>
+                        </listcell>
+                    </listitem>
+                </template>
+            </listbox>
+
+        </vbox>
+    </window>
+    <zscript>
+        System.out.println("🔁 ZUL được render!");
+    </zscript>
+
+</zk>

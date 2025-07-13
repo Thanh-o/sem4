@@ -1,0 +1,86 @@
+<zk xmlns:h="native"
+    xmlns:n="native">
+    <window title="Cấu hình quy trình xử lý" border="normal"
+            apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.example.viewmodel.WorkflowConfigViewModel')">
+
+        <vbox spacing="10px" style="padding:20px">
+
+            <label value="Các bước xử lý:"/>
+            <listbox model="@load(vm.stepList)" width="100%">
+                <listhead>
+                    <listheader label="Thứ tự"/>
+                    <listheader label="Tên bước"/>
+                    <listheader label="Vai trò"/>
+                    <listheader label=""/>
+                </listhead>
+                <template name="model" var="step">
+                    <listitem>
+                        <listcell label="@load(step.stepOrder)"/>
+                        <listcell label="@load(step.stepName)"/>
+                        <listcell label="@load(step.roleCode)"/>
+                        <listcell>
+                            <button label="🗑" onClick="@command('deleteStep', step=step)"
+                                    tooltiptext="Xoá bước" />
+                        </listcell>
+                    </listitem>
+                </template>
+            </listbox>
+
+            <hbox spacing="10px">
+                <textbox value="@bind(vm.stepName)" placeholder="Tên bước" width="300px"/>
+                <textbox value="@bind(vm.roleCode)" placeholder="Mã vai trò (VD: GIAM_DOC)" width="300px"/>
+                <button label="Thêm bước" onClick="@command('addStep')"/>
+            </hbox>
+
+            <hbox spacing="10px">
+                <button label="Lưu quy trình" onClick="@command('saveWorkflow')"/>
+                <button label="Quay lại" onClick="@command('goBack')" style="background-color: #6c757d; color: black;"/>
+            </hbox>
+
+            <separator/>
+
+            <label value="Sơ đồ trực quan bằng sơ đồ khối:" style="font-weight:bold;"/>
+            <h:canvas id="workflowCanvas" width="1400" height="200" style="border:1px solid #ccc"/>
+
+            <h:script type="text/javascript"><![CDATA[
+                function clearCanvas() {
+                    const canvas = document.getElementById('workflowCanvas');
+                    const ctx = canvas.getContext('2d');
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+
+                function drawBox(x, y, text) {
+                    const canvas = document.getElementById('workflowCanvas');
+                    const ctx = canvas.getContext('2d');
+                    ctx.fillStyle = "#DFF0D8";
+                    ctx.strokeStyle = "#3C763D";
+                    ctx.fillRect(x, y, 140, 50);
+                    ctx.strokeRect(x, y, 140, 50);
+                    ctx.fillStyle = "#000";
+                    ctx.font = "12px Arial";
+                    ctx.fillText(text, x + 5, y + 25);
+                }
+
+                function drawArrow(fromX, fromY, toX, toY) {
+                    const canvas = document.getElementById('workflowCanvas');
+                    const ctx = canvas.getContext('2d');
+                    ctx.beginPath();
+                    ctx.moveTo(fromX, fromY);
+                    ctx.lineTo(toX, toY);
+                    ctx.stroke();
+
+                    const headlen = 8;
+                    const angle = Math.atan2(toY - fromY, toX - fromX);
+                    ctx.beginPath();
+                    ctx.moveTo(toX, toY);
+                    ctx.lineTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
+                    ctx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
+                    ctx.lineTo(toX, toY);
+                    ctx.fill();
+                }
+            ]]></h:script>
+
+        </vbox>
+    </window>
+</zk>

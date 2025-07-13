@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zk>
-    <window title="Tạo văn bản mới" border="normal" width="600px" height="500px"
-            position="center" apply="com.example.composer.CreateDocumentComposer">
+<zk xmlns:n="native">
+    <window title="Tạo văn bản mới" border="normal"
+            position="center" width="600px"
+            apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.example.viewmodel.CreateDocumentViewModel')"
+            validationMessages="@id('vmsgs')">
+
         <vbox spacing="10px" style="padding: 20px;">
             <grid>
                 <columns>
@@ -11,38 +15,56 @@
                 <rows>
                     <row>
                         <label value="Tiêu đề:"/>
-                        <textbox id="txtTitle" width="400px" placeholder="Nhập tiêu đề văn bản"/>
+                        <textbox value="@bind(vm.title)" width="400px"
+                                 placeholder="Nhập tiêu đề văn bản" />
                     </row>
                     <row>
                         <label value="Loại văn bản:"/>
-                        <radiogroup id="rgDocumentType">
-                            <radio label="Văn bản đi" value="DI" checked="true"/>
+                        <radiogroup selectedItem="@bind(vm.documentType)"
+                                    onCheck="@command('changeDocumentType')">
+                            <radio label="Văn bản đi" value="DI"/>
                             <radio label="Văn bản đến" value="DEN"/>
                         </radiogroup>
                     </row>
                     <row>
                         <label value="Nội dung:"/>
-                        <textbox id="txtContent" rows="10" width="400px" 
-                                placeholder="Nhập nội dung văn bản"/>
+                        <textbox value="@bind(vm.content)" rows="10" width="400px"
+                                 placeholder="Nhập nội dung văn bản" />
                     </row>
-                    <row id="rowAddress">
-                        <label id="lblAddress" value="Nơi nhận:"/>
-                        <textbox id="txtAddress" width="400px" placeholder="Nhập nơi nhận"/>
+                    <row>
+                        <label value="@load(vm.addressLabel)"/>
+
+                        <textbox value="@bind(vm.address)"
+                                 placeholder="@load(vm.addressPlaceholder)"/>
+
                     </row>
                     <row>
                         <label value="Tệp đính kèm:"/>
-                        <hbox>
-                            <button id="btnUpload" label="Tải lên tệp" />
-                            <vbox id="vboxFileList" />
-                        </hbox>
-                    </row>
+                        <vbox>
+                            <button label="Tải lên tệp"
+                                    onClick="@command('uploadFiles')"
+                                    style="margin-bottom: 5px;" />
 
+                            <vlayout>
+                                <label value="Danh sách tệp đã tải lên:" style="font-weight: bold"/>
+                                <vlayout>
+                                    <label value="@load(each)" forEach="@load(vm.uploadedFileNames)"
+                                           style="padding: 2px;" />
+                                </vlayout>
+                            </vlayout>
+                        </vbox>
+                    </row>
                 </rows>
             </grid>
-            
-            <hbox spacing="10px">
-                <button id="btnSave" label="Lưu" style="background-color: #28a745; color: black;"/>
-                <button id="btnCancel" label="Hủy" style="background-color: #6c757d; color: black;"/>
+
+            <separator/>
+            <hbox spacing="10px" align="center">
+                <button label="Lưu"
+                        onClick="@command('saveDocument')"
+                        style="background-color: #28a745; color: black;" />
+                <button label="Hủy"
+                        onClick="@command('cancel')"
+                        style="background-color: #6c757d; color: black;" />
             </hbox>
         </vbox>
     </window>

@@ -1,0 +1,34 @@
+<zk>
+    <borderlayout width="100%" height="100%"
+                  apply="org.zkoss.bind.BindComposer"
+                  viewModel="@id('vm') @init('com.example.viewmodel.MainLayoutViewModel')">
+
+        <!-- Header -->
+        <north size="60px" border="none">
+            <div style="background-color: #007bff; color: white; height: 100%;">
+                <hbox width="100%" pack="stretch" style="padding: 15px;">
+                    <label value="📄 HỆ THỐNG QUẢN LÝ VĂN BẢN" style="font-size: 20px; font-weight: bold;"/>
+                    <hbox align="end">
+                        <label value="@load(vm.userInfo)" style="margin-right: 20px;"/>
+                        <button label="Đăng xuất" onClick="@command('logout')"/>
+                    </hbox>
+                </hbox>
+            </div>
+        </north>
+
+        <!-- Sidebar -->
+        <west size="220px" border="none" collapsible="true" splittable="true">
+            <vlayout spacing="10px" style="padding: 15px;">
+                <label value="📚 Menu chức năng" style="font-weight: bold;"/>
+                <button label="📊 Dashboard" width="100%" onClick="@command('goDashboard')"/>
+                <button label="📑 Quản lý văn bản" width="100%" onClick="@command('goList')"/>
+            </vlayout>
+        </west>
+
+        <!-- Nội dung động -->
+        <center>
+            <include src="@bind(vm.includeSrc)" />
+
+        </center>
+    </borderlayout>
+</zk>

@@ -1,72 +1,88 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<zk>
-    <borderlayout height="100%">
-        <north height="60px" border="none">
-            <div style="background-color: #007bff; color: white; padding: 15px;">
-                <hbox width="100%" pack="stretch">
-                    <label value="HỆ THỐNG QUẢN LÝ VĂN BẢN" style="font-size: 20px; font-weight: bold;"/>
-                    <hbox>
-                        <label id="lblWelcome" style="margin-right: 20px;"/>
-                        <button id="btnLogout" label="Đăng xuất"/>
-                    </hbox>
-                </hbox>
-            </div>
-        </north>
-
-        <center apply="com.example.composer.MainComposer">
+<zk xmlns:n="native">
+    <borderlayout>
+        <center>
             <tabbox>
                 <tabs>
                     <tab label="Danh sách văn bản"/>
-                    <tab label="Thống kê"/>
                 </tabs>
                 <tabpanels>
                     <tabpanel>
-                        <vbox spacing="10px">
-                            <hbox>
-                                <button id="btnCreateDocument" label="Tạo văn bản mới"
+                        <vbox spacing="10px"
+                              apply="org.zkoss.bind.BindComposer"
+                              viewModel="@id('vm') @init('com.example.viewmodel.MainViewModel')">
+
+                        <hbox>
+                                <button label="Tạo văn bản mới"
+                                        onClick="@command('createDocument')"
                                         style="background-color: #28a745; color: black;"/>
                             </hbox>
-                            <separator width="10px"/>
-                            <button id="btnViewAll" label="Xem tất cả văn bản"
-                                    visible="false"
-                                    style="background-color: #17a2b8; color: black;"/>
+                            <hbox>
+                                <button label="Cấu hình Workflow"
+                                        visible="@load(vm.showWorkflowButton)"
+                                        onClick="@command('openWorkflowConfig')"
+                                        style="background-color: #28a745; color: black;"/>
+                            </hbox>
 
-
-                            <listbox id="lstDocuments" height="400px">
+                            <listbox height="400px" model="@load(vm.documents)">
                                 <listhead>
                                     <listheader label="Tiêu đề">
-                                        <textbox id="filterTitle" width="180px" />
+                                        <textbox value="@bind(vm.filterTitle)"
+                                                 onChanging="@command('filterDocuments')"
+                                                 width="180px"/>
                                     </listheader>
                                     <listheader label="Loại">
-                                        <textbox id="filterType" width="80px" />
+                                        <textbox value="@bind(vm.filterType)"
+                                                 onChanging="@command('filterDocuments')"
+                                                 width="80px"/>
                                     </listheader>
                                     <listheader label="Trạng thái">
-                                        <textbox id="filterStatus" width="100px" />
+                                        <combobox value="@bind(vm.filterStatus)"
+                                                  onChange="@command('filterDocuments')"
+                                                  width="120px" placeholder="--Trạng thái--">
+                                            <comboitem label="Chờ xử lý"/>
+                                            <comboitem label="Đang xử lý"/>
+                                            <comboitem label="Hoàn thành"/>
+                                            <comboitem label="Từ chối"/>
+                                        </combobox>
                                     </listheader>
                                     <listheader label="Người tạo">
-                                        <textbox id="filterCreatedBy" width="130px" />
+                                        <textbox value="@bind(vm.filterCreatedBy)"
+                                                 onChanging="@command('filterDocuments')"
+                                                 width="130px"/>
                                     </listheader>
                                     <listheader label="Được giao">
-                                        <textbox id="filterAssignedTo" width="130px" />
+                                        <textbox value="@bind(vm.filterAssignedTo)"
+                                                 onChanging="@command('filterDocuments')"
+                                                 width="130px"/>
                                     </listheader>
+                                    <listheader label="⏳ Còn lại"/>
                                     <listheader label="Thao tác"/>
                                 </listhead>
+
+                                <template name="model" var="doc">
+                                    <listitem>
+                                        <listcell label="@load(doc.title)"/>
+                                        <listcell label="@load(doc.documentTypeDisplay)"/>
+                                        <listcell label="@load(doc.statusDisplay)"/>
+                                        <listcell label="@load(doc.createdByName)"/>
+                                        <listcell label="@load(doc.assignedToName)"/>
+                                        <listcell>
+                                            <label value="@load(doc.remainingTimeDisplay)"
+                                                   sclass="@load(doc.overdue ? 'text-red' : '')"/>
+                                        </listcell>
+                                        <listcell>
+                                            <hbox spacing="5px">
+                                                <button label="Xem"
+                                                        onClick="@command('viewDocument', doc=doc)"/>
+                                                <button label="Xử lý"
+                                                        visible="@load(vm.canProcess(doc))"
+                                                        onClick="@command('processDocument', doc=doc)"/>
+                                            </hbox>
+                                        </listcell>
+                                    </listitem>
+                                </template>
                             </listbox>
 
-                        </vbox>
-                    </tabpanel>
-
-                    <tabpanel>
-                        <vbox spacing="20px">
-                            <label value="Thống kê văn bản" style="font-size: 18px; font-weight: bold;"/>
-
-                            <grid id="gridStats" width="400px">
-                                <columns>
-                                    <column label="Loại/Trạng thái" width="200px"/>
-                                    <column label="Số lượng" width="100px"/>
-                                </columns>
-                                <rows/>
-                            </grid>
                         </vbox>
                     </tabpanel>
                 </tabpanels>

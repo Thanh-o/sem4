@@ -49,6 +49,6 @@ public class User {
     public void setUpdatedAt(Timestamp updatedAt) { this.updatedAt = updatedAt; }
 
     public boolean isLeader() {
-        return "LANHDAO".equals(this.role);
+        return "ADMIN".equals(this.role);
     }
 }

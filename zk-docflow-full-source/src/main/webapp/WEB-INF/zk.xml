@@ -7,9 +7,9 @@
     </preference>
     
     <!-- Enable ZK Spring integration -->
-    <listener>
-        <listener-class>org.zkoss.zkplus.spring.DelegatingVariableResolver</listener-class>
-    </listener>
+<!--    <listener>-->
+<!--        <listener-class>org.zkoss.zkplus.spring.DelegatingVariableResolver</listener-class>-->
+<!--    </listener>-->
     
     <!-- System properties -->
     <system-config>

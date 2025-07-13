@@ -1,0 +1,56 @@
+<zk>
+    <window border="none" width="100%" apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.example.viewmodel.DashboardViewModel')">
+        <vbox spacing="20px" style="padding: 30px; background-color: #f9f9f9;">
+
+            <!-- Tiêu đề -->
+            <label value="📊 Thống kê văn bản"
+                   style="font-size: 24px; font-weight: bold; color: #333;" />
+
+            <!-- Bộ lọc -->
+            <groupbox mold="3d" closable="false">
+                <caption label="🔎 Bộ lọc thống kê" style="font-weight: bold;"/>
+                <hbox spacing="15px" style="padding: 10px;">
+                    <label value="Từ ngày:" style="min-width: 60px"/>
+                    <datebox value="@bind(vm.fromDate)" format="dd/MM/yyyy" width="130px"/>
+
+                    <label value="Đến ngày:" style="min-width: 70px"/>
+                    <datebox value="@bind(vm.toDate)" format="dd/MM/yyyy" width="130px"/>
+
+                    <label value="Trạng thái:" style="min-width: 80px"/>
+                    <combobox selectedItem="@bind(vm.selectedStatus)"
+                              model="@load(vm.statusList)"
+                              placeholder="--Chọn trạng thái--"
+                              autodrop="true" width="180px"/>
+
+                    <button label="🖨️ In báo cáo PDF" sclass="btn btn-primary"
+                            onClick="@command('generatePdfReport')" />
+                </hbox>
+                <hbox>
+                    <button label="Tìm kiếm nâng cao"
+                            onClick="@command('openAdvancedSearch')"
+                            style="background-color: #007bff; color: black;"/>
+                </hbox>
+
+            </groupbox>
+
+            <!-- Kết quả thống kê -->
+            <groupbox mold="3d" closable="false">
+                <caption label="📈 Kết quả thống kê" style="font-weight: bold;"/>
+                <grid width="100%" model="@load(vm.stats)" sclass="z-grid-striped">
+                    <columns>
+                        <column label="📌 Tiêu chí" width="60%"/>
+                        <column label="🔢 Số lượng" width="40%" align="center"/>
+                    </columns>
+                    <template name="model" var="item">
+                        <row>
+                            <label value="@load(item.key)" style="font-weight: bold;"/>
+                            <label value="@load(item.value)" style="color: #2c3e50;"/>
+                        </row>
+                    </template>
+                </grid>
+            </groupbox>
+
+        </vbox>
+    </window>
+</zk>

@@ -8,8 +8,8 @@ CREATE TABLE user (
                       username VARCHAR(50) UNIQUE NOT NULL,
                       password VARCHAR(255) NOT NULL,
                       full_name VARCHAR(100) NOT NULL,
-                      role ENUM('NHANVIEN', 'LANHDAO') NOT NULL,
-                      email VARCHAR(100),
+                      role VARCHAR(50) NOT NULL
+                          email VARCHAR(100),
                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -41,4 +41,19 @@ CREATE TABLE document_history (
                                   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                                   FOREIGN KEY (document_id) REFERENCES document(id),
                                   FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+ALTER TABLE document_history
+    ADD COLUMN deadline DATETIME NULL,
+ADD COLUMN is_overdue BOOLEAN DEFAULT FALSE;
+
+ALTER TABLE workflow_step
+    ADD COLUMN duration_days INT DEFAULT 2; -- mặc định 2 ngày cho mỗi bước
+
+
+CREATE TABLE workflow_step (
+                               id INT PRIMARY KEY AUTO_INCREMENT,
+                               step_order INT NOT NULL,
+                               role_code VARCHAR(50) NOT NULL,
+                               step_name VARCHAR(100) NOT NULL
 );

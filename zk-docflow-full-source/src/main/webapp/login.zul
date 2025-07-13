@@ -1,36 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<zk>
-    <window title="Đăng nhập hệ thống" border="normal" width="400px" 
-            position="center" apply="com.example.composer.LoginComposer">
+<zk xmlns:n="native">
+    <window title="Đăng nhập hệ thống" border="normal" position="center"
+            apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.example.viewmodel.LoginViewModel')">
         <vbox spacing="10px" align="center">
-            <image src="/images/logo.png" width="100px" height="100px"/>
+            <image src="/images/vnpt.png" width="100px" height="100px"/>
             <label value="HỆ THỐNG QUẢN LÝ VĂN BẢN" style="font-size: 18px; font-weight: bold;"/>
-            
+
             <grid>
                 <columns>
-                    <column width="120px"/>
+                    <column width="43%"/>
                     <column/>
                 </columns>
                 <rows>
                     <row>
                         <label value="Tên đăng nhập:"/>
-                        <textbox id="txtUsername" width="200px" placeholder="Nhập tên đăng nhập"/>
+                        <textbox value="@bind(vm.username)" width="200px" placeholder="Nhập tên đăng nhập"/>
                     </row>
                     <row>
                         <label value="Mật khẩu:"/>
-                        <textbox id="txtPassword" type="password" width="200px" placeholder="Nhập mật khẩu"/>
+                        <textbox type="password" value="@bind(vm.password)" width="200px" placeholder="Nhập mật khẩu"/>
                     </row>
                 </rows>
             </grid>
-            
+
             <hbox spacing="10px">
-                <button id="btnLogin" label="Đăng nhập" style="background-color: #007bff; color: black;"/>
+                <button label="Đăng nhập"
+                        onClick="@command('login')"
+                        autodisable="self"
+                        style="background-color: #007bff; color: black;"/>
             </hbox>
-            
+
             <separator height="20px"/>
             <label value="Tài khoản demo:" style="font-weight: bold;"/>
-            <label value="admin/admin123 (Lãnh đạo)"/>
-            <label value="nhanvien1/nv123 (Nhân viên)"/>
+            <label value="admin2/123456 (ADMIN)"/>
+            <label value="khoitao/123456 (NGUOI_KHOI_TAO)"/>
+            <label value="truongphong1/123456 (TRUONG_PHONG)"/>
+            <label value="giamdoc1/123456 (GIAM_DOC)"/>
         </vbox>
     </window>
 </zk>

@@ -14,6 +14,8 @@ public class Document {
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private String attachment;
+    private java.sql.Timestamp deadline;
+    private boolean isOverdue;
 
     // Additional fields for display
     private String createdByName;
@@ -69,6 +71,22 @@ public class Document {
 
     public String getAttachment() { return attachment; }
     public void setAttachment(String attachment) { this.attachment = attachment; }
+
+    public Timestamp getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Timestamp deadline) {
+        this.deadline = deadline;
+    }
+
+    public boolean isOverdue() {
+        return isOverdue;
+    }
+
+    public void setOverdue(boolean overdue) {
+        isOverdue = overdue;
+    }
     public String getStatusDisplay() {
         switch (status) {
             case "CHO_XU_LY": return "Chờ xử lý";
@@ -81,5 +99,14 @@ public class Document {
 
     public String getDocumentTypeDisplay() {
         return "DI".equals(documentType) ? "Văn bản đi" : "Văn bản đến";
+    }
+
+    public String getRemainingTimeDisplay() {
+        if (deadline == null) return "";
+        long millisLeft = deadline.getTime() - System.currentTimeMillis();
+        if (millisLeft <= 0) return "⚠️ Quá hạn";
+        long hours = millisLeft / (1000 * 60 * 60);
+        long minutes = (millisLeft / (1000 * 60)) % 60;
+        return String.format("%02dh%02dm", hours, minutes);
     }
 }
