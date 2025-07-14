@@ -1,11 +1,21 @@
 <zk>
     <window border="none" width="100%" apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.example.viewmodel.DashboardViewModel')">
-        <vbox spacing="20px" style="padding: 30px; background-color: #f9f9f9;">
+        <vbox spacing="10px" style="padding: 30px; background-color: #f9f9f9;">
 
             <!-- Tiêu đề -->
             <label value="📊 Thống kê văn bản"
                    style="font-size: 24px; font-weight: bold; color: #333;" />
+            <hlayout visible="@load(vm.admin)">
+                <button label="🧾 Xem Audit Log"
+                        onClick="@command('goToAuditLog')"
+                        style="background-color: #28a745; " />
+            </hlayout>
+
+                <button label="Xem session" onClick="@command('goToSession')"
+                        style="background-color: #6c757d; color: black;"/>
+            <button label="Xử lý theo ngày" onClick="@command('goToCalendar')"
+                    style="background-color: #6c757d; color: black;"/>
 
             <!-- Bộ lọc -->
             <groupbox mold="3d" closable="false">

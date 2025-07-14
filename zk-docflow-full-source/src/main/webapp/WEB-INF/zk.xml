@@ -5,12 +5,8 @@
         <name>org.zkoss.zk.ui.WebApp.name</name>
         <value>Document Management System</value>
     </preference>
-    
-    <!-- Enable ZK Spring integration -->
-<!--    <listener>-->
-<!--        <listener-class>org.zkoss.zkplus.spring.DelegatingVariableResolver</listener-class>-->
-<!--    </listener>-->
-    
+
+
     <!-- System properties -->
     <system-config>
         <disable-event-thread>false</disable-event-thread>

@@ -5,6 +5,7 @@ public class WorkflowStep {
     private int stepOrder;
     private String roleCode;
     private String stepName;
+    private Integer durationDays;
 
     // Constructors
     public WorkflowStep() {}
@@ -26,4 +27,12 @@ public class WorkflowStep {
 
     public String getStepName() { return stepName; }
     public void setStepName(String stepName) { this.stepName = stepName; }
+
+    public Integer getDurationDays() {
+        return durationDays;
+    }
+
+    public void setDurationDays(Integer durationDays) {
+        this.durationDays = durationDays;
+    }
 }

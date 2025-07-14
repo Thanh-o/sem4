@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk xmlns:n="native">
+<!--    <window title="Tạo văn bản mới" border="normal"-->
+<!--            position="center" width="600px"-->
+<!--            apply="org.zkoss.bind.BindComposer"-->
+<!--            viewModel="@id('vm') @init('com.example.viewmodel.CreateDocumentViewModel')"-->
+<!--            validationMessages="@id('vmsgs')">-->
+
+<!--        <vbox spacing="10px" style="padding: 20px;">-->
+<!--            <grid>-->
+<!--                <columns>-->
+<!--                    <column width="120px"/>-->
+<!--                    <column/>-->
+<!--                </columns>-->
+<!--                <rows>-->
+<!--                    <row>-->
+<!--                        <label value="Tiêu đề:"/>-->
+<!--                        <textbox value="@bind(vm.title)" width="400px"-->
+<!--                                 placeholder="Nhập tiêu đề văn bản" />-->
+<!--                    </row>-->
+<!--                    <row>-->
+<!--                        <label value="Loại văn bản:"/>-->
+<!--                        <radiogroup selectedItem="@bind(vm.documentType)"-->
+<!--                                    onCheck="@command('changeDocumentType')">-->
+<!--                            <radio label="Văn bản đi" value="DI"/>-->
+<!--                            <radio label="Văn bản đến" value="DEN"/>-->
+<!--                        </radiogroup>-->
+<!--                    </row>-->
+<!--                    <row>-->
+<!--                        <label value="Nội dung:"/>-->
+<!--                        <div>-->
+<!--                            <div id="editorContainer" onEditorBlur="@command('updateContent', content=event.data)">-->
+<!--                                <textarea id="editor" name="editor"></textarea>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </row>-->
+
+<!--                    <row>-->
+<!--                        <label value="@load(vm.addressLabel)"/>-->
+
+<!--                        <textbox value="@bind(vm.address)"-->
+<!--                                 placeholder="@load(vm.addressPlaceholder)"/>-->
+
+<!--                    </row>-->
+<!--                    <row>-->
+<!--                        <label value="Tệp đính kèm:"/>-->
+<!--                        <vbox>-->
+<!--                            <button label="Tải lên tệp"-->
+<!--                                    onClick="@command('uploadFiles')"-->
+<!--                                    style="margin-bottom: 5px;" />-->
+
+<!--                            <vlayout>-->
+<!--                                <label value="Danh sách tệp đã tải lên:" style="font-weight: bold"/>-->
+<!--                                <vlayout>-->
+<!--                                    <label value="@load(each)" forEach="@load(vm.uploadedFileNames)"-->
+<!--                                           style="padding: 2px;" />-->
+<!--                                </vlayout>-->
+<!--                            </vlayout>-->
+<!--                        </vbox>-->
+<!--                    </row>-->
+<!--                </rows>-->
+<!--            </grid>-->
+
+<!--            <separator/>-->
+<!--            <hbox spacing="10px" align="center">-->
+<!--                <button label="Lưu"-->
+<!--                        onClick="@command('saveDocument')"-->
+<!--                        style="background-color: #28a745; color: black;" />-->
+<!--                <button label="Hủy"-->
+<!--                        onClick="@command('cancel')"-->
+<!--                        style="background-color: #6c757d; color: black;" />-->
+<!--            </hbox>-->
+<!--        </vbox>-->
+
+<!--    </window>-->
+<!--    <zscript>-->
+<!--        <![CDATA[-->
+<!--        import org.zkoss.zk.ui.util.Clients;-->
+<!--        Clients.evalJavaScript("""-->
+<!--            setTimeout(function(){-->
+<!--                if (typeof CKEDITOR === 'undefined') {-->
+<!--                    var script = document.createElement('script');-->
+<!--                    script.src = 'https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js';-->
+<!--                    script.onload = function() {-->
+<!--                        CKEDITOR.replace('editor');-->
+<!--                        CKEDITOR.instances.editor.on('blur', function() {-->
+<!--                            var content = CKEDITOR.instances.editor.getData();-->
+<!--                            zAu.send(new zk.Event(zk.Widget.$('$editorContainer'), 'onEditorBlur', content));-->
+<!--                        });-->
+<!--                    };-->
+<!--                    document.head.appendChild(script);-->
+<!--                }-->
+<!--            }, 300);-->
+<!--        """);-->
+<!--    ]]>-->
+<!--    </zscript>-->
+    <window title="CKEditor Test" border="normal"
+            apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.example.viewmodel.CreateDocumentViewModel')">
+
+        <vbox spacing="10px" style="padding: 20px;">
+            <hbox spacing="10px">
+                <label value="Nội dung:"/>
+                <n:div>
+                    <hlayout id="editorReceiver" onEditorBlur="@command('updateContent', content=event.data.content)">
+                        <n:textarea id="editor"></n:textarea>
+                    </hlayout>
+
+                </n:div>
+            </hbox>
+
+            <button label="Xem nội dung" onClick="@command('showContent')" />
+            <separator />
+            <html content="@load(vm.content)" />
+        </vbox>
+
+        <zscript><![CDATA[
+            import org.zkoss.zk.ui.util.Clients;
+            Clients.evalJavaScript(
+                "var script = document.createElement('script');" +
+                "script.src = 'https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js';" +
+                "script.onload = function() {" +
+                    "CKEDITOR.replace('editor');" +
+                    "CKEDITOR.instances.editor.on('blur', function() {" +
+                        "var content = CKEDITOR.instances.editor.getData();" +
+                        "console.log('JS gửi nội dung:', content);" +
+                        "zAu.send(new zk.Event(zk.Widget.$('$editorReceiver'), 'onEditorBlur', {content: content}));" +
+                    "});" +
+                "};" +
+                "document.head.appendChild(script);"
+            );
+        ]]></zscript>
+    </window>
+
+</zk>

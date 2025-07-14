@@ -20,6 +20,8 @@ public class WorkflowDAO {
                 step.setStepOrder(rs.getInt("step_order"));
                 step.setRoleCode(rs.getString("role_code"));
                 step.setStepName(rs.getString("step_name"));
+                step.setDurationDays(rs.getInt("duration_days"));
+
                 steps.add(step);
             }
         } catch (Exception e) {
@@ -34,7 +36,8 @@ public class WorkflowDAO {
             PreparedStatement deleteStmt = conn.prepareStatement("DELETE FROM workflow_step");
             deleteStmt.executeUpdate();
 
-            String insertSql = "INSERT INTO workflow_step (step_order, role_code, step_name) VALUES (?, ?, ?)";
+            String insertSql = "INSERT INTO workflow_step (step_order, role_code, step_name, duration_days) VALUES (?, ?, ?, ?)";
+
             PreparedStatement insertStmt = conn.prepareStatement(insertSql);
 
             for (int i = 0; i < steps.size(); i++) {
@@ -42,6 +45,8 @@ public class WorkflowDAO {
                 insertStmt.setInt(1, i + 1);
                 insertStmt.setString(2, s.getRoleCode());
                 insertStmt.setString(3, s.getStepName());
+                insertStmt.setInt(4, s.getDurationDays() != null ? s.getDurationDays() : 2);
+
                 insertStmt.addBatch();
             }
 
@@ -65,6 +70,8 @@ public class WorkflowDAO {
                 step.setStepOrder(rs.getInt("step_order"));
                 step.setRoleCode(rs.getString("role_code"));
                 step.setStepName(rs.getString("step_name"));
+                step.setDurationDays(rs.getInt("duration_days"));
+
                 return step;
             }
         } catch (Exception e) {
@@ -82,4 +89,11 @@ public class WorkflowDAO {
         }
         return -1;
     }
+    public WorkflowStep getStepByRole(String roleCode) {
+        return getWorkflow().stream()
+                .filter(step -> step.getRoleCode().equalsIgnoreCase(roleCode))
+                .findFirst()
+                .orElse(null);
+    }
+
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zk>
-    <window title="Xem chi tiết văn bản" border="normal" width="800px"
+    <window title="Xem chi tiết văn bản" border="normal" width="100%"
             viewModel="@id('vm') @init('com.example.viewmodel.ViewDocumentViewModel')"
             apply="org.zkoss.bind.BindComposer">
         <vbox spacing="15px" style="padding: 20px;">
@@ -53,8 +53,28 @@
                         </row>
                         <row>
                             <label value="Tệp đính kèm:"/>
-                            <a label="@load(vm.attachmentName)" href="@load(vm.attachmentHref)" target="_blank"/>
+                            <vlayout>
+                                <listbox model="@load(vm.attachments)">
+                                    <template name="model" var="a">
+                                        <listitem>
+                                            <listcell>
+                                                <label value="@load(a.originalName)" />
+                                            </listcell>
+                                            <listcell>
+                                                <a label="Tải xuống" href="@load(vm.getDownloadLink(a))" target="_blank" />
+
+                                                <button label="🗑 Xoá"
+                                                        visible="@load(vm.isUploader(a))"
+                                                        onClick="@command('deleteAttachment', id=a.id)"
+                                                        style="margin-left: 10px; color: red;" />
+                                            </listcell>
+                                        </listitem>
+                                    </template>
+                                </listbox>
+                            </vlayout>
                         </row>
+
+
                     </rows>
                 </grid>
             </groupbox>

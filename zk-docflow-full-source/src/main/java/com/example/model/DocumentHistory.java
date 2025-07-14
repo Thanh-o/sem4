@@ -13,6 +13,9 @@ public class DocumentHistory {
     private String formattedTime;
     // Additional fields for display
     private String userName;
+    private Timestamp deadline;
+    private boolean isOverdue;
+    private String documentTitle;
 
     // Constructors
     public DocumentHistory() {}
@@ -46,6 +49,19 @@ public class DocumentHistory {
     public String getUserName() { return userName; }
     public void setUserName(String userName) { this.userName = userName; }
 
+    public Timestamp getDeadline() { return deadline; }
+    public void setDeadline(Timestamp deadline) { this.deadline = deadline; }
+
+    public boolean getIsOverdue() { return isOverdue; }
+    public void setIsOverdue(boolean isOverdue) { this.isOverdue = isOverdue; }
+
+    public String getDocumentTitle() {
+        return documentTitle;
+    }
+
+    public void setDocumentTitle(String documentTitle) {
+        this.documentTitle = documentTitle;
+    }
     public String getActionDisplay() {
         switch (action) {
             case "TAO_MOI": return "Tạo mới";
@@ -62,5 +78,20 @@ public class DocumentHistory {
                 createdAt, createdAt, userName, getActionDisplay());
         }
         return "";
+    }
+    public String getRemainingTimeDisplay() {
+        if (deadline == null) return "Không có hạn";
+        long millis = deadline.getTime() - System.currentTimeMillis();
+        if (millis <= 0) return "⏰ ĐÃ QUÁ HẠN";
+
+        long hours = millis / (1000 * 60 * 60);
+        long minutes = (millis / (1000 * 60)) % 60;
+
+        return String.format("⏳ %02d:%02d còn lại", hours, minutes);
+    }
+
+    public boolean isOverdue() {
+        if (deadline == null) return false;
+        return System.currentTimeMillis() > deadline.getTime();
     }
 }

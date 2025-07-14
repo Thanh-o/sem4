@@ -10,7 +10,7 @@
 
             <!-- Bộ lọc -->
             <groupbox mold="3d">
-                <caption label="🔍 Điều kiện tìm kiếm"/>
+                <caption label="🔍 Điều kiện tìm kiếm(chọn trạng thái trước)"/>
                 <grid>
                     <rows>
                         <row>

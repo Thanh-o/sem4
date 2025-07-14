@@ -1,13 +1,7 @@
 package com.example.viewmodel;
 
-import com.example.dao.DocumentDAO;
-import com.example.dao.DocumentHistoryDAO;
-import com.example.dao.UserDAO;
-import com.example.dao.WorkflowDAO;
-import com.example.model.Document;
-import com.example.model.DocumentHistory;
-import com.example.model.User;
-import com.example.model.WorkflowStep;
+import com.example.dao.*;
+import com.example.model.*;
 import com.example.util.EmailUtil;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,9 +9,11 @@ import org.zkoss.bind.annotation.*;
 import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zul.Fileupload;
 import org.zkoss.zul.Messagebox;
 
 import java.io.*;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -43,6 +39,8 @@ public class CreateDocumentViewModel {
     private WorkflowDAO workflowDAO = new WorkflowDAO();
     private UserDAO userDAO = new UserDAO();
     private User currentUser;
+    @Getter private List<Media> uploadedMedias = new ArrayList<>();
+    private DocumentAttachmentDAO attachmentDAO = new DocumentAttachmentDAO();
 
     @Init
     public void init() {
@@ -53,36 +51,37 @@ public class CreateDocumentViewModel {
     }
 
     @Command
-    @NotifyChange({"uploadedFiles", "uploadedFileNames"})
+    @NotifyChange({"uploadedMedias", "uploadedFileNames"})
     public void uploadFiles() {
-        Media[] medias = org.zkoss.zul.Fileupload.get(10); // Cho phép chọn tối đa 10 file
+        Media[] medias = Fileupload.get(10);
         if (medias != null) {
             for (Media media : medias) {
-                try {
-                    String uploadDir = Executions.getCurrent().getDesktop().getWebApp().getRealPath("/uploads");
-                    File dir = new File(uploadDir);
-                    if (!dir.exists()) dir.mkdirs();
+                uploadedMedias.add(media); // lưu danh sách Media để xử lý sau
+                uploadedFileNames.add(media.getName()); // Lưu tên để hiển thị
 
-                    String filename = UUID.randomUUID() + "_" + media.getName();
-                    File file = new File(dir, filename);
-
-                    try (InputStream in = media.getStreamData();
-                         OutputStream out = new FileOutputStream(file)) {
-                        byte[] buffer = new byte[1024];
-                        int len;
-                        while ((len = in.read(buffer)) != -1) {
-                            out.write(buffer, 0, len);
-                        }
-                    }
-
-                    uploadedFiles.add(filename);
-                    uploadedFileNames.add(media.getName());
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
         }
+    }
+
+    @Command
+    @NotifyChange("uploadedFileNames")
+    public void removeFile(@BindingParam("filename") String filename) {
+        uploadedFileNames.remove(filename);
+
+        // Optional: nếu muốn xóa khỏi uploadedMedias luôn
+        uploadedMedias.removeIf(media -> media.getName().equals(filename));
+    }
+
+    @Command
+    @NotifyChange("content")
+    public void updateContent(@BindingParam("content") String htmlContent) {
+        System.out.println(">> Gọi updateContent()");
+        if (htmlContent == null) {
+            System.out.println(">> content null");
+        } else {
+            System.out.println(">> Nội dung CKEditor: " + htmlContent);
+        }
+        this.content = htmlContent;
     }
 
     @Command
@@ -108,6 +107,38 @@ public class CreateDocumentViewModel {
 
         boolean created = documentDAO.createDocument(doc);
         if (created) {
+            // lưu file đính kèm
+            String uploadDir = Executions.getCurrent().getDesktop().getWebApp().getRealPath("/uploads");
+            File dir = new File(uploadDir);
+            if (!dir.exists()) dir.mkdirs();
+
+            for (Media media : uploadedMedias) {
+                String serverFileName = UUID.randomUUID() + "_" + media.getName();
+                File dest = new File(dir, serverFileName);
+
+                try (InputStream in = media.getStreamData();
+                     OutputStream out = new FileOutputStream(dest)) {
+                    byte[] buffer = new byte[1024];
+                    int len;
+                    while ((len = in.read(buffer)) != -1) {
+                        out.write(buffer, 0, len);
+                    }
+
+                    DocumentAttachment att = new DocumentAttachment();
+                    att.setDocumentId(doc.getId());
+                    att.setFilename(serverFileName);
+                    att.setOriginalName(media.getName());
+                    att.setUploadedBy(currentUser.getId());
+                    attachmentDAO.save(att);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            // (phần gán người xử lý tiếp theo giữ nguyên)
+        }
+
+        if (created) {
             DocumentHistory history = new DocumentHistory(
                     doc.getId(), currentUser.getId(), "TAO_MOI", "Tạo văn bản mới"
             );
@@ -118,6 +149,15 @@ public class CreateDocumentViewModel {
             if (steps.size() > 1) {
                 WorkflowStep nextStep = steps.get(1);
                 User nextUser = userDAO.findUserByRole(nextStep.getRoleCode());
+                int duration = nextStep.getDurationDays() != null ? nextStep.getDurationDays() : 2;
+                Timestamp deadline = new Timestamp(System.currentTimeMillis() + duration * 24L * 60 * 60 * 1000);
+
+// Tạo lịch sử xử lý gắn deadline
+                DocumentHistory autoHistory = new DocumentHistory(
+                        doc.getId(), nextUser.getId(), "CHUYEN_TIEP", "Tự động giao sau khởi tạo"
+                );
+                autoHistory.setDeadline(deadline);
+                historyDAO.createHistory(autoHistory);
 
                 if (nextUser != null) {
                     doc.setAssignedTo(nextUser.getId());
@@ -135,9 +175,10 @@ public class CreateDocumentViewModel {
                     }
                 }
             }
+            new AuditLogDAO().log(currentUser.getId(), "TAO_VAN_BAN", "Tạo văn bản: " + doc.getTitle());
 
             showMessage("Tạo văn bản thành công!");
-            Executions.sendRedirect("/main.zul");
+            Executions.sendRedirect("/main_layout.zul");
         } else {
             showMessage("Có lỗi xảy ra khi tạo văn bản!");
         }

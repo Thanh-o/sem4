@@ -1,0 +1,25 @@
+<zk xmlns:n="native">
+    <window title="Phiên hoạt động" border="normal" width="80%" apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.example.viewmodel.SessionManagerViewModel')">
+        <grid model="@load(vm.sessions)">
+            <columns>
+                <column label="Session ID"/>
+                <column label="IP"/>
+                <column label="Thiết bị"/>
+                <column label="Lần cuối"/>
+                <column label="Hành động"/>
+            </columns>
+            <template name="model">
+                <row>
+                    <label value="${each.sessionId}"/>
+                    <label value="${each.ipAddress}"/>
+                    <label value="${each.userAgent}"/>
+                    <label value="${each.lastAccessed}"/>
+                    <button label="Đăng xuất"
+                            onClick="@command('terminateSession', sessionId=each.sessionId)"
+                            visible="@load(each.sessionId ne vm.currentSessionId)"/>
+                </row>
+            </template>
+        </grid>
+    </window>
+</zk>

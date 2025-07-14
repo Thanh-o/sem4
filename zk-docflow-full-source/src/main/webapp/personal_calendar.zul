@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+    <window title="📅 Lịch xử lý cá nhân" border="normal"
+            apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.example.viewmodel.PersonalCalendarViewModel')">
+        <button label="Dashboard" onClick="@command('goBack')"
+                style="background-color: #6c757d; color: black;"/>
+        <separator/>
+        <label value="Danh sách văn bản cần xử lý theo ngày:" style="font-weight: bold;" />
+        <grid model="@load(vm.documentList)" width="100%">
+            <columns>
+                <column label="Tiêu đề văn bản" width="40%"/>
+                <column label="Hạn xử lý" width="30%"/>
+                <column label="Thao tác" width="30%"/>
+            </columns>
+            <template name="model">
+                <row>
+                    <label value="@load(each.documentTitle)" />
+                    <datebox value="@bind(each.deadline)" format="yyyy-MM-dd" />
+
+                    <button label="Update" onClick="@command('updateDeadline', history=each)" />
+                </row>
+            </template>
+        </grid>
+    </window>
+</zk>

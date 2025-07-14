@@ -28,9 +28,14 @@
                     </row>
                     <row>
                         <label value="Nội dung:"/>
-                        <textbox value="@bind(vm.content)" rows="10" width="400px"
-                                 placeholder="Nhập nội dung văn bản" />
+                        <div style="width:100%">
+                            <div id="editorWrapper"
+                                 onEditorBlur="@command('updateContent', content=event.data.content)">
+                                <n:textarea id="editor"></n:textarea>
+                            </div>
+                        </div>
                     </row>
+
                     <row>
                         <label value="@load(vm.addressLabel)"/>
 
@@ -47,11 +52,20 @@
 
                             <vlayout>
                                 <label value="Danh sách tệp đã tải lên:" style="font-weight: bold"/>
-                                <vlayout>
-                                    <label value="@load(each)" forEach="@load(vm.uploadedFileNames)"
-                                           style="padding: 2px;" />
-                                </vlayout>
+                                <listbox model="@load(vm.uploadedFileNames)" width="100%">
+                                    <template name="model">
+                                        <listitem>
+                                            <listcell label="@load(each)" />
+                                            <listcell>
+                                                <button label="Xóa"
+                                                        onClick="@command('removeFile', filename=each)"
+                                                        style="color: red;" />
+                                            </listcell>
+                                        </listitem>
+                                    </template>
+                                </listbox>
                             </vlayout>
+
                         </vbox>
                     </row>
                 </rows>
@@ -67,5 +81,21 @@
                         style="background-color: #6c757d; color: black;" />
             </hbox>
         </vbox>
+        <zscript><![CDATA[
+    import org.zkoss.zk.ui.util.Clients;
+    Clients.evalJavaScript(
+        "var script = document.createElement('script');" +
+        "script.src = 'https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js';" +
+        "script.onload = function() {" +
+            "CKEDITOR.replace('editor');" +
+            "CKEDITOR.instances.editor.on('blur', function() {" +
+                "var content = CKEDITOR.instances.editor.getData();" +
+                "zAu.send(new zk.Event(zk.Widget.$('$editorWrapper'), 'onEditorBlur', {content: content}));" +
+            "});" +
+        "};" +
+        "document.head.appendChild(script);"
+    );
+]]></zscript>
+
     </window>
 </zk>

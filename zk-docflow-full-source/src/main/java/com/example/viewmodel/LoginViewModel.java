@@ -1,6 +1,7 @@
 package com.example.viewmodel;
 
 import com.example.dao.UserDAO;
+import com.example.dao.UserSessionDAO;
 import com.example.model.User;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +10,8 @@ import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zul.Messagebox;
+
+import javax.servlet.http.HttpSession;
 
 public class LoginViewModel {
 
@@ -36,6 +39,14 @@ public class LoginViewModel {
         User user = userDAO.authenticate(username, password);
         if (user != null) {
             Sessions.getCurrent().setAttribute("currentUser", user);
+
+            HttpSession httpSession = (HttpSession) Sessions.getCurrent().getNativeSession();
+            String sessionId = httpSession.getId();
+            String ip = Executions.getCurrent().getRemoteAddr();
+            String userAgent = Executions.getCurrent().getHeader("user-agent");
+
+            UserSessionDAO.saveOrUpdate(user.getId(), sessionId, ip, userAgent);
+
             Executions.sendRedirect("/main_layout.zul");
         } else {
             Messagebox.show("Tên đăng nhập hoặc mật khẩu không đúng!", "Lỗi", Messagebox.OK, Messagebox.ERROR);

@@ -57,3 +57,13 @@ CREATE TABLE workflow_step (
                                role_code VARCHAR(50) NOT NULL,
                                step_name VARCHAR(100) NOT NULL
 );
+CREATE TABLE document_attachment (
+                                     id INT PRIMARY KEY AUTO_INCREMENT,
+                                     document_id INT NOT NULL,
+                                     filename VARCHAR(255) NOT NULL,          -- Tên lưu trên server (UUID_xxx)
+                                     original_name VARCHAR(255) NOT NULL,     -- Tên gốc của file
+                                     uploaded_by INT NOT NULL,
+                                     uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                     FOREIGN KEY (document_id) REFERENCES document(id),
+                                     FOREIGN KEY (uploaded_by) REFERENCES user(id)
+);

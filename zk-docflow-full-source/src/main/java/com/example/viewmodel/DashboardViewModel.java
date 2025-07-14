@@ -25,6 +25,8 @@ public class DashboardViewModel {
     @Getter private List<String> statusList;
 
     private DocumentDAO documentDAO = new DocumentDAO();
+    @Getter
+    private boolean admin;
 
     @Init
     public void init() {
@@ -34,6 +36,7 @@ public class DashboardViewModel {
             return;
         }
 
+        admin = "ADMIN".equalsIgnoreCase(user.getRole());
         statusList = Arrays.asList("Tất cả", "CHO_XU_LY", "DANG_XU_LY", "HOAN_THANH", "TU_CHOI");
         loadStatistics();
     }
@@ -78,5 +81,19 @@ public class DashboardViewModel {
         Executions.sendRedirect("/advanced-search.zul");
     }
 
+    @Command
+    public void goToAuditLog() {
+        Executions.sendRedirect("/audit_log.zul");
+    }
+
+    @Command
+    public void goToSession() {
+        Executions.sendRedirect("/session_list.zul");
+    }
+
+    @Command
+    public void goToCalendar() {
+        Executions.sendRedirect("/personal_calendar.zul");
+    }
 
 }

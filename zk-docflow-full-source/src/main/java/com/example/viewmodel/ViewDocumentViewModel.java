@@ -1,7 +1,10 @@
 package com.example.viewmodel;
 
+import com.example.dao.AuditLogDAO;
+import com.example.dao.DocumentAttachmentDAO;
 import com.example.dao.DocumentHistoryDAO;
 import com.example.model.Document;
+import com.example.model.DocumentAttachment;
 import com.example.model.DocumentHistory;
 import com.example.model.User;
 import lombok.Getter;
@@ -9,7 +12,9 @@ import lombok.Setter;
 import org.zkoss.bind.annotation.*;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zul.Messagebox;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -47,14 +52,19 @@ public class ViewDocumentViewModel {
     @Getter
     private boolean overdue;
 
+    @Getter private List<DocumentAttachment> attachments;
+    private DocumentAttachmentDAO attachmentDAO = new DocumentAttachmentDAO();
+    private User currentUser;
 
 
     private DocumentHistoryDAO historyDAO = new DocumentHistoryDAO();
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
+
     @Init
     public void init() {
-        User currentUser = (User) Sessions.getCurrent().getAttribute("currentUser");
+        this.currentUser = (User) Sessions.getCurrent().getAttribute("currentUser");
+
         if (currentUser == null) {
             Executions.sendRedirect("/login.zul");
             return;
@@ -62,12 +72,43 @@ public class ViewDocumentViewModel {
 
         selectedDocument = (Document) Sessions.getCurrent().getAttribute("selectedDocument");
         if (selectedDocument == null) {
-            Executions.sendRedirect("/main.zul");
+            Executions.sendRedirect("/main_layout.zul");
             return;
         }
+        new AuditLogDAO().log(currentUser.getId(), "XEM_CHI_TIET", "Xem văn bản: " + selectedDocument.getTitle());
 
         loadDocumentDetails();
         loadTimeline();
+        loadAttachments();
+
+    }
+    private void loadAttachments() {
+        attachments = attachmentDAO.getByDocumentId(selectedDocument.getId());
+    }
+    public boolean isUploader(DocumentAttachment a) {
+        return a.getUploadedBy() == currentUser.getId();
+    }
+
+    public String getDownloadLink(DocumentAttachment att) {
+        return "/uploads/" + att.getFilename();
+    }
+
+    private String getUploadBasePath() {
+        return Executions.getCurrent().getDesktop().getWebApp().getRealPath("/uploads");
+    }
+
+    @Command
+    @NotifyChange("attachments")
+    public void deleteAttachment(@BindingParam("id") int id) {
+        DocumentAttachment att = attachmentDAO.findById(id);
+        if (att != null && att.getUploadedBy() == currentUser.getId()) {
+            attachmentDAO.deleteById(id);
+            String uploadBasePath = getUploadBasePath();
+            File f = new File(uploadBasePath, att.getFilename());
+            if (f.exists()) f.delete();
+
+        }
+        loadAttachments();
     }
 
     private void loadDocumentDetails() {

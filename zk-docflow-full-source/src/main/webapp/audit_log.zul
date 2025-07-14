@@ -1,0 +1,30 @@
+<window apply="org.zkoss.bind.BindComposer"
+        viewModel="@id('vm') @init('com.example.viewmodel.AuditLogViewModel')">
+    <vlayout>
+        <label value="📝 Audit Log Hoạt động" style="font-weight: bold; font-size: 20px;" />
+
+        <listbox model="@load(vm.logs)" width="100%" mold="paging" pageSize="20">
+            <listhead>
+                <listheader label="Người thực hiện"/>
+                <listheader label="Hành động"/>
+                <listheader label="Mô tả"/>
+                <listheader label="Thời gian"/>
+            </listhead>
+            <template name="model" var="log">
+                <listitem>
+                    <listcell label="@load(log.userName)"/>
+                    <listcell label="@load(log.actionType)"/>
+                    <listcell label="@load(log.description)"/>
+                    <listcell label="@load(log.actionTime)"/>
+                </listitem>
+            </template>
+        </listbox>
+
+
+        <hbox spacing="10px">
+            <button label="⬇️ Xuất Excel" onClick="@command('exportExcel')"  />
+            <button label="Quay lại" onClick="@command('goBack')"
+                    style="background-color: #6c757d; color: black;"/>
+        </hbox>
+    </vlayout>
+</window>

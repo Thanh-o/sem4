@@ -11,6 +11,7 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zul.Messagebox;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class ProcessDocumentViewModel {
@@ -37,7 +38,7 @@ public class ProcessDocumentViewModel {
         selectedDocument = (Document) Sessions.getCurrent().getAttribute("selectedDocument");
 
         if (currentUser == null || selectedDocument == null) {
-            Executions.sendRedirect("/main.zul");
+            Executions.sendRedirect("/main_layout.zul");
             return;
         }
 
@@ -73,22 +74,22 @@ public class ProcessDocumentViewModel {
             selectedDocument.setStatus("HOAN_THANH");
             selectedDocument.setAssignedTo(null);
             documentDAO.updateDocument(selectedDocument);
-            saveHistory("PHE_DUYET", "Phê duyệt và hoàn thành: " + comment);
+            saveHistory("PHE_DUYET", "Phê duyệt và hoàn thành: " + comment); // ✅ dùng saveHistory ở đây
+            new AuditLogDAO().log(currentUser.getId(), "PHE_DUYET", "Phê duyệt văn bản: " + selectedDocument.getTitle());
+
         } else {
             WorkflowStep nextStep = steps.get(currentIndex + 1);
             User nextUser = userDAO.findRandomUserByRole(nextStep.getRoleCode());
 
             if (nextUser == null) {
-                Messagebox.show("Không tìm thấy người xử lý cho vai trò: " + nextStep.getRoleCode(), "Lỗi", Messagebox.OK, Messagebox.ERROR);
+                Messagebox.show("Không tìm thấy người xử lý cho vai trò: " + nextStep.getRoleCode(),
+                        "Lỗi", Messagebox.OK, Messagebox.ERROR);
                 return;
             }
 
-            selectedDocument.setStatus("DANG_XU_LY");
-            selectedDocument.setAssignedTo(nextUser.getId());
-            documentDAO.updateDocument(selectedDocument);
-
-            saveHistory("PHE_DUYET", "Phê duyệt và chuyển tiếp đến: " + nextUser.getFullName()
-                    + " (" + nextUser.getRole() + ") - Ghi chú: " + comment);
+            assignWithDeadline(nextUser, "PHE_DUYET",
+                    "Phê duyệt và chuyển tiếp đến: " + nextUser.getFullName()
+                            + " (" + nextUser.getRole() + ") - Ghi chú: " + comment);
 
             try {
                 EmailUtil.sendEmail(nextUser.getEmail(), "Bạn được giao xử lý văn bản",
@@ -98,7 +99,8 @@ public class ProcessDocumentViewModel {
             }
         }
 
-        Executions.sendRedirect("/main.zul");
+
+        Executions.sendRedirect("/main_layout.zul");
     }
 
     @Command
@@ -112,7 +114,8 @@ public class ProcessDocumentViewModel {
         selectedDocument.setStatus("DANG_XU_LY");
         documentDAO.updateDocument(selectedDocument);
 
-        saveHistory("CHUYEN_TIEP", "Chuyển tiếp: " + comment);
+        assignWithDeadline(selectedAssignee, "CHUYEN_TIEP", "Chuyển tiếp: " + comment);
+
 
         try {
             EmailUtil.sendEmail(selectedAssignee.getEmail(),
@@ -121,8 +124,9 @@ public class ProcessDocumentViewModel {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+        new AuditLogDAO().log(currentUser.getId(), "CHUYEN_TIEP", "Chuyển tiếp văn bản: " + selectedDocument.getTitle());
 
-        Executions.sendRedirect("/main.zul");
+        Executions.sendRedirect("/main_layout.zul");
     }
 
     @Command
@@ -131,7 +135,9 @@ public class ProcessDocumentViewModel {
         selectedDocument.setAssignedTo(null);
         documentDAO.updateDocument(selectedDocument);
         saveHistory("TU_CHOI", "Từ chối: " + comment);
-        Executions.sendRedirect("/main.zul");
+        new AuditLogDAO().log(currentUser.getId(), "TU_CHOI", "Từ chối văn bản: " + selectedDocument.getTitle());
+
+        Executions.sendRedirect("/main_layout.zul");
     }
 
     @Command
@@ -143,4 +149,20 @@ public class ProcessDocumentViewModel {
         DocumentHistory history = new DocumentHistory(selectedDocument.getId(), currentUser.getId(), action, note);
         historyDAO.createHistory(history);
     }
+    private void assignWithDeadline(User toUser, String action, String note) {
+        selectedDocument.setAssignedTo(toUser.getId());
+        selectedDocument.setStatus("DANG_XU_LY");
+        documentDAO.updateDocument(selectedDocument);
+
+        // 🔁 Reset deadline mỗi khi chuyển xử lý
+        WorkflowStep currentStep = workflowDAO.getStepByRole(toUser.getRole());
+        int days = currentStep != null && currentStep.getDurationDays() != null
+                ? currentStep.getDurationDays() : 2;
+        Timestamp deadline = new Timestamp(System.currentTimeMillis() + days * 24L * 60 * 60 * 1000);
+
+        DocumentHistory history = new DocumentHistory(selectedDocument.getId(), toUser.getId(), action, note);
+        history.setDeadline(deadline);
+        historyDAO.createHistory(history);
+    }
+
 }
